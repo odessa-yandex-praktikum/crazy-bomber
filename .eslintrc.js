@@ -20,7 +20,7 @@ module.exports = {
         },
     },
     plugins: ['react', '@typescript-eslint',
-        // 'eslint-plugin-import-helpers'
+        'eslint-plugin-import-helpers'
     ],
     rules: {
         '@typescript-eslint/no-unused-vars': ['warn', {argsIgnorePattern: '^_'}],
@@ -28,13 +28,13 @@ module.exports = {
         '@typescript-eslint/no-explicit-any': 0,
         '@typescript-eslint/no-this-alias': 0,
         '@typescript-eslint/no-empty-function': 0,
-        // 'import-helpers/order-imports': [
-        //     'warn',
-        //     {
-        //         newlinesBetween: 'never',
-        //         groups: ['/^[a-z].*$/', '/^@.*$/', 'module', ['parent', 'sibling', 'index']],
-        //         alphabetize: {order: 'asc'},
-        //     },
-        // ],
+        'import-helpers/order-imports': [
+            'warn',
+            {
+                newlinesBetween: 'never',
+                groups: ['/^[a-z].*$/', '/^@.*$/', 'module', ['parent', 'sibling', 'index']],
+                alphabetize: {order: 'asc'},
+            },
+        ],
     },
 };
