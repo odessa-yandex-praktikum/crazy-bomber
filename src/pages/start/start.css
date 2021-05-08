@@ -1,0 +1,77 @@
+@import '../../styles.css';
+
+.start-page {
+    background: var(--color-background);
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: "JollyLodger-Regular", serif;
+    color: var(--color-games-title);
+}
+
+.backgroundBack {
+    position: absolute;
+    height: 100%;
+}
+
+.backgroundFront {
+    position: absolute;
+    width: 1500px;
+    margin-top: 170px;
+    margin-left: 200px;
+}
+
+.leftSideNavi {
+    z-index: 2;
+    list-style-type: none;
+    margin-top: 3em;
+    margin-left: -5px;
+    padding: 0;
+}
+
+.leftSideNavi li {
+    margin-bottom: 1em;
+    width: 300px;
+    height: 120px;
+    background-color: var(--color-games-title);
+    opacity: 0.5;
+    border: 2px solid red;
+    padding: 5px 20px;
+}
+
+.leftSideNavi li a {
+    text-decoration: none;
+    font-size: 66px;
+    color: #000;
+}
+
+.container__games-title {
+    z-index: 999;
+    margin-top: 350px;
+    margin-left: 350px;
+}
+
+.games-title{
+    color: var(--color-games-title);
+    font-size: 120px;
+    text-shadow: var(--color-shodow) 2px 2px 0, var(--color-shodow) -2px -2px 0,
+    var(--color-shodow) -2px 2px 0, var(--color-shodow) 2px -2px 0;
+}
+
+.container__start-button {
+    z-index: 999;
+    margin-top: -320px;
+    margin-left: 1000px;
+}
+
+.play-button {
+    text-decoration: none;
+    color: var(--color-games-title);
+    font-size: 150px;
+}
+
+.play-button:hover, .play-button:focus {
+    color: var(--color-shodow);
+}
+

@@ -1,0 +1,32 @@
+@import '../../styles.css';
+
+.container__input-with-error{
+    display: flex;
+    font-size: 24px;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+input{
+    border: none;
+    border-bottom: 1px inset var(--color-form-input);
+    background: none;
+    text-decoration: none;
+    text-align: end;
+    font-size: 24px;
+    font-family: var(--font-family);
+    margin-left: 10px;
+    min-width: 180px;
+    width: 50%;
+}
+
+.container__input {
+    display: flex;
+    justify-content: space-between;
+}
+
+.input__error-text {
+    font-size: 15px;
+    color: var(--color-error);
+    align-self: flex-end;
+}

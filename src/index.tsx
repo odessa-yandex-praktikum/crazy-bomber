@@ -1,6 +1,7 @@
 import * as React from 'react';
-import {HelloOdessa} from './Components/HelloOdessa';
 import * as ReactDOM from 'react-dom';
 import './styles/helloWorld.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import {StartPage} from './pages/start';
 
-ReactDOM.render(<HelloOdessa />, document.getElementById('app'));
+ReactDOM.render(<StartPage />, document.getElementById('app'));

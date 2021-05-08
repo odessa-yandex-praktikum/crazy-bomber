@@ -1,0 +1,66 @@
+:root {
+    --color-error: #940009;
+    --color-shodow: #940009;
+    --color-background: #000000;
+    --color-form-button: #000000;
+    --color-form-input: #000000;
+    --color-form: rgba(174, 180, 189, 0.35);
+    --color-games-title: #AEB4BD;
+    --font-family: 'JollyLodger-Regular', cursive;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    font-family: var(--font-family);
+}
+
+.container {
+    display: flex;
+    height: 100%;
+}
+
+@font-face {
+
+font-family: "JollyLodger-Regular";
+
+src: url("./assets/fonts/JollyLodger-Regular.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+
+:active, :hover, :focus {
+    outline: 0;
+    outline-offset: 0;
+}
+
+.container__page-title {
+    z-index: 2;
+}
+
+.page-title {
+    color: var(--color-games-title);
+    font-size: 7em;
+    font-weight: normal;
+    margin-top: 5%;
+    margin-left: 20%;
+}
+
+.container__page-content {
+    display: flex;
+    flex-direction: row;
+}
+
+.backlink {
+    z-index: 2;
+    text-decoration: none;
+    color: var(--color-games-title);
+    font-size: 11em;
+    margin-left: 2%;
+    margin-top: 530px;
+}
+
+.backlink:hover, .backlink:focus {
+    color: var(--color-shodow);
+}
