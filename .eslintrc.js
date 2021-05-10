@@ -19,10 +19,9 @@ module.exports = {
             jsx: true,
         },
     },
-    plugins: ['react', '@typescript-eslint',
-        'eslint-plugin-import-helpers'
-    ],
+    plugins: ['react', '@typescript-eslint', 'eslint-plugin-import-helpers'],
     rules: {
+        'react/prop-types': 'off',
         '@typescript-eslint/no-unused-vars': ['warn', {argsIgnorePattern: '^_'}],
         '@typescript-eslint/explicit-module-boundary-types': 0,
         '@typescript-eslint/no-explicit-any': 0,
