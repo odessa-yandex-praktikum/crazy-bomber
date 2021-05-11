@@ -1,0 +1,22 @@
+@import '../../styles.css';
+
+canvas {
+    overflow: hidden;
+    display: block;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.backgroundImg {
+    height: 100vh;
+    background-image: url('../../assets/images/game_background.png');
+    background-size: cover;
+}
+
+.gameScore {
+    position: absolute;
+    top: 2%;
+    left: 77%;
+    font-family: "JollyLodger-Regular", serif;
+    color: var(--color-games-title);
+    font-size: 72px;
+}
