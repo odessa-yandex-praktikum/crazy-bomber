@@ -19,22 +19,21 @@ module.exports = {
             jsx: true,
         },
     },
-    plugins: ['react', '@typescript-eslint',
-        // 'eslint-plugin-import-helpers'
-    ],
+    plugins: ['react', '@typescript-eslint', 'eslint-plugin-import-helpers'],
     rules: {
+        'react/prop-types': 'off',
         '@typescript-eslint/no-unused-vars': ['warn', {argsIgnorePattern: '^_'}],
         '@typescript-eslint/explicit-module-boundary-types': 0,
         '@typescript-eslint/no-explicit-any': 0,
         '@typescript-eslint/no-this-alias': 0,
         '@typescript-eslint/no-empty-function': 0,
-        // 'import-helpers/order-imports': [
-        //     'warn',
-        //     {
-        //         newlinesBetween: 'never',
-        //         groups: ['/^[a-z].*$/', '/^@.*$/', 'module', ['parent', 'sibling', 'index']],
-        //         alphabetize: {order: 'asc'},
-        //     },
-        // ],
+        'import-helpers/order-imports': [
+            'warn',
+            {
+                newlinesBetween: 'never',
+                groups: ['/^[a-z].*$/', '/^@.*$/', 'module', ['parent', 'sibling', 'index']],
+                alphabetize: {order: 'asc'},
+            },
+        ],
     },
 };
