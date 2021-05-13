@@ -9,6 +9,7 @@ const Login = React.lazy(() => import('./Pages/Login'));
 const Logon = React.lazy(() => import('./Pages/Logon'));
 const Main = React.lazy(() => import('./Pages/Main'));
 const Start = React.lazy(() => import('./pages/start/index'));
+const Profile = React.lazy(() => import('./pages/profile/index'));
 
 export class App extends React.Component {
     render() {
@@ -38,6 +39,7 @@ export class App extends React.Component {
                     <PrivateRoute path="/leaderboard" exact component={Leaderboard} />
                     <Route path="/start" component={Start} />
                     <Route path="/" component={Main} />
+                    <PrivateRoute path="/profile" exact component={Profile} />
                 </Switch>
             </React.Suspense>
         );

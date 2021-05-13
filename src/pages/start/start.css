@@ -1,4 +1,4 @@
-@import '../../styles.css';
+@import '../../common.css';
 
 .start-page {
     background: var(--color-background);

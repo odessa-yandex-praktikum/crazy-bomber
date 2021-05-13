@@ -1,0 +1,16 @@
+.form {
+    background-color: var(--color-form);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 25px;
+    position: relative;
+}
+
+.form__buttons-container {
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    width: inherit;
+}

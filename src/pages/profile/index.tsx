@@ -1,12 +1,12 @@
 import * as React from 'react';
 import './profile.css';
-import {consts} from '../../consts';
 import BackgroundBack from '../../assets/images/planet.png';
-import {Input} from '../../components/input';
-import {Button} from '../../components/button';
+import {Button, EButtonColour, EButtonType} from '../../components/button';
 import {Form} from '../../components/form';
+import {Input} from '../../components/input';
+import {consts} from '../../consts';
 
-export function Profile() {
+export default function Profile() {
     const currentUser = {
         id: 1,
         img: 'https://freesvg.org/img/1514826571.png',
@@ -18,30 +18,55 @@ export function Profile() {
     };
 
     const arrayInputs = [
-        Input(consts.profilePage.email, 'text', 'email', consts.error.errorTextEmptyField),
-        Input(consts.profilePage.login, 'text', 'login', consts.error.errorTextEmptyField),
-        Input(
-            consts.profilePage.oldPassword,
-            'password',
-            'password',
-            consts.error.errorTextEmptyField
-        ),
-        Input(
-            consts.profilePage.newPassword,
-            'password',
-            'newPassword',
-            consts.error.errorTextEmptyField
-        ),
-        Input(
-            consts.profilePage.newPassword,
-            'password',
-            'newPasswordRepeat',
-            consts.error.errorTextEmptyField
-        ),
+        <Input
+            key="email"
+            nameField={consts.profilePage.email}
+            type="text"
+            name="email"
+            textError={consts.error.errorTextEmptyField}
+        />,
+        <Input
+            key="login"
+            nameField={consts.profilePage.login}
+            type="text"
+            name="login"
+            textError={consts.error.errorTextEmptyField}
+        />,
+        <Input
+            key="oldPassword"
+            nameField={consts.profilePage.oldPassword}
+            type="password"
+            name="oldPassword"
+            textError={consts.error.errorTextEmptyField}
+        />,
+        <Input
+            key="newPassword"
+            nameField={consts.profilePage.newPassword}
+            type="password"
+            name="newPassword"
+            textError={consts.error.errorTextEmptyField}
+        />,
+        <Input
+            key="newPasswordRepeat"
+            nameField={consts.profilePage.newPassword}
+            type="password"
+            name="newPasswordRepeat"
+            textError={consts.error.errorTextEmptyField}
+        />,
     ];
     const arrayButtons = [
-        Button(consts.profilePage.buttonSave, 'profile-form__button'),
-        Button(consts.profilePage.buttonChange, 'profile-form__button'),
+        <Button
+            key={consts.profilePage.buttonSave}
+            text={consts.profilePage.buttonSave}
+            buttonColour={EButtonColour.PRIMARY}
+            buttonType={EButtonType.FORM}
+        />,
+        <Button
+            key={consts.profilePage.buttonChange}
+            text={consts.profilePage.buttonChange}
+            buttonColour={EButtonColour.PRIMARY}
+            buttonType={EButtonType.FORM}
+        />,
     ];
 
     return (
@@ -65,7 +90,11 @@ export function Profile() {
                         </div>
                     </div>
                     <div className="container__page-form">
-                        {Form('profile__form', arrayInputs, arrayButtons)}
+                        <Form
+                            classForm={'profile__form'}
+                            arrayInputs={arrayInputs}
+                            arrayButtons={arrayButtons}
+                        />
                     </div>
                 </div>
             </main>

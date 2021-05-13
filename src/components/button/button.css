@@ -1,0 +1,27 @@
+button {
+    border: none;
+    font: inherit;
+    color: inherit;
+    background-color: transparent;
+    cursor: pointer;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+button:active,
+button:hover {
+    text-shadow: var(--color-button-shadow) 2px 2px 0, var(--color-button-shadow) -2px -2px 0,
+        var(--color-button-shadow) -2px 2px 0, var(--color-button-shadow) 2px -2px 0;
+}
+
+.color-primary {
+    color: var(--color-button-primary);
+}
+
+.color-secondary {
+    color: var(--color-button-secondary);
+}
+
+.color-error {
+    color: var(--color-error);
+}
