@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {Route, Switch} from 'react-router';
 import {Link} from 'react-router-dom';
-import {PrivateRoute} from './Components/PrivateRoutes';
+import {PrivateRoute} from './Components/PrivateRoute';
 import {FallBack} from './Pages/Fallback';
 
 const Leaderboard = React.lazy(() => import('./Pages/Leaderboard'));
