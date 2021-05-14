@@ -10,40 +10,35 @@
     color: var(--color-games-title);
 }
 
-.backgroundBack {
+.leaderboard-page__background {
     position: absolute;
     height: 100%;
 }
 
-.container__leaderboard__table {
+.leaderboard-page__table {
     z-index: 999;
     width: 850px;
     height: 710px;
     margin: 0 20% 0 22%;
     font-size: 4em;
-}
-
-.container__leaderboard__table {
     background: var(--color-games-title);
     opacity: 0.45;
 }
 
-.table>:not(caption)>*>* {
-    border-bottom: none;
+.leaderboard-page__table_grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr 2fr 3fr;
 }
 
-.table>:not(caption)>*>* {
-    border-bottom: none;
-}
-
-.table__row__image {
+.leaderboard-page__table_col {
     display: flex;
+    flex-direction: row;
     justify-content: center;
+    align-items: center;
 }
 
-.table__row__image img {
+.leaderboard-page__table_image {
     width: 100px;
     height: 100px;
     border: 2px solid var(--color-shodow);
 }
-

@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 import {PrivateRoute} from './Components/PrivateRoutes';
 import {FallBack} from './Pages/Fallback';
 
-const Leaderboard = React.lazy(() => import('./Pages/Leaderboard'));
+const Leaderboard = React.lazy(() => import('./pages/leaderboard/index'));
 const Login = React.lazy(() => import('./Pages/Login'));
 const Logon = React.lazy(() => import('./Pages/Logon'));
 const Main = React.lazy(() => import('./Pages/Main'));
