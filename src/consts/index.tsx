@@ -24,19 +24,4 @@ export const consts = {
         scoreHeader: 'Score',
         linkBack: '<<',
     },
-    profilePage: {
-        pageTitle: 'Profile',
-        email: 'email',
-        login: 'Login',
-        oldPassword: 'Old password',
-        newPassword: 'New password',
-        buttonSave: 'save',
-        buttonChange: 'change',
-        linkBack: '<<',
-    },
-    startPage: {
-        buttonPlay: 'Play!',
-        navLinkProfile: 'profile',
-        navLinkLeaderboard: 'leaderboard',
-    },
 };

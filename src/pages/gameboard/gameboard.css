@@ -1,18 +1,18 @@
 @import '../../styles.css';
 
-canvas {
+.game-container__gameboard {
     overflow: hidden;
     display: block;
     -webkit-tap-highlight-color: transparent;
 }
 
-.backgroundImg {
+.game-container__background {
     height: 100vh;
     background-image: url('../../assets/images/game_background.png');
     background-size: cover;
 }
 
-.gameScore {
+.game-container__gameboard_score {
     position: absolute;
     top: 2%;
     left: 77%;
