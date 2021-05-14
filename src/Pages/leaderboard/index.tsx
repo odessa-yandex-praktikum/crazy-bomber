@@ -3,6 +3,7 @@ import './leaderboard.css';
 import {Link} from 'react-router-dom';
 import BackgroundBack from '../../assets/images/planet.png';
 import {consts} from '../../consts';
+import {convertScoreToString, findFiveLeaders} from '../../utils/Utils';
 
 export function LeaderboardPage() {
     const players = [
