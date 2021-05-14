@@ -7,7 +7,7 @@ import HighSkyscraperImg from '../assets/images/house_5.png';
 import PlantImg from '../assets/images/house_6.png';
 import SchoolImg from '../assets/images/house_7.png';
 import PublishingHouseImg from '../assets/images/house_8.png';
-import {EBuilding} from '../consts/enums';
+import {EBuilding} from '../consts/game.types';
 
 class Coordinate {
     constructor(public x: number, public y: number) {}
