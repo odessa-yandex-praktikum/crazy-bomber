@@ -1,6 +1,12 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+import {BrowserRouter} from 'react-router-dom';
+import {App} from './App';
 import './styles/helloWorld.css';
-import {GameBoard} from './pages/gameboard';
 
-ReactDOM.render(<GameBoard />, document.getElementById('app'));
+ReactDOM.render(
+    <BrowserRouter>
+        <App />
+    </BrowserRouter>,
+    document.getElementById('app')
+);
