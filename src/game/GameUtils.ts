@@ -31,11 +31,4 @@ const drawBuilding = (x: number, y: number, type: EBuilding, ctx: CanvasRenderin
     };
 };
 
-//в другом пул реквесте функция в утилитах, чтобы не было конфликта внесена временно сюда
-//TODO: использовать класс с утилитами из пул-реквеста #4
-const convertScoreToString = (num: number) => {
-    //-7 - потому что максимально мы показываем 7 символов
-    return String(`0000000${num}`).slice(-7);
-};
-
-export {drawInitialStage, convertScoreToString};
+export {drawInitialStage};

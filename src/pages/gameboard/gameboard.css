@@ -12,7 +12,7 @@
     background-size: cover;
 }
 
-.game-container__gameboard_score {
+.game-container__gameboard-score {
     position: absolute;
     top: 2%;
     left: 77%;

@@ -1,9 +1,10 @@
 import * as React from 'react';
 import {useEffect, useRef, useState} from 'react';
 import './gameboard.css';
-import {convertScoreToString, drawInitialStage} from '../../game/GameUtils';
+import {drawInitialStage} from '../../game/GameUtils';
+import {convertScoreToString} from '../../utils/Utils';
 
-export default function GameBoard() {
+export default function Gameboard() {
     const canvasRef = useRef<HTMLCanvasElement>(null);
 
     //setScore будет меняться во время игры
@@ -27,7 +28,7 @@ export default function GameBoard() {
                 height={window.innerHeight}
                 width={window.innerWidth}
             />
-            <span className="game-container__gameboard_score">
+            <span className="game-container__gameboard-score">
                 Score: {convertScoreToString(score)}
             </span>
         </div>

@@ -1,14 +1,14 @@
 import * as React from 'react';
 import {Route, Switch} from 'react-router';
 import {Link} from 'react-router-dom';
-import {PrivateRoute} from './components/PrivateRoute';
+import {PrivateRoute} from './Components/PrivateRoute';
 import {FallBack} from './Pages/Fallback';
 
 const Leaderboard = React.lazy(() => import('./pages/leaderboard/index'));
+const Gameboard = React.lazy(() => import('./pages/gameboard/index'));
 const Login = React.lazy(() => import('./Pages/Login'));
 const Logon = React.lazy(() => import('./Pages/Logon'));
 const Main = React.lazy(() => import('./Pages/Main'));
-const GameBoard = React.lazy(() => import('./pages/gameboard/index'));
 
 export class App extends React.Component {
     render() {
@@ -29,15 +29,15 @@ export class App extends React.Component {
                         <Link to="/leaderboard">leaderboard</Link>
                     </li>
                     <li>
-                        <Link to="/game">Game</Link>
+                        <Link to="/game">Gameboard</Link>
                     </li>
                 </ul>
                 <Switch>
                     <Route path="/login" exact component={Login} />
                     <Route path="/logon" exact component={Logon} />
                     <PrivateRoute path="/leaderboard" exact component={Leaderboard} />
+                    <PrivateRoute path="/game" exact component={Gameboard} />
                     <Route path="/" component={Main} />
-                    <Route path="/game" component={GameBoard} />
                 </Switch>
             </React.Suspense>
         );
