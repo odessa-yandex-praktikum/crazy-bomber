@@ -2,38 +2,43 @@
     --color-error: #940009;
     --color-shodow: #940009;
     --color-background: #000000;
-    --color-form-button: #000000;
+    --color-button-primary: #000000;
     --color-form-input: #000000;
     --color-form: rgba(174, 180, 189, 0.35);
-    --color-games-title: #AEB4BD;
+    --color-games-title: #aeb4bd;
+    --color-button-secondary: #aeb4bd;
+    --color-button-shadow: #aeb4bd;
     --font-family: 'JollyLodger-Regular', cursive;
 }
 
 body {
-    width: 100%;
     height: 100vh;
+    width: 100%;
     margin: 0;
     font-family: var(--font-family);
 }
 
 .container {
+    position: absolute;
     display: flex;
     height: 100%;
+    width: 100%;
 }
 
 @font-face {
-
-font-family: "JollyLodger-Regular";
-
-src: url("./assets/fonts/JollyLodger-Regular.ttf") format("truetype");
+    font-family: 'JollyLodger-Regular';
+    src: url('./assets/fonts/JollyLodger-Regular.ttf') format('truetype');
     font-style: normal;
     font-weight: normal;
 }
 
-:active, :hover, :focus {
+:active,
+:hover,
+:focus {
     outline: 0;
     outline-offset: 0;
 }
+
 
 .container__page-title {
     z-index: 2;

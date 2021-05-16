@@ -7,6 +7,5 @@ const isLogged = () => {
     return true;
 };
 
-
 export const PrivateRoute: React.FC<RouteProps> = (props) =>
     isLogged() ? <Route {...props} /> : <Redirect to="/" />;
