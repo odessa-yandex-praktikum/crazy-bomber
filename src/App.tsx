@@ -5,6 +5,7 @@ import {PrivateRoute} from './Components/PrivateRoute';
 import {FallBack} from './Pages/Fallback';
 
 const Leaderboard = React.lazy(() => import('./pages/leaderboard/index'));
+const Gameboard = React.lazy(() => import('./pages/gameboard/index'));
 const Login = React.lazy(() => import('./Pages/Login'));
 const Logon = React.lazy(() => import('./Pages/Logon'));
 const Main = React.lazy(() => import('./Pages/Main'));
@@ -27,11 +28,15 @@ export class App extends React.Component {
                     <li>
                         <Link to="/leaderboard">leaderboard</Link>
                     </li>
+                    <li>
+                        <Link to="/game">Gameboard</Link>
+                    </li>
                 </ul>
                 <Switch>
                     <Route path="/login" exact component={Login} />
                     <Route path="/logon" exact component={Logon} />
                     <PrivateRoute path="/leaderboard" exact component={Leaderboard} />
+                    <PrivateRoute path="/game" exact component={Gameboard} />
                     <Route path="/" component={Main} />
                 </Switch>
             </React.Suspense>
