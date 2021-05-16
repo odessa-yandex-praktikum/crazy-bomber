@@ -11,6 +11,7 @@ export enum EButtonColour {
 export enum EButtonType {
     FORM,
     ERROR,
+    PROFILE_FORM,
 }
 
 /**
@@ -57,6 +58,10 @@ function getButtonClass(buttonColour: EButtonColour, buttonType: EButtonType): s
         }
         case EButtonType.ERROR: {
             cssString += ' error__button';
+            break;
+        }
+        case EButtonType.PROFILE_FORM: {
+            cssString += ' profile-form__button';
             break;
         }
     }

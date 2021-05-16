@@ -25,27 +25,27 @@ export default function LeaderboardPage() {
                     {consts.leaderBoardPage.linkBack}
                 </Link>
                 <div className="leaderboard-page__table">
-                    <div className="leaderboard-page__table_grid">
-                        <span className="leaderboard-page__table_col" />
-                        <span className="leaderboard-page__table_col" />
-                        <span className="leaderboard-page__table_col">
+                    <div className="leaderboard-page__table-grid">
+                        <span className="leaderboard-page__table-col" />
+                        <span className="leaderboard-page__table-col" />
+                        <span className="leaderboard-page__table-col">
                             <strong>{consts.leaderBoardPage.loginHeader}</strong>
                         </span>
-                        <span className="leaderboard-page__table_col">
+                        <span className="leaderboard-page__table-col">
                             <strong>{consts.leaderBoardPage.scoreHeader}</strong>
                         </span>
                         {findFiveLeaders(players).map((player, index) => (
-                            <div key={player.id}>
-                                <span className="leaderboard-page__table_col">{index + 1}</span>
-                                <span className="leaderboard-page__table_col">
+                            <div className="leaderboard-page__table-row" key={player.id}>
+                                <span className="leaderboard-page__table-col">{index + 1}</span>
+                                <span className="leaderboard-page__table-col">
                                     <img
                                         src={player.img}
-                                        className="leaderboard-page__table_image"
+                                        className="leaderboard-page__table-image"
                                         alt=""
                                     />
                                 </span>
-                                <span className="leaderboard-page__table_col">{player.login}</span>
-                                <span className="leaderboard-page__table_col">
+                                <span className="leaderboard-page__table-col">{player.login}</span>
+                                <span className="leaderboard-page__table-col">
                                     {convertScoreToString(player.score)}
                                 </span>
                             </div>

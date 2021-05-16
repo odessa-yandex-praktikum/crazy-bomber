@@ -1,12 +1,14 @@
 import * as React from 'react';
 import './profile.css';
-import BackgroundBack from '../../assets/images/planet.png';
+import {Link} from 'react-router-dom';
 import {Button, EButtonColour, EButtonType} from '../../components/button';
 import {Form} from '../../components/form';
 import {Input} from '../../components/input';
 import {consts} from '../../consts';
 
 export default function Profile() {
+    const pageTitle = consts.profilePage.pageTitle;
+    const linkBack = consts.profilePage.linkBack;
     const currentUser = {
         id: 1,
         img: 'https://freesvg.org/img/1514826571.png',
@@ -59,43 +61,40 @@ export default function Profile() {
             key={consts.profilePage.buttonSave}
             text={consts.profilePage.buttonSave}
             buttonColour={EButtonColour.PRIMARY}
-            buttonType={EButtonType.FORM}
+            buttonType={EButtonType.PROFILE_FORM}
         />,
         <Button
             key={consts.profilePage.buttonChange}
             text={consts.profilePage.buttonChange}
             buttonColour={EButtonColour.PRIMARY}
-            buttonType={EButtonType.FORM}
+            buttonType={EButtonType.PROFILE_FORM}
         />,
     ];
 
     return (
-        <div className="profile-page">
-            <img src={BackgroundBack as string} className="backgroundBack" alt="" />
+        <div className="profile-page profile-page__background">
             <div className="container__page-title">
-                <h2 className="page-title">{consts.profilePage.pageTitle}</h2>
+                <h2 className="page-title">{pageTitle}</h2>
             </div>
             <main className="container__page-content">
-                <a href="#" className="backlink">
-                    {consts.profilePage.linkBack}
-                </a>
-                <div className="container__profile">
-                    <div className="container__user-info">
-                        <div className="common-info">
+                <Link to="/start" className="backlink">
+                    {linkBack}
+                </Link>
+                <div className="profile-page__container">
+                    <div className="profile-page__user-info">
+                        <div className="profile-page__common-info">
                             <img src={currentUser.img} alt="" />
-                            <span>{currentUser.name}</span>
+                            <span className="profile-page__user-name">{currentUser.name}</span>
                         </div>
-                        <div className="common-info-score">
-                            <span>Score: {currentUser.score}</span>
+                        <div>
+                            <span className="profile-page__score">Score: {currentUser.score}</span>
                         </div>
                     </div>
-                    <div className="container__page-form">
-                        <Form
-                            classForm={'profile__form'}
-                            arrayInputs={arrayInputs}
-                            arrayButtons={arrayButtons}
-                        />
-                    </div>
+                    <Form
+                        classForm="profile-page__form"
+                        arrayInputs={arrayInputs}
+                        arrayButtons={arrayButtons}
+                    />
                 </div>
             </main>
         </div>

@@ -48,8 +48,7 @@ body {
     color: var(--color-games-title);
     font-size: 7em;
     font-weight: normal;
-    margin-top: 5%;
-    margin-left: 20%;
+    margin: 5% 0 0 20%;
 }
 
 .container__page-content {

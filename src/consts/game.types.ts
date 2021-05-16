@@ -1,0 +1,12 @@
+enum EBuilding {
+    APARTMENT_HOUSE_1,
+    APARTMENT_HOUSE_2,
+    LOW_SKYSCRAPER,
+    MEDIUM_SKYSCRAPER,
+    HIGH_SKYSCRAPER,
+    PLANT,
+    SCHOOL,
+    PUBLISHING_HOUSE,
+}
+
+export {EBuilding};

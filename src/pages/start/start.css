@@ -33,7 +33,6 @@
 .start-page__navi-item {
     margin-bottom: 1em;
     width: 300px;
-    height: 120px;
     background-color: var(--color-games-title);
     opacity: 0.5;
     border: 2px solid red;
@@ -48,7 +47,7 @@
 
 .start-page__container {
     z-index: 999;
-    margin-top: 350px;
+    margin-top: 400px;
     margin-left: 350px;
 }
 
@@ -61,7 +60,7 @@
 
 .start-page__button-container {
     z-index: 999;
-    margin-top: -320px;
+    margin-top: -300px;
     margin-left: 1000px;
 }
 

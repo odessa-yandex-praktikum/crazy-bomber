@@ -4,12 +4,13 @@ import {Link} from 'react-router-dom';
 import {PrivateRoute} from './Components/PrivateRoute';
 import {FallBack} from './Pages/Fallback';
 
-const Leaderboard = React.lazy(() => import('./Pages/Leaderboard'));
+const Leaderboard = React.lazy(() => import('./pages/leaderboard/index'));
+const Gameboard = React.lazy(() => import('./pages/gameboard/index'));
+const Start = React.lazy(() => import('./pages/start/index'));
+const Profile = React.lazy(() => import('./pages/profile/index'));
 const Login = React.lazy(() => import('./Pages/Login'));
 const Logon = React.lazy(() => import('./Pages/Logon'));
 const Main = React.lazy(() => import('./Pages/Main'));
-const Start = React.lazy(() => import('./pages/start/index'));
-const Profile = React.lazy(() => import('./pages/profile/index'));
 
 export class App extends React.Component {
     render() {
@@ -30,16 +31,23 @@ export class App extends React.Component {
                         <Link to="/leaderboard">leaderboard</Link>
                     </li>
                     <li>
+                        <Link to="/game">Gameboard</Link>
+                    </li>
+                    <li>
                         <Link to="/start">Start</Link>
+                    </li>
+                    <li>
+                        <Link to="/profile">Profile</Link>
                     </li>
                 </ul>
                 <Switch>
                     <Route path="/login" exact component={Login} />
                     <Route path="/logon" exact component={Logon} />
                     <PrivateRoute path="/leaderboard" exact component={Leaderboard} />
-                    <Route path="/start" component={Start} />
-                    <Route path="/" component={Main} />
+                    <PrivateRoute path="/game" exact component={Gameboard} />
+                    <Route path="/start" exact component={Start} />
                     <PrivateRoute path="/profile" exact component={Profile} />
+                    <Route path="/" component={Main} />
                 </Switch>
             </React.Suspense>
         );

@@ -14,7 +14,7 @@ module.exports = () => ({
         // Почему сначала резолвим ts и tsx: https://github.com/webpack/webpack/issues/2404
         extensions: ['.ts', '.tsx', '.js', '.jsx'],
         alias: {
-            Components: path.resolve('src/Components/'),
+            Components: path.resolve('src/components/'),
         },
     },
 });

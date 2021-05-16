@@ -21,23 +21,29 @@
     height: 710px;
     margin: 0 20% 0 22%;
     font-size: 4em;
+    color: #000;
     background: var(--color-games-title);
     opacity: 0.45;
 }
 
-.leaderboard-page__table_grid {
+.leaderboard-page__table-grid {
     display: grid;
     grid-template-columns: 1fr 2fr 2fr 3fr;
 }
 
-.leaderboard-page__table_col {
+.leaderboard-page__table-row {
+    display: contents;
+}
+
+.leaderboard-page__table-col {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    margin-bottom: 15px;
 }
 
-.leaderboard-page__table_image {
+.leaderboard-page__table-image {
     width: 100px;
     height: 100px;
     border: 2px solid var(--color-shodow);

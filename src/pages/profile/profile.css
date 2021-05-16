@@ -10,12 +10,12 @@
     color: var(--color-games-title);
 }
 
-.backgroundBack {
-    position: absolute;
-    height: 100%;
+.profile-page__background {
+    background-image: url("../../assets/images/planet.png");
+    background-size: cover;
 }
 
-.container__profile {
+.profile-page__container {
     background: var(--color-games-title);
     opacity: 0.45;
     color: #000;
@@ -24,39 +24,41 @@
     margin: 0 auto;
 }
 
-.container__user-info {
+.profile-page__user-info {
     height: 270px;
 }
 
-.container__user-info img {
+.profile-page__common-info {
+    font-size: 70px;
+    display: flex;
+    flex-direction: row;
+}
+
+.profile-page__common-info img {
     margin: 25px 25px 0;
     width: 200px;
     height: 200px;
     border: 2px solid var(--color-shodow);
 }
 
-.common-info {
-    font-size: 70px;
-    display: flex;
-    flex-direction: row;
+.profile-page__user-name {
+    margin-top: 150px;
 }
 
-.common-info span {
-    margin-top: 145px;
-}
-
-.common-info-score {
+.profile-page__score {
     font-size: 24px;
-    margin-top: -5%;
     margin-left: 20%;
     color: var(--color-shodow);
 }
 
-.profile__form {
+.profile-page__form {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    height: 440px;
+    height: 370px;
 }
 
-
+.profile-form__button {
+    margin-left: 25%;
+    font-size: 82px;
+}
