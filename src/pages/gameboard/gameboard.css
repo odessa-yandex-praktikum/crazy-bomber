@@ -1,4 +1,4 @@
-@import '../../styles.css';
+@import '../../common.css';
 
 .game-container__gameboard {
     overflow: hidden;

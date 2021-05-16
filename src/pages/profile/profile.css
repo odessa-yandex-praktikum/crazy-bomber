@@ -1,0 +1,64 @@
+@import '../../common.css';
+
+.profile-page {
+    background: var(--color-background);
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: "JollyLodger-Regular", serif;
+    color: var(--color-games-title);
+}
+
+.profile-page__background {
+    background-image: url("../../assets/images/planet.png");
+    background-size: cover;
+}
+
+.profile-page__container {
+    background: var(--color-games-title);
+    opacity: 0.45;
+    color: #000;
+    width: 600px;
+    height: 710px;
+    margin: 0 auto;
+}
+
+.profile-page__user-info {
+    height: 270px;
+}
+
+.profile-page__common-info {
+    font-size: 70px;
+    display: flex;
+    flex-direction: row;
+}
+
+.profile-page__common-info img {
+    margin: 25px 25px 0;
+    width: 200px;
+    height: 200px;
+    border: 2px solid var(--color-shodow);
+}
+
+.profile-page__user-name {
+    margin-top: 150px;
+}
+
+.profile-page__score {
+    font-size: 24px;
+    margin-left: 20%;
+    color: var(--color-shodow);
+}
+
+.profile-page__form {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: 370px;
+}
+
+.profile-form__button {
+    margin-left: 25%;
+    font-size: 82px;
+}
