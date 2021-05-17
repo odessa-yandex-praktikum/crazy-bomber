@@ -1,26 +1,26 @@
 import * as React from 'react';
 import './login.css';
-import BackgroundFront from '../../assets/images/bomber.png';
 import BackgroundBack from '../../assets/images/planet.png';
-import {Button, EButtonColour, EButtonType} from '../../components/button';
-import {Form} from '../../components/form';
+import BackgroundFront from '../../assets/images/bomber.png';
 import {Input} from '../../components/input';
+import {Button, EButtonColor, EButtonType} from '../../components/button';
 import {translations} from '../../translations';
+import {Form} from '../../components/form';
 
-export function Login() {
+export default function Login() {
     const arrayInputs = [
         <Input
-            key={'login'}
+            key="login"
             nameField={translations.loginPage.login}
-            type={'text'}
-            name={'login'}
+            type="text"
+            name="login"
             textError={translations.error.errorTextEmptyField}
         />,
         <Input
-            key={'password'}
+            key="password"
             nameField={translations.loginPage.password}
-            type={'password'}
-            name={'password'}
+            type="password"
+            name="password"
             textError={translations.error.errorTextEmptyField}
         />,
     ];
@@ -28,13 +28,13 @@ export function Login() {
         <Button
             key={translations.loginPage.buttonOK}
             text={translations.loginPage.buttonOK}
-            buttonColour={EButtonColour.PRIMARY}
+            buttonColor={EButtonColor.PRIMARY}
             buttonType={EButtonType.FORM}
         />,
         <Button
             key={translations.loginPage.buttonSignUp}
             text={translations.loginPage.buttonSignUp}
-            buttonColour={EButtonColour.PRIMARY}
+            buttonColor={EButtonColor.PRIMARY}
             buttonType={EButtonType.FORM}
         />,
     ];

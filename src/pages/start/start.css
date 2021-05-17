@@ -6,7 +6,7 @@
     height: 100vh;
     display: flex;
     flex-direction: column;
-    font-family: "JollyLodger-Regular", serif;
+    font-family: 'JollyLodger-Regular', serif;
     color: var(--color-games-title);
 }
 
@@ -55,7 +55,7 @@
     color: var(--color-games-title);
     font-size: 120px;
     text-shadow: var(--color-shodow) 2px 2px 0, var(--color-shodow) -2px -2px 0,
-    var(--color-shodow) -2px 2px 0, var(--color-shodow) 2px -2px 0;
+        var(--color-shodow) -2px 2px 0, var(--color-shodow) 2px -2px 0;
 }
 
 .start-page__button-container {
@@ -70,7 +70,7 @@
     font-size: 150px;
 }
 
-.start-page__play-button:hover, .start-page__play-button:focus {
+.start-page__play-button:hover,
+.start-page__play-button:focus {
     color: var(--color-shodow);
 }
-

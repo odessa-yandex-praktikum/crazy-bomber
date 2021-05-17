@@ -1,15 +1,14 @@
-button {
+.button {
     border: none;
-    font: inherit;
-    color: inherit;
+    font-family: inherit;
     background-color: transparent;
     cursor: pointer;
     padding-right: 10px;
     padding-left: 10px;
 }
 
-button:active,
-button:hover {
+.button:active,
+.button:hover {
     text-shadow: var(--color-button-shadow) 2px 2px 0, var(--color-button-shadow) -2px -2px 0,
         var(--color-button-shadow) -2px 2px 0, var(--color-button-shadow) 2px -2px 0;
 }
@@ -24,4 +23,12 @@ button:hover {
 
 .color-error {
     color: var(--color-error);
+}
+
+.button__type-form {
+    font-size: 72px;
+}
+
+.button__type-error {
+    font-size: 72px;
 }

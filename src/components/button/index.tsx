@@ -2,7 +2,7 @@ import * as React from 'react';
 import './button.css';
 import {ButtonHTMLAttributes, FC} from 'react';
 
-export enum EButtonColour {
+export enum EButtonColor {
     PRIMARY, // black
     SECONDARY, // grey
     ERROR, // red
@@ -21,43 +21,53 @@ export enum EButtonType {
  */
 export type TButtonProps = {
     text?: string;
-    buttonColour: EButtonColour;
+    buttonColor: EButtonColor;
     buttonType: EButtonType;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
 type Props = FC<TButtonProps>;
 
-export const Button: Props = ({text, buttonColour, buttonType, ...otherProps}: TButtonProps) => {
+export const Button: Props = ({
+    text,
+    buttonColor,
+    buttonType,
+    className = '',
+    ...otherProps
+}: TButtonProps) => {
     return (
-        <button {...otherProps} className={getButtonClass(buttonColour, buttonType)} type="button">
+        <button
+            {...otherProps}
+            className={`${getButtonClass(buttonColor, buttonType)} ${className}`}
+            type="button"
+        >
             {text}
         </button>
     );
 };
 
-function getButtonClass(buttonColour: EButtonColour, buttonType: EButtonType): string {
-    let cssString = '';
-    switch (buttonColour) {
-        case EButtonColour.PRIMARY: {
-            cssString += 'color-primary';
+function getButtonClass(buttonColor: EButtonColor, buttonType: EButtonType): string {
+    let cssString = 'button';
+    switch (buttonColor) {
+        case EButtonColor.PRIMARY: {
+            cssString += ' color-primary';
             break;
         }
-        case EButtonColour.SECONDARY: {
-            cssString += 'color-secondary';
+        case EButtonColor.SECONDARY: {
+            cssString += ' color-secondary';
             break;
         }
-        case EButtonColour.ERROR: {
-            cssString += 'color-error';
+        case EButtonColor.ERROR: {
+            cssString += ' color-error';
             break;
         }
     }
     switch (buttonType) {
         case EButtonType.FORM: {
-            cssString += ' login-signin-form__button';
+            cssString += ' button__type-form';
             break;
         }
         case EButtonType.ERROR: {
-            cssString += ' error__button';
+            cssString += ' button__type-error';
             break;
         }
         case EButtonType.PROFILE_FORM: {
