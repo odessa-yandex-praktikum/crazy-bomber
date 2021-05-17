@@ -1,7 +1,7 @@
 import * as React from 'react';
 import './profile.css';
 import {Link} from 'react-router-dom';
-import {Button, EButtonColour, EButtonType} from '../../components/button';
+import {Button, EButtonColor, EButtonType} from '../../components/button';
 import {Form} from '../../components/form';
 import {Input} from '../../components/input';
 import {consts} from '../../consts';
@@ -60,13 +60,13 @@ export default function Profile() {
         <Button
             key={consts.profilePage.buttonSave}
             text={consts.profilePage.buttonSave}
-            buttonColour={EButtonColour.PRIMARY}
+            buttonColor={EButtonColor.PRIMARY}
             buttonType={EButtonType.PROFILE_FORM}
         />,
         <Button
             key={consts.profilePage.buttonChange}
             text={consts.profilePage.buttonChange}
-            buttonColour={EButtonColour.PRIMARY}
+            buttonColor={EButtonColor.PRIMARY}
             buttonType={EButtonType.PROFILE_FORM}
         />,
     ];
