@@ -42,16 +42,29 @@ body {
 
 .container__page-title {
     z-index: 2;
+    height: 250px;
 }
 
 .page-title {
     color: var(--color-games-title);
     font-size: 7em;
     font-weight: normal;
-    margin: 5% 0 0 20%;
+    margin-top: 8.5%;
 }
 
 .container__page-content {
     display: flex;
     flex-direction: row;
+}
+
+.container__left-part {
+    width: 30%;
+    height: 100vh;
+}
+
+.container__right-part {
+    width: 70%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
 }

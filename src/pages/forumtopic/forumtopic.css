@@ -31,14 +31,19 @@
 }
 
 .forum-page__form {
-    width: 86%;
+    width: 85%;
     display: flex;
     flex-direction: row;
     margin-left: 20px;
-    margin-bottom: 5px;
 }
 
-.forum-page__form-input {
-    width: 75%;
-    font-size: 22px;
+.forum-page__input {
+    width: 65%;
+    border: none;
+    border-bottom: 1px inset var(--color-form-input);
+    background: none;
+    text-decoration: none;
+    text-align: end;
+    font-size: 24px;
+    font-family: inherit;
 }

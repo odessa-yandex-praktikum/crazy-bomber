@@ -5,7 +5,7 @@
     width: 100%;
     height: 100vh;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     font-family: 'JollyLodger-Regular', serif;
     color: var(--color-games-title);
 }
@@ -21,7 +21,7 @@
     color: #000;
     width: 600px;
     height: 710px;
-    margin: 0 auto;
+    margin: 0 10%;
 }
 
 .profile-page__user-info {
@@ -56,11 +56,6 @@
     flex-direction: column;
     flex-wrap: wrap;
     height: 370px;
-}
-
-.profile-page__input {
-    width: 55%;
-    height: 35px;
 }
 
 .profile-form__button {
