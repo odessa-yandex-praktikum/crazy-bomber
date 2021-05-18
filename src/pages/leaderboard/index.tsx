@@ -7,7 +7,7 @@ import {convertScoreToString, createNaviPath, findFiveLeaders} from '../../utils
 
 export default function LeaderboardPage() {
     const players = [
-        {id: 1, img: 'https://freesvg.org/img/1514826571.png', login: 'user1', score: 123},
+        {id: 1, img: 'https://freesvg.org/img/1514826571.png', login: 'useruseruser', score: 123},
         {id: 2, img: 'https://freesvg.org/img/1514826571.png', login: 'user2', score: 229},
         {id: 3, img: 'https://freesvg.org/img/1514826571.png', login: 'user3', score: 111},
         {id: 4, img: 'https://freesvg.org/img/1514826571.png', login: 'user4', score: 228},
