@@ -3,11 +3,12 @@
 .login-signin-page {
     background: var(--color-background);
     width: 100%;
-    height: 100%;
+    height: 100vh;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    font-family: var(--font-family);
 }
 
 .backgroundBack {
@@ -42,8 +43,4 @@
     z-index: 999;
     padding-left: 35px;
     padding-top: 175px;
-}
-
-.login-signin-form__button {
-    font-size: 72px;
 }

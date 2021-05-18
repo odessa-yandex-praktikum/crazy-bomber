@@ -1,6 +1,7 @@
 import * as React from 'react';
 import './input.css';
 import {InputHTMLAttributes} from 'react';
+import {FC} from 'react';
 
 /**
  * @param nameField текст, описание поля.
@@ -11,16 +12,14 @@ export type TInputProps = {
     textError: string;
 } & InputHTMLAttributes<HTMLInputElement>;
 
-export const Input: React.FC<TInputProps> = ({
-    nameField,
-    textError,
-    ...otherProps
-}: TInputProps) => {
+type Props = FC<TInputProps>;
+
+export const Input: Props = ({nameField, textError, ...otherProps}: TInputProps) => {
     return (
         <div className="container__input-with-error">
             <div className="container__input">
                 <span>{nameField}</span>
-                <input {...otherProps} />
+                <input className={'input'} {...otherProps} />
             </div>
             <span className="input__error-text">{textError}</span>
         </div>

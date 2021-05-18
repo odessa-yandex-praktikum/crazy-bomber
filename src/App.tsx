@@ -8,11 +8,11 @@ const Leaderboard = React.lazy(() => import('./pages/leaderboard/index'));
 const Gameboard = React.lazy(() => import('./pages/gameboard/index'));
 const Start = React.lazy(() => import('./pages/start/index'));
 const Profile = React.lazy(() => import('./pages/profile/index'));
+const Login = React.lazy(() => import('./pages/login/index'));
+const Signin = React.lazy(() => import('./pages/signin/index'));
 const Forum = React.lazy(() => import('./pages/forum/index'));
 const ForumTopic = React.lazy(() => import('./pages/forumtopic/index'));
-const Login = React.lazy(() => import('./Pages/Login'));
-const Logon = React.lazy(() => import('./Pages/Logon'));
-const Main = React.lazy(() => import('./Pages/Main'));
+const Main = React.lazy(() => import('./pages/start/index'));
 
 export class App extends React.Component {
     render() {
@@ -27,7 +27,7 @@ export class App extends React.Component {
                         <Link to="/login">Login</Link>
                     </li>
                     <li>
-                        <Link to="/logon">logon</Link>
+                        <Link to="/signin">Signin</Link>
                     </li>
                     <li>
                         <Link to="/leaderboard">leaderboard</Link>
@@ -47,7 +47,7 @@ export class App extends React.Component {
                 </ul>
                 <Switch>
                     <Route path="/login" exact component={Login} />
-                    <Route path="/logon" exact component={Logon} />
+                    <Route path="/signin" exact component={Signin} />
                     <PrivateRoute path="/leaderboard" exact component={Leaderboard} />
                     <PrivateRoute path="/game" exact component={Gameboard} />
                     <Route path="/start" exact component={Start} />

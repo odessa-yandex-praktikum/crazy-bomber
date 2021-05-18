@@ -7,14 +7,14 @@
     flex-direction: column;
 }
 
-input {
+.input {
     border: none;
     border-bottom: 1px inset var(--color-form-input);
     background: none;
     text-decoration: none;
     text-align: end;
     font-size: 24px;
-    font-family: var(--font-family);
+    font-family: inherit;
     margin-left: 10px;
     width: 180px;
 }
@@ -25,6 +25,7 @@ input {
 }
 
 .input__error-text {
+    height: 15px;
     font-size: 15px;
     color: var(--color-error);
     align-self: flex-end;
