@@ -55,16 +55,3 @@ body {
     display: flex;
     flex-direction: row;
 }
-
-.backlink {
-    z-index: 2;
-    text-decoration: none;
-    color: var(--color-games-title);
-    font-size: 11em;
-    margin-left: 2%;
-    margin-top: 530px;
-}
-
-.backlink:hover, .backlink:focus {
-    color: var(--color-shodow);
-}

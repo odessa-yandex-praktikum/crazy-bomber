@@ -1,6 +1,6 @@
 import * as React from 'react';
 import './profile.css';
-import {Link} from 'react-router-dom';
+import BackLink from '../../components/backLink';
 import {Button, EButtonColour, EButtonType} from '../../components/button';
 import {Form} from '../../components/form';
 import {Input} from '../../components/input';
@@ -8,7 +8,6 @@ import {consts} from '../../consts';
 
 export default function Profile() {
     const pageTitle = consts.profilePage.pageTitle;
-    const linkBack = consts.profilePage.linkBack;
     const currentUser = {
         id: 1,
         img: 'https://freesvg.org/img/1514826571.png',
@@ -26,6 +25,7 @@ export default function Profile() {
             type="text"
             name="email"
             textError={consts.error.errorTextEmptyField}
+            className="profile-page__input"
         />,
         <Input
             key="login"
@@ -33,6 +33,7 @@ export default function Profile() {
             type="text"
             name="login"
             textError={consts.error.errorTextEmptyField}
+            className="profile-page__input"
         />,
         <Input
             key="oldPassword"
@@ -40,6 +41,7 @@ export default function Profile() {
             type="password"
             name="oldPassword"
             textError={consts.error.errorTextEmptyField}
+            className="profile-page__input"
         />,
         <Input
             key="newPassword"
@@ -47,6 +49,7 @@ export default function Profile() {
             type="password"
             name="newPassword"
             textError={consts.error.errorTextEmptyField}
+            className="profile-page__input"
         />,
         <Input
             key="newPasswordRepeat"
@@ -54,6 +57,7 @@ export default function Profile() {
             type="password"
             name="newPasswordRepeat"
             textError={consts.error.errorTextEmptyField}
+            className="profile-page__input"
         />,
     ];
     const arrayButtons = [
@@ -77,9 +81,7 @@ export default function Profile() {
                 <h2 className="page-title">{pageTitle}</h2>
             </div>
             <main className="container__page-content">
-                <Link to="/start" className="backlink">
-                    {linkBack}
-                </Link>
+                <BackLink />
                 <div className="profile-page__container">
                     <div className="profile-page__user-info">
                         <div className="profile-page__common-info">

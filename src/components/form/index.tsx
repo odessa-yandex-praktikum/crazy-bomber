@@ -12,7 +12,7 @@ import {TInputProps} from '../input';
 export type TFormProps = {
     classForm: string;
     arrayInputs: (ReactElement<TInputProps> | null)[];
-    arrayButtons: (ReactElement<TButtonProps> | null)[];
+    arrayButtons?: (ReactElement<TButtonProps> | null)[];
 };
 
 export const Form: React.FC<TFormProps> = ({classForm, arrayInputs, arrayButtons}: TFormProps) => {
