@@ -1,12 +1,19 @@
+@import '../../common.css';
+
 .page-container__backlink {
     z-index: 2;
-    text-decoration: none;
     color: var(--color-games-title);
-    font-size: 11em;
+    font-family: "JollyLodger-Regular", serif;
+    background-color: #000;
+    font-size: 13em;
     margin-left: 2%;
-    margin-top: 530px;
+    margin-top: 350px;
+    border: none;
+    cursor: pointer;
 }
 
 .page-container__backlink:hover, .page-container__backlink:focus {
-    color: var(--color-shodow);
+    color: #fff;
+    text-shadow: var(--color-shodow) 2px 2px 0, var(--color-shodow) -2px -2px 0,
+    var(--color-shodow) -2px 2px 0, var(--color-shodow) 2px -2px 0;
 }

@@ -1,13 +1,11 @@
 import * as React from 'react';
 import './forum.css';
-import {Link, useHistory} from 'react-router-dom';
-import ChatIcon from '../../assets/icons/chat.png';
-import VoteIcon from '../../assets/icons/check-mark.png';
 import BackLink from '../../components/backLink';
-import {Button, EButtonColour, EButtonType} from '../../components/button';
+import {Button, EButtonColor, EButtonType} from '../../components/button';
+import {DiscussionItem} from '../../components/discussion';
 import {consts} from '../../consts';
 import {discussions} from '../../testdata/ForumData';
-import {determineCreationDate, sortDescending} from '../../utils/Utils';
+import {sortDescending} from '../../utils/Utils';
 
 export default function Forum() {
     const pageTitle = consts.forumPage.pageTitle;
@@ -26,7 +24,7 @@ export default function Forum() {
         <Button
             key={buttonCreateTopic}
             text={buttonCreateTopic}
-            buttonColour={EButtonColour.PRIMARY}
+            buttonColor={EButtonColor.PRIMARY}
             buttonType={EButtonType.FORUM_PAGE}
         />
     );
@@ -35,13 +33,13 @@ export default function Forum() {
         <Button
             key={buttonPrevious}
             text={buttonPrevious}
-            buttonColour={EButtonColour.PRIMARY}
+            buttonColor={EButtonColor.PRIMARY}
             buttonType={EButtonType.FORUM_PAGE}
         />,
         <Button
             key={buttonNext}
             text={buttonNext}
-            buttonColour={EButtonColour.PRIMARY}
+            buttonColor={EButtonColor.PRIMARY}
             buttonType={EButtonType.FORUM_PAGE}
         />,
     ];
@@ -57,60 +55,10 @@ export default function Forum() {
                     <div className="forum-page_add-button">{createTopicButton}</div>
                     <ul className="forum-page__discussions-container">
                         {sortDescending(discussions).map((discussion) => (
-                            <li className="forum-page__item" key={discussion.id}>
-                                <Link
-                                    to={`/forum/${discussion.id}`}
-                                    className="forum-page__discussion"
-                                >
-                                    <div className="forum-page__discussion-content">
-                                        <div className="forum-page__discussion-heading">
-                                            <img
-                                                className="forum-page__author-image"
-                                                src={discussion.author.img}
-                                                alt=""
-                                            />
-                                            <p className="forum-page__discussion-topic">
-                                                {discussion.topic}
-                                            </p>
-                                        </div>
-                                        <div className="forum-page__message-container">
-                                            <p className="forum-page__last-message">
-                                                {
-                                                    discussion.messages[
-                                                        discussion.messages.length - 1
-                                                    ].message
-                                                }
-                                            </p>
-                                        </div>
-                                        <div className="forum-page__icons-container">
-                                            <img
-                                                src={ChatIcon as string}
-                                                className="forum-page__icon forum-page__answers-icon"
-                                                alt=""
-                                            />
-                                            <p className="forum-page__icon-text">
-                                                {discussion.messages.length} answers
-                                            </p>
-                                            <img
-                                                src={VoteIcon as string}
-                                                className="forum-page__icon forum-page__votes-icon"
-                                                alt=""
-                                            />
-                                            <p className="forum-page__icon-text">
-                                                {discussion.votes} votes
-                                            </p>
-                                        </div>
-                                        <div className="forum-page__discussion-content_created">
-                                            <p className="forum-page__created-date">
-                                                Asked {determineCreationDate(discussion.created)}
-                                            </p>
-                                        </div>
-                                    </div>
-                                </Link>
-                            </li>
+                            <DiscussionItem discussion={discussion} key={discussion.id} />
                         ))}
                     </ul>
-                    <div className="forum-page_buttons-container">{arrayButtons}</div>
+                    <div className="forum-page__buttons-container">{arrayButtons}</div>
                 </div>
             </main>
         </div>

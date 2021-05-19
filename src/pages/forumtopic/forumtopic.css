@@ -19,13 +19,6 @@
     margin: 0;
 }
 
-.forum-page__discussion-message {
-    display: inline;
-    font-size: 18px;
-    margin: 20px 0 0 15px;
-    padding-right: 3%;
-}
-
 .forum-page_topic-footer {
     margin-top: auto;
 }
