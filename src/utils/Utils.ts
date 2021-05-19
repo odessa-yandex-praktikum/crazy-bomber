@@ -21,7 +21,7 @@ export function convertScoreToString(num: number) {
 }
 
 //util functions for forum page
-class Message {
+export class Message {
     constructor(public message: string, public author: Player, public created: number) {}
 }
 

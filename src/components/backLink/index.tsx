@@ -8,7 +8,7 @@ export default function BackLink() {
     const history = useHistory();
 
     return (
-        <button className="page-container__backlink" onClick={() => history.goBack()}>
+        <button className="backlink" onClick={() => history.goBack()}>
             {linkBack}
         </button>
     );

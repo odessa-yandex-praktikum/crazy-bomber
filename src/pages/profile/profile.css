@@ -58,6 +58,11 @@
     height: 370px;
 }
 
+.profile-page__input {
+    width: 55%;
+    height: 35px;
+}
+
 .profile-form__button {
     margin-left: 25%;
     font-size: 82px;

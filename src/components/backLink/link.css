@@ -1,6 +1,6 @@
 @import '../../common.css';
 
-.page-container__backlink {
+.backlink {
     z-index: 2;
     color: var(--color-games-title);
     font-family: "JollyLodger-Regular", serif;
@@ -12,7 +12,7 @@
     cursor: pointer;
 }
 
-.page-container__backlink:hover, .page-container__backlink:focus {
+.backlink:hover, .backlink:focus {
     color: #fff;
     text-shadow: var(--color-shodow) 2px 2px 0, var(--color-shodow) -2px -2px 0,
     var(--color-shodow) -2px 2px 0, var(--color-shodow) 2px -2px 0;

@@ -5,10 +5,11 @@ import BackLink from '../../components/backLink';
 import {Button, EButtonColor, EButtonType} from '../../components/button';
 import {Form} from '../../components/form';
 import {Input} from '../../components/input';
+import {MessageItem} from '../../components/message';
 import {Navi, TNaviItem} from '../../components/navi';
 import {consts} from '../../consts';
 import {discussions} from '../../testdata/ForumData';
-import {createNaviPath, determineCreationDate, Discussion} from '../../utils/Utils';
+import {createNaviPath, Discussion} from '../../utils/Utils';
 
 type TParams = {id: string};
 
@@ -43,7 +44,6 @@ export default function ForumTopic({match}: RouteComponentProps<TParams>) {
             type="text"
             name={messageInput}
             textError=""
-            className="forum-page__input"
         />,
     ];
 
@@ -75,23 +75,7 @@ export default function ForumTopic({match}: RouteComponentProps<TParams>) {
                         <div className="forum-page__topic">
                             <ul className="forum-page__item-list">
                                 {messages.map((message) => (
-                                    <li className="forum-page__item" key={message.created}>
-                                        <div className="forum-page__topic-message">
-                                            <img
-                                                className="forum-page__author-image"
-                                                src={message.author.img}
-                                                alt=""
-                                            />
-                                            <p className="forum-page__discussion-message">
-                                                {message.message}
-                                            </p>
-                                        </div>
-                                        <div className="forum-page__discussion-content_created">
-                                            <p className="forum-page__created-date">
-                                                Left {determineCreationDate(message.created)}
-                                            </p>
-                                        </div>
-                                    </li>
+                                    <MessageItem message={message} key={message.created} />
                                 ))}
                             </ul>
                             <div className="forum-page_topic-footer">
