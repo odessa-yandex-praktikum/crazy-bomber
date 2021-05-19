@@ -1,7 +1,7 @@
 import * as React from 'react';
 import './leaderboard.css';
-import {Link} from 'react-router-dom';
 import BackgroundBack from '../../assets/images/planet.png';
+import BackLink from '../../components/backLink';
 import {consts} from '../../consts';
 import {convertScoreToString, findFiveLeaders} from '../../utils/Utils';
 
@@ -21,9 +21,7 @@ export default function LeaderboardPage() {
                 <h2 className="page-title">{consts.leaderBoardPage.pageTitle}</h2>
             </div>
             <main className="container__page-content">
-                <Link to="/start" className="backlink">
-                    {consts.leaderBoardPage.linkBack}
-                </Link>
+                <BackLink />
                 <div className="leaderboard-page__table">
                     <div className="leaderboard-page__table-grid">
                         <span className="leaderboard-page__table-col" />

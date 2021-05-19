@@ -1,0 +1,62 @@
+@import '../../common.css';
+
+.forum-page {
+    background: var(--color-background);
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: "JollyLodger-Regular", serif;
+    color: var(--color-games-title);
+}
+
+.forum-page__background {
+    background-image: url("../../assets/images/planet.png");
+    background-size: cover;
+}
+
+.forum-page__container {
+    background: var(--color-games-title);
+    opacity: 0.45;
+    color: #000;
+    width: 600px;
+    height: 710px;
+    margin: 0 auto;
+}
+
+.forum-page_add-button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-size: 40px;
+    margin: 10px 0;
+}
+
+.forum-page__discussions-container {
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+    margin: 0;
+}
+
+.forum-page__buttons-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 40px;
+    margin: -20px 32px 0;
+}
+
+.forum-page__button {
+    font-size: 40px;
+}
+
+.forum-page__button:disabled {
+    opacity: 0.4;
+}
+
+.forum-page__button:focus, .forum-page__button:hover {
+    text-shadow: var(--color-shodow) 2px 2px 0, var(--color-shodow) -2px -2px 0,
+    var(--color-shodow) -2px 2px 0, var(--color-shodow) 2px -2px 0;
+    color: #fff;
+}

@@ -10,6 +10,8 @@ const Start = React.lazy(() => import('./pages/start/index'));
 const Profile = React.lazy(() => import('./pages/profile/index'));
 const Login = React.lazy(() => import('./pages/login/index'));
 const Signin = React.lazy(() => import('./pages/signin/index'));
+const Forum = React.lazy(() => import('./pages/forum/index'));
+const ForumTopic = React.lazy(() => import('./pages/forumtopic/index'));
 const Main = React.lazy(() => import('./pages/start/index'));
 
 export class App extends React.Component {
@@ -39,6 +41,9 @@ export class App extends React.Component {
                     <li>
                         <Link to="/profile">Profile</Link>
                     </li>
+                    <li>
+                        <Link to="/forum">Forum</Link>
+                    </li>
                 </ul>
                 <Switch>
                     <Route path="/login" exact component={Login} />
@@ -47,6 +52,8 @@ export class App extends React.Component {
                     <PrivateRoute path="/game" exact component={Gameboard} />
                     <Route path="/start" exact component={Start} />
                     <PrivateRoute path="/profile" exact component={Profile} />
+                    <PrivateRoute path="/forum" exact component={Forum} />
+                    <PrivateRoute path="/forum/:id" exact component={ForumTopic} />
                     <Route path="/" component={Main} />
                 </Switch>
             </React.Suspense>
