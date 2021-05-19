@@ -1,5 +1,6 @@
 export const consts = {
     gamesTitle: 'CRAZY BOMBER',
+    linkBack: '<<',
     loginPage: {
         login: 'Login',
         password: 'password',
@@ -22,7 +23,6 @@ export const consts = {
         pageTitle: 'Leaderboard',
         loginHeader: 'Login',
         scoreHeader: 'Score',
-        linkBack: '<<',
     },
     profilePage: {
         pageTitle: 'Profile',
@@ -32,11 +32,17 @@ export const consts = {
         newPassword: 'New password',
         buttonSave: 'save',
         buttonChange: 'change',
-        linkBack: '<<',
     },
     startPage: {
         buttonPlay: 'Play!',
         navLinkProfile: 'profile',
         navLinkLeaderboard: 'leaderboard',
+    },
+    forumPage: {
+        pageTitle: 'Forum',
+        buttonCreateTopic: 'Create new topic',
+        buttonPrevious: 'previous',
+        buttonNext: 'next',
+        messageInput: 'Your message: ',
     },
 };

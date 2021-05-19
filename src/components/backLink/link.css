@@ -1,0 +1,19 @@
+@import '../../common.css';
+
+.backlink {
+    z-index: 2;
+    color: var(--color-games-title);
+    font-family: "JollyLodger-Regular", serif;
+    background-color: #000;
+    font-size: 13em;
+    margin-left: 2%;
+    margin-top: 350px;
+    border: none;
+    cursor: pointer;
+}
+
+.backlink:hover, .backlink:focus {
+    color: #fff;
+    text-shadow: var(--color-shodow) 2px 2px 0, var(--color-shodow) -2px -2px 0,
+    var(--color-shodow) -2px 2px 0, var(--color-shodow) 2px -2px 0;
+}
