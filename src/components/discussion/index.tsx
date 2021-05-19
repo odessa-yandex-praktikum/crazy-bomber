@@ -25,7 +25,7 @@ export const DiscussionItem: Props = ({discussion}: TDiscussionProps) => {
                         <img
                             className="forum-page__author-image"
                             src={discussion.author.img}
-                            alt=""
+                            alt="author_image"
                         />
                         <p className="forum-page__discussion-topic">{discussion.topic}</p>
                     </div>
@@ -38,7 +38,7 @@ export const DiscussionItem: Props = ({discussion}: TDiscussionProps) => {
                         <img
                             src={ChatIcon as string}
                             className="forum-page__icon forum-page__answers-icon"
-                            alt=""
+                            alt="chat_icon"
                         />
                         <p className="forum-page__icon-text">
                             {discussion.messages.length} answers
@@ -46,7 +46,7 @@ export const DiscussionItem: Props = ({discussion}: TDiscussionProps) => {
                         <img
                             src={VoteIcon as string}
                             className="forum-page__icon forum-page__votes-icon"
-                            alt=""
+                            alt="vote_icon"
                         />
                         <p className="forum-page__icon-text">{discussion.votes} votes</p>
                     </div>
