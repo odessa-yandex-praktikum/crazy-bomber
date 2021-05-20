@@ -47,10 +47,10 @@ export default function ForumTopic({match}: RouteComponentProps<TParams>) {
         />,
     ];
 
-    const discussion: Discussion = discussions.find(
+    const discussion: Discussion | undefined = discussions.find(
         (discussion) => discussion.id === Number(match.params.id)
     );
-    const {topic, messages} = discussion;
+    const {topic, messages} = discussion!;
 
     const navigationItems = [navLinkStart, navLinkProfile, navLinkLeaderboard, navLinkLogout];
 
