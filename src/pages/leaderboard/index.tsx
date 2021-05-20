@@ -1,9 +1,9 @@
 import * as React from 'react';
 import './leaderboard.css';
 import BackLink from '../../components/backLink';
-import {Navi, TNaviItem} from '../../components/navi';
+import {Navigation} from '../../components/navigation';
 import {consts} from '../../consts';
-import {convertScoreToString, createNaviPath, findFiveLeaders} from '../../utils/Utils';
+import {convertScoreToString, findFiveLeaders} from '../../utils/Utils';
 
 export default function LeaderboardPage() {
     const players = [
@@ -21,17 +21,12 @@ export default function LeaderboardPage() {
     const navLinkForum = consts.navigation.navLinkForum;
     const navLinkLogout = consts.navigation.navLinkLogout;
 
-    const arrayNaviItems = [
-        new TNaviItem(navLinkStart, createNaviPath(navLinkStart)),
-        new TNaviItem(navLinkProfile, createNaviPath(navLinkProfile)),
-        new TNaviItem(navLinkForum, createNaviPath(navLinkForum)),
-        new TNaviItem(navLinkLogout, createNaviPath(navLinkLogout)),
-    ];
+    const navigationItems = [navLinkStart, navLinkProfile, navLinkForum, navLinkLogout];
 
     return (
         <div className="leaderboard-page leaderboard-page__background">
             <div className="container__left-part">
-                <Navi arrayNaviItems={arrayNaviItems} />
+                <Navigation navigationItems={navigationItems} />
                 <BackLink />
             </div>
             <div className="container__right-part">

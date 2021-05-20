@@ -3,10 +3,10 @@ import './forum.css';
 import BackLink from '../../components/backLink';
 import {Button, EButtonColor, EButtonType} from '../../components/button';
 import {DiscussionItem} from '../../components/discussion';
-import {Navi, TNaviItem} from '../../components/navi';
+import {Navigation} from '../../components/navigation';
 import {consts} from '../../consts';
 import {discussions} from '../../testdata/ForumData';
-import {createNaviPath, sortDescending} from '../../utils/Utils';
+import {sortDescending} from '../../utils/Utils';
 
 export default function Forum() {
     const pageTitle = consts.forumPage.pageTitle;
@@ -49,17 +49,12 @@ export default function Forum() {
         />,
     ];
 
-    const arrayNaviItems = [
-        new TNaviItem(navLinkStart, createNaviPath(navLinkStart)),
-        new TNaviItem(navLinkProfile, createNaviPath(navLinkProfile)),
-        new TNaviItem(navLinkLeaderboard, createNaviPath(navLinkLeaderboard)),
-        new TNaviItem(navLinkLogout, createNaviPath(navLinkLogout)),
-    ];
+    const navigationItems = [navLinkStart, navLinkProfile, navLinkLeaderboard, navLinkLogout];
 
     return (
         <div className="forum-page forum-page__background">
             <div className="container__left-part">
-                <Navi arrayNaviItems={arrayNaviItems} />
+                <Navigation navigationItems={navigationItems} />
                 <BackLink />
             </div>
             <div className="container__right-part">

@@ -6,10 +6,10 @@ import {Button, EButtonColor, EButtonType} from '../../components/button';
 import {Form} from '../../components/form';
 import {Input} from '../../components/input';
 import {MessageItem} from '../../components/message';
-import {Navi, TNaviItem} from '../../components/navi';
+import {Navigation} from '../../components/navigation';
 import {consts} from '../../consts';
 import {discussions} from '../../testdata/ForumData';
-import {createNaviPath, Discussion} from '../../utils/Utils';
+import {Discussion} from '../../utils/Utils';
 
 type TParams = {id: string};
 
@@ -52,17 +52,12 @@ export default function ForumTopic({match}: RouteComponentProps<TParams>) {
     );
     const {topic, messages} = discussion;
 
-    const arrayNaviItems = [
-        new TNaviItem(navLinkStart, createNaviPath(navLinkStart)),
-        new TNaviItem(navLinkProfile, createNaviPath(navLinkProfile)),
-        new TNaviItem(navLinkLeaderboard, createNaviPath(navLinkLeaderboard)),
-        new TNaviItem(navLinkLogout, createNaviPath(navLinkLogout)),
-    ];
+    const navigationItems = [navLinkStart, navLinkProfile, navLinkLeaderboard, navLinkLogout];
 
     return (
         <div className="forum-page forum-page__background">
             <div className="container__left-part">
-                <Navi arrayNaviItems={arrayNaviItems} />
+                <Navigation navigationItems={navigationItems} />
                 <BackLink />
             </div>
             <div className="container__right-part">

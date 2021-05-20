@@ -3,9 +3,8 @@ import './start.css';
 import {Link} from 'react-router-dom';
 import BackgroundFront from '../../assets/images/bomber.png';
 import BackgroundBack from '../../assets/images/planet.png';
-import {Navi, TNaviItem} from '../../components/navi';
+import {Navigation} from '../../components/navigation';
 import {consts} from '../../consts';
-import {createNaviPath} from '../../utils/Utils';
 
 export default function StartPage() {
     const gameTitle = consts.gamesTitle;
@@ -15,12 +14,7 @@ export default function StartPage() {
     const navLinkLogin = consts.navigation.navLinkLogin;
     const buttonPlay = consts.startPage.buttonPlay;
 
-    const arrayNaviItems = [
-        new TNaviItem(navLinkProfile, createNaviPath(navLinkProfile)),
-        new TNaviItem(navLinkForum, createNaviPath(navLinkForum)),
-        new TNaviItem(navLinkLeaderboard, createNaviPath(navLinkLeaderboard)),
-        new TNaviItem(navLinkLogin, createNaviPath(navLinkLogin)),
-    ];
+    const navigationItems = [navLinkProfile, navLinkForum, navLinkLeaderboard, navLinkLogin];
 
     return (
         <div className="start-page">
@@ -30,7 +24,7 @@ export default function StartPage() {
                 className="start-page__background-front"
                 alt="BackgroundFront"
             />
-            <Navi arrayNaviItems={arrayNaviItems} />
+            <Navigation navigationItems={navigationItems} />
             <div className="start-page__container">
                 <span className="start-page__games-title">{gameTitle}</span>
             </div>

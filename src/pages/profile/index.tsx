@@ -4,9 +4,8 @@ import BackLink from '../../components/backLink';
 import {Button, EButtonColor, EButtonType} from '../../components/button';
 import {Form} from '../../components/form';
 import {Input} from '../../components/input';
-import {Navi, TNaviItem} from '../../components/navi';
+import {Navigation} from '../../components/navigation';
 import {consts} from '../../consts';
-import {createNaviPath} from '../../utils/Utils';
 
 export default function Profile() {
     const pageTitle = consts.profilePage.pageTitle;
@@ -76,17 +75,12 @@ export default function Profile() {
         />,
     ];
 
-    const arrayNaviItems = [
-        new TNaviItem(navLinkStart, createNaviPath(navLinkStart)),
-        new TNaviItem(navLinkForum, createNaviPath(navLinkForum)),
-        new TNaviItem(navLinkLeaderboard, createNaviPath(navLinkLeaderboard)),
-        new TNaviItem(navLinkLogout, createNaviPath(navLinkLogout)),
-    ];
+    const navigationItems = [navLinkStart, navLinkForum, navLinkLeaderboard, navLinkLogout];
 
     return (
         <div className="profile-page profile-page__background">
             <div className="container__left-part">
-                <Navi arrayNaviItems={arrayNaviItems} />
+                <Navigation navigationItems={navigationItems} />
                 <BackLink />
             </div>
             <div className="container__right-part">
