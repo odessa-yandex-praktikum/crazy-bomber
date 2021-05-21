@@ -5,7 +5,7 @@
     width: 100%;
     height: 100vh;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     font-family: "JollyLodger-Regular", serif;
     color: var(--color-games-title);
 }
@@ -21,10 +21,10 @@
     color: #000;
     width: 600px;
     height: 710px;
-    margin: 0 auto;
+    margin: 0 10%;
 }
 
-.forum-page_add-button {
+.forum-page__add-button {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -53,10 +53,4 @@
 
 .forum-page__button:disabled {
     opacity: 0.4;
-}
-
-.forum-page__button:focus, .forum-page__button:hover {
-    text-shadow: var(--color-shodow) 2px 2px 0, var(--color-shodow) -2px -2px 0,
-    var(--color-shodow) -2px 2px 0, var(--color-shodow) 2px -2px 0;
-    color: #fff;
 }

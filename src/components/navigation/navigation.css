@@ -1,0 +1,28 @@
+@import '../../common.css';
+
+.navi__list {
+    z-index: 2;
+    list-style-type: none;
+    margin-top: 3em;
+    margin-left: -5px;
+    padding: 0;
+}
+
+.navi__item {
+    width: 300px;
+    opacity: 0.5;
+    border: 2px solid red;
+    background-color: var(--color-games-title);
+    margin-bottom: 1em;
+    padding: 5px 20px;
+}
+
+.navi__link {
+    text-decoration: none;
+    font-size: 52px;
+    color: #000;
+}
+
+.navi__link:hover, .navi__link:focus  {
+    color: var(--color-shodow);
+}

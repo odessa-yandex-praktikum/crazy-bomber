@@ -66,3 +66,8 @@ export function determineCreationDate(date: number) {
         return String(resultValue) + (resultValue === 1 ? ' second ago' : ' seconds ago');
     }
 }
+
+//util functions for navigation
+export function createNaviPath(naviHeading: string) {
+    return `/${naviHeading}`;
+}
