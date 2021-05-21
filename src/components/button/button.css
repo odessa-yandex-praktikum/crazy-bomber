@@ -9,8 +9,9 @@
 
 .button:active,
 .button:hover {
-    text-shadow: var(--color-button-shadow) 2px 2px 0, var(--color-button-shadow) -2px -2px 0,
-        var(--color-button-shadow) -2px 2px 0, var(--color-button-shadow) 2px -2px 0;
+    color: #fff;
+    text-shadow: var(--color-shodow) 2px 2px 0, var(--color-shodow) -2px -2px 0,
+    var(--color-shodow) -2px 2px 0, var(--color-shodow) 2px -2px 0;
 }
 
 .color-primary {

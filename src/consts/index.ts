@@ -35,8 +35,6 @@ export const consts = {
     },
     startPage: {
         buttonPlay: 'Play!',
-        navLinkProfile: 'profile',
-        navLinkLeaderboard: 'leaderboard',
     },
     forumPage: {
         pageTitle: 'Forum',
@@ -44,5 +42,14 @@ export const consts = {
         buttonPrevious: 'previous',
         buttonNext: 'next',
         messageInput: 'Your message: ',
+    },
+    navigation: {
+        navLinkStart: 'start',
+        navLinkProfile: 'profile',
+        navLinkLeaderboard: 'leaderboard',
+        navLinkForum: 'forum',
+        navLinkPlayAgain: 'play again',
+        navLinkLogin: 'login',
+        navLinkLogout: 'logout',
     },
 };

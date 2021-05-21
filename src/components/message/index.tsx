@@ -17,7 +17,11 @@ export const MessageItem: Props = ({message}) => {
     return (
         <li className="forum-page__item">
             <div className="forum-page__topic-message">
-                <img className="forum-page__author-image" src={message.author.img} alt="author_image" />
+                <img
+                    className="forum-page__author-image"
+                    src={message.author.img}
+                    alt="author_image"
+                />
                 <p className="forum-page__discussion-message">{message.message}</p>
             </div>
             <div className="forum-page__discussion-content_created">
