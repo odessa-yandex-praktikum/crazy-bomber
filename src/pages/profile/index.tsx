@@ -1,6 +1,6 @@
 import * as React from 'react';
 import './profile.css';
-import BackLink from '../../components/backLink';
+import {BackLink} from '../../components/backLink';
 import {Button, EButtonColor, EButtonType} from '../../components/button';
 import {Form} from '../../components/form';
 import {Input} from '../../components/input';

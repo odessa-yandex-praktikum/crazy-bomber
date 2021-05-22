@@ -1,7 +1,7 @@
 import * as React from 'react';
 import './forumtopic.css';
 import {RouteComponentProps} from 'react-router-dom';
-import BackLink from '../../components/backLink';
+import {BackLink} from '../../components/backLink';
 import {Button, EButtonColor, EButtonType} from '../../components/button';
 import {Form} from '../../components/form';
 import {Input} from '../../components/input';
