@@ -1,6 +1,6 @@
 import * as React from 'react';
 import './forum.css';
-import BackLink from '../../components/backLink';
+import {BackLink} from '../../components/backLink';
 import {Button, EButtonColor, EButtonType} from '../../components/button';
 import {DiscussionItem} from '../../components/discussion';
 import {Navigation} from '../../components/navigation';

@@ -52,4 +52,8 @@ export const consts = {
         navLinkLogin: 'login',
         navLinkLogout: 'logout',
     },
+    errorBoundary: {
+        title: '500',
+        text: 'Something went wrong',
+    },
 };

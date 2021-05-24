@@ -1,6 +1,6 @@
 import * as React from 'react';
 import './leaderboard.css';
-import BackLink from '../../components/backLink';
+import {BackLink} from '../../components/backLink';
 import {Navigation} from '../../components/navigation';
 import {consts} from '../../consts';
 import {convertScoreToString, findFiveLeaders} from '../../utils/Utils';
