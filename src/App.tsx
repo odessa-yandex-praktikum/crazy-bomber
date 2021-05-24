@@ -1,7 +1,8 @@
 import * as React from 'react';
-import {Redirect, Route, Switch} from 'react-router';
+import {Redirect, Route, Switch, useLocation} from 'react-router';
 import {PrivateRoute} from './Components/PrivateRoute';
-import {FallBack} from './Pages/Fallback';
+import {FallBack} from './Pages/FallBack';
+import {ErrorBoundary} from './components/errorBoundary';
 
 const Leaderboard = React.lazy(() => import('./pages/leaderboard/index'));
 const Gameboard = React.lazy(() => import('./pages/gameboard/index'));
@@ -12,10 +13,12 @@ const Signin = React.lazy(() => import('./pages/signin/index'));
 const Forum = React.lazy(() => import('./pages/forum/index'));
 const ForumTopic = React.lazy(() => import('./pages/forumtopic/index'));
 
-export class App extends React.Component {
-    render() {
-        return (
-            <React.Suspense fallback={<FallBack />}>
+export function App() {
+    const location = useLocation();
+
+    return (
+        <React.Suspense fallback={<FallBack />}>
+            <ErrorBoundary key={location.pathname}>
                 <Switch>
                     <Route path="/login" exact component={Login} />
                     <Route path="/signin" exact component={Signin} />
@@ -27,7 +30,7 @@ export class App extends React.Component {
                     <PrivateRoute path="/forum/:id" exact component={ForumTopic} />
                     <Redirect from="*" to="/start" />
                 </Switch>
-            </React.Suspense>
-        );
-    }
+            </ErrorBoundary>
+        </React.Suspense>
+    );
 }
