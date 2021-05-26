@@ -29,35 +29,35 @@ export default function Profile() {
             nameField={consts.profilePage.email}
             type="text"
             name="email"
-            textError={consts.error.errorTextEmptyField}
+            textError={consts.error.errorIsEmpty}
         />,
         <Input
             key="login"
             nameField={consts.profilePage.login}
             type="text"
             name="login"
-            textError={consts.error.errorTextEmptyField}
+            textError={consts.error.errorIsEmpty}
         />,
         <Input
             key="oldPassword"
             nameField={consts.profilePage.oldPassword}
             type="password"
             name="oldPassword"
-            textError={consts.error.errorTextEmptyField}
+            textError={consts.error.errorIsEmpty}
         />,
         <Input
             key="newPassword"
             nameField={consts.profilePage.newPassword}
             type="password"
             name="newPassword"
-            textError={consts.error.errorTextEmptyField}
+            textError={consts.error.errorIsEmpty}
         />,
         <Input
             key="newPasswordRepeat"
             nameField={consts.profilePage.newPassword}
             type="password"
             name="newPasswordRepeat"
-            textError={consts.error.errorTextEmptyField}
+            textError={consts.error.errorIsEmpty}
         />,
     ];
     const arrayButtons = [

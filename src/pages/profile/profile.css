@@ -38,7 +38,7 @@
     margin: 25px 25px 0;
     width: 200px;
     height: 200px;
-    border: 2px solid var(--color-shodow);
+    border: 2px solid var(--color-shadow);
 }
 
 .profile-page__user-name {
@@ -48,7 +48,7 @@
 .profile-page__score {
     font-size: 24px;
     margin-left: 20%;
-    color: var(--color-shodow);
+    color: var(--color-shadow);
 }
 
 .profile-page__form {
@@ -68,8 +68,9 @@
     font-size: 82px;
 }
 
-.profile-form__button:focus, .profile-form__button:hover {
-    text-shadow: var(--color-shodow) 2px 2px 0, var(--color-shodow) -2px -2px 0,
-    var(--color-shodow) -2px 2px 0, var(--color-shodow) 2px -2px 0;
+.profile-form__button:focus,
+.profile-form__button:hover {
+    text-shadow: var(--color-shadow) 2px 2px 0, var(--color-shadow) -2px -2px 0,
+        var(--color-shadow) -2px 2px 0, var(--color-shadow) 2px -2px 0;
     color: #fff;
 }

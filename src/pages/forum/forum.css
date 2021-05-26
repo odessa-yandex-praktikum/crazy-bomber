@@ -6,12 +6,12 @@
     height: 100vh;
     display: flex;
     flex-direction: row;
-    font-family: "JollyLodger-Regular", serif;
+    font-family: 'JollyLodger-Regular', serif;
     color: var(--color-games-title);
 }
 
 .forum-page__background {
-    background-image: url("../../assets/images/planet.png");
+    background-image: url('../../assets/images/planet.png');
     background-size: cover;
 }
 

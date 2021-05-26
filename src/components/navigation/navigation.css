@@ -23,6 +23,7 @@
     color: #000;
 }
 
-.navi__link:hover, .navi__link:focus  {
-    color: var(--color-shodow);
+.navi__link:hover,
+.navi__link:focus {
+    color: var(--color-shadow);
 }
