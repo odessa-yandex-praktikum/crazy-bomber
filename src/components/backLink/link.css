@@ -3,7 +3,7 @@
 .backlink {
     z-index: 2;
     color: var(--color-games-title);
-    font-family: "JollyLodger-Regular", serif;
+    font-family: 'JollyLodger-Regular', serif;
     background-color: #000;
     font-size: 13em;
     margin-left: 2%;
@@ -12,8 +12,9 @@
     cursor: pointer;
 }
 
-.backlink:hover, .backlink:focus {
+.backlink:hover,
+.backlink:focus {
     color: #fff;
-    text-shadow: var(--color-shodow) 2px 2px 0, var(--color-shodow) -2px -2px 0,
-    var(--color-shodow) -2px 2px 0, var(--color-shodow) 2px -2px 0;
+    text-shadow: var(--color-shadow) 2px 2px 0, var(--color-shadow) -2px -2px 0,
+        var(--color-shadow) -2px 2px 0, var(--color-shadow) 2px -2px 0;
 }

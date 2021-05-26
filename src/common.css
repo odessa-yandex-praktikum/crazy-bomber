@@ -1,6 +1,6 @@
 :root {
     --color-error: #940009;
-    --color-shodow: #940009;
+    --color-shadow: #940009;
     --color-background: #000000;
     --color-button-primary: #000000;
     --color-form-input: #000000;
@@ -38,7 +38,6 @@
     outline: 0;
     outline-offset: 0;
 }
-
 
 .container__page-title {
     z-index: 2;

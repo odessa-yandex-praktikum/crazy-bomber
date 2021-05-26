@@ -3,7 +3,7 @@
 .forum-page__item {
     width: 510px;
     margin-bottom: 1em;
-    border: 2px solid var(--color-shodow);
+    border: 2px solid var(--color-shadow);
 }
 
 .forum-page__topic-message {
@@ -16,7 +16,7 @@
     width: 40px;
     height: 40px;
     margin: 20px;
-    border: 2px solid var(--color-shodow);
+    border: 2px solid var(--color-shadow);
 }
 
 .forum-page__discussion-message {

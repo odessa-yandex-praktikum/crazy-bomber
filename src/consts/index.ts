@@ -17,7 +17,11 @@ export const consts = {
         buttonSignIn: 'sign in',
     },
     error: {
-        errorTextEmptyField: 'fill in the field',
+        errorIsEmpty: 'fill in the field',
+        errorEmail: 'email invalid',
+        errorPasswordRepeat: 'password mismatch',
+        errorMinLength: 'enter more than 3 characters',
+        errorMaxLength: 'enter less than 16 characters',
     },
     leaderBoardPage: {
         pageTitle: 'Leaderboard',
