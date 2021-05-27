@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {useEffect, useRef, useState} from 'react';
 import './gameboard.css';
+import {useHistory} from 'react-router';
 import {drawInitialStage} from '../../game/GameUtils';
 import {convertScoreToString} from '../../utils/Utils';
 
@@ -9,6 +10,7 @@ export default function Gameboard() {
 
     //setScore будет меняться во время игры
     const [score, setScore] = useState(0);
+    const history = useHistory();
 
     useEffect(() => {
         if (canvasRef.current) {
@@ -16,6 +18,14 @@ export default function Gameboard() {
             const ctx = canvas.getContext('2d');
             if (ctx) {
                 drawInitialStage(canvas, ctx);
+                //тестовый вариант завершения игры при нажатии Enter
+                //TODO: при разработки механики игры описать условия завершения
+                document.addEventListener('keypress', function (e) {
+                    if (e.key === 'Enter') {
+                        setScore(125);
+                        history.push('/gameover');
+                    }
+                });
             }
         }
     }, []);
