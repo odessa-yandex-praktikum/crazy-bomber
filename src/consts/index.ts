@@ -60,4 +60,9 @@ export const consts = {
         title: '500',
         text: 'Something went wrong',
     },
+    gameover: {
+        title: 'GAME OVER',
+        scoreText: 'Score: ',
+        buttonPlayAgain: 'Play again!',
+    },
 };
