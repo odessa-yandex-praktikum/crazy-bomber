@@ -1,0 +1,48 @@
+@import '../../common.css';
+
+.gameover-page {
+    background: var(--color-background);
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    font-family: 'JollyLodger-Regular', serif;
+    color: var(--color-games-title);
+}
+
+.gameover-page__background {
+    background-image: url('../../assets/images/gameover_background.png');
+    background-size: cover;
+}
+
+.gameover-page__container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 43%;
+}
+
+.gameover-page__play-button {
+    text-decoration: none;
+    color: var(--color-games-title);
+    font-size: 150px;
+    margin-right: 20%;
+}
+
+.gameover-page__play-button:hover,
+.gameover-page__play-button:focus {
+    color: var(--color-shadow);
+}
+
+.gameover-page__title {
+    color: var(--color-games-title);
+    font-size: 96px;
+    text-shadow: var(--color-shadow) 2px 2px 0, var(--color-shadow) -2px -2px 0,
+    var(--color-shadow) -2px 2px 0, var(--color-shadow) 2px -2px 0;
+    margin-top: 10%;
+    margin-bottom: 0;
+}
+
+.gameover-page__score {
+    font-size: 52px;
+}

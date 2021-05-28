@@ -6,6 +6,7 @@ import {ErrorBoundary} from './components/errorBoundary';
 
 const Leaderboard = React.lazy(() => import('./pages/leaderboard/index'));
 const Gameboard = React.lazy(() => import('./pages/gameboard/index'));
+const Gameover = React.lazy(() => import('./pages/gameover/index'));
 const Main = React.lazy(() => import('./pages/start/index'));
 const Profile = React.lazy(() => import('./pages/profile/index'));
 const Login = React.lazy(() => import('./pages/login/index'));
@@ -24,6 +25,7 @@ export function App() {
                     <Route path="/signin" exact component={Signin} />
                     <PrivateRoute path="/leaderboard" exact component={Leaderboard} />
                     <PrivateRoute path="/game" exact component={Gameboard} />
+                    <PrivateRoute path="/gameover" exact component={Gameover} />
                     <Route path="/start" exact component={Main} />
                     <PrivateRoute path="/profile" exact component={Profile} />
                     <PrivateRoute path="/forum" exact component={Forum} />
