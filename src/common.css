@@ -41,14 +41,13 @@
 
 .container__page-title {
     z-index: 2;
-    height: 250px;
 }
 
 .page-title {
     color: var(--color-games-title);
     font-size: 7em;
     font-weight: normal;
-    margin-top: 8.5%;
+    margin: 0;
 }
 
 .container__page-content {
@@ -59,6 +58,10 @@
 .container__left-part {
     width: 30%;
     height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
 }
 
 .container__right-part {
@@ -66,4 +69,5 @@
     height: 100vh;
     display: flex;
     flex-direction: column;
+    justify-content: space-evenly;
 }

@@ -13,4 +13,14 @@
     display: flex;
     justify-content: space-between;
     width: inherit;
+    align-self: flex-end;
+}
+
+.form-error {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    z-index: 3;
+    color: var(--color-error);
+    font-size: 56px;
 }
