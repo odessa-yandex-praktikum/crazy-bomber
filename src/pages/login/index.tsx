@@ -28,13 +28,13 @@ export default function Login() {
         password: password.value,
     };
     const onSignInClick = useCallback(() => {
+        setLoginError('');
         apiSignIn(formData)
-            .then((result) => {
-                if (result.status === 200) {
+            .then((response) => {
+                if (response.status === 200) {
                     history.push('/start');
                 } else {
-                    setLoginError('Incorrect login or password');
-                    return Promise.reject(new Error(result.status.toString()));
+                    return response.json().then((result) => setLoginError(result.reason));
                 }
             })
             .catch((error) => {
@@ -89,7 +89,7 @@ export default function Login() {
                 className="backgroundFront"
                 alt="BackgroundFront"
             />
-            <div className="login-error">{loginError}</div>;
+            <div className="form-error">{loginError}</div>;
             <div className="container__games-title">
                 <span className="games-title">{consts.gamesTitle}</span>
             </div>

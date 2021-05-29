@@ -13,7 +13,7 @@ export interface Validation {
     value: number | boolean | string;
 }
 
-export const useValidation = (value: string, validations: Validation[]) => {
+export const useValidation = (value: string, validations: Validation[], mayBeEmpty?: boolean) => {
     const [errorText, setErrorText]: [
         null | string,
         Dispatch<SetStateAction<null | string>>
@@ -23,14 +23,14 @@ export const useValidation = (value: string, validations: Validation[]) => {
 
     useEffect(() => {
         setErrorText(null);
-        if (value === '') {
+        if (value === '' && !mayBeEmpty) {
             setErrorText(consts.error.errorIsEmpty);
             return;
         }
         validations.some((validation: Validation) => {
             switch (validation.type) {
                 case EValidationType.MIN_LENGTH:
-                    if (value.length < validation.value) {
+                    if (value.length < validation.value && value) {
                         setErrorText(consts.error.errorMinLength);
                     }
                     break;

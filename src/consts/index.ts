@@ -32,10 +32,10 @@ export const consts = {
         pageTitle: 'Profile',
         email: 'email',
         login: 'Login',
+        name: 'Name',
         oldPassword: 'Old password',
         newPassword: 'New password',
-        buttonSave: 'save',
-        buttonChange: 'change',
+        buttonSaveChanges: 'Save changes',
     },
     startPage: {
         buttonPlay: 'Play!',
