@@ -13,6 +13,8 @@ export enum EButtonType {
     ERROR,
     PROFILE_FORM,
     FORUM_PAGE,
+    FULL_SCREEN,
+    EXIT_FULL_SCREEN,
 }
 
 /**
@@ -22,7 +24,7 @@ export enum EButtonType {
  */
 export type TButtonProps = {
     text?: string;
-    buttonColor: EButtonColor;
+    buttonColor?: EButtonColor;
     buttonType: EButtonType;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
@@ -38,7 +40,7 @@ export const Button: Props = ({
     return (
         <button
             {...otherProps}
-            className={`${getButtonClass(buttonColor, buttonType)} ${className}`}
+            className={`${getButtonClass(buttonType, buttonColor)} ${className}`}
             type="button"
         >
             {text}
@@ -46,7 +48,7 @@ export const Button: Props = ({
     );
 };
 
-function getButtonClass(buttonColor: EButtonColor, buttonType: EButtonType): string {
+function getButtonClass(buttonType: EButtonType, buttonColor?: EButtonColor): string {
     let cssString = 'button';
     switch (buttonColor) {
         case EButtonColor.PRIMARY: {
@@ -77,6 +79,14 @@ function getButtonClass(buttonColor: EButtonColor, buttonType: EButtonType): str
         }
         case EButtonType.FORUM_PAGE: {
             cssString += ' forum-page__button';
+            break;
+        }
+        case EButtonType.FULL_SCREEN: {
+            cssString += ' button__full-screen';
+            break;
+        }
+        case EButtonType.EXIT_FULL_SCREEN: {
+            cssString += ' button__exit-full-screen';
             break;
         }
     }

@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 import {Navigation} from '../../components/navigation';
 import {consts} from '../../consts';
 import {convertScoreToString} from '../../utils/Utils';
+import {EFullScreenPosition, FullScreen} from '../../components/full-screen';
 
 export default function GameoverPage() {
     const title = consts.gameover.title;
@@ -33,6 +34,7 @@ export default function GameoverPage() {
                     {convertScoreToString(currentScore)}
                 </span>
             </div>
+            <FullScreen position={EFullScreenPosition.RIGHT_TOP} />
         </div>
     );
 }

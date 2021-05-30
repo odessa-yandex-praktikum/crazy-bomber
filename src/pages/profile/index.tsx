@@ -10,6 +10,7 @@ import {consts} from '../../consts';
 import {useInput} from '../../hoc/use-input';
 import {EValidationType} from '../../hoc/use-validation';
 import {changePassword, changeUserProfile, Data} from '../../services/api';
+import {EFullScreenPosition, FullScreen} from '../../components/full-screen';
 
 export default function Profile() {
     const pageTitle = consts.profilePage.pageTitle;
@@ -202,6 +203,7 @@ export default function Profile() {
                     </div>
                 </main>
             </div>
+            <FullScreen position={EFullScreenPosition.RIGHT_TOP} />
         </div>
     );
 }

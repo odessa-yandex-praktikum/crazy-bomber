@@ -11,6 +11,7 @@ import {consts} from '../../consts';
 import {useInput} from '../../hoc/use-input';
 import {EValidationType} from '../../hoc/use-validation';
 import {apiSignIn, Data} from '../../services/api';
+import {EFullScreenPosition, FullScreen} from '../../components/full-screen';
 
 export default function Login() {
     const history = useHistory();
@@ -102,6 +103,7 @@ export default function Login() {
                     arrayButtons={arrayButtons}
                 />
             </div>
+            <FullScreen position={EFullScreenPosition.RIGHT_TOP} />
         </div>
     );
 }

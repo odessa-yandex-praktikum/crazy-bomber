@@ -5,6 +5,7 @@ import BackgroundFront from '../../assets/images/bomber.png';
 import BackgroundBack from '../../assets/images/planet.png';
 import {Navigation} from '../../components/navigation';
 import {consts} from '../../consts';
+import {EFullScreenPosition, FullScreen} from '../../components/full-screen';
 
 export default function StartPage() {
     const gameTitle = consts.gamesTitle;
@@ -33,6 +34,7 @@ export default function StartPage() {
                     {buttonPlay}
                 </Link>
             </div>
+            <FullScreen position={EFullScreenPosition.RIGHT_TOP} />
         </div>
     );
 }

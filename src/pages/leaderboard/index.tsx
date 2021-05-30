@@ -4,6 +4,7 @@ import {BackLink} from '../../components/backLink';
 import {Navigation} from '../../components/navigation';
 import {consts} from '../../consts';
 import {convertScoreToString, findFiveLeaders} from '../../utils/Utils';
+import {EFullScreenPosition, FullScreen} from '../../components/full-screen';
 
 export default function LeaderboardPage() {
     const players = [
@@ -66,6 +67,7 @@ export default function LeaderboardPage() {
                     </div>
                 </main>
             </div>
+            <FullScreen position={EFullScreenPosition.RIGHT_TOP} />
         </div>
     );
 }
