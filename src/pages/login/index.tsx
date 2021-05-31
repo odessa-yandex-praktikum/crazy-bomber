@@ -15,10 +15,12 @@ import {apiSignIn, Data} from '../../services/api';
 export default function Login() {
     const history = useHistory();
     const login = useInput('', [
+        {type: EValidationType.REQUIRED, value: true},
         {type: EValidationType.MIN_LENGTH, value: 4},
         {type: EValidationType.MAX_LENGTH, value: 15},
     ]);
     const password = useInput('', [
+        {type: EValidationType.REQUIRED, value: true},
         {type: EValidationType.MIN_LENGTH, value: 4},
         {type: EValidationType.MAX_LENGTH, value: 15},
     ]);

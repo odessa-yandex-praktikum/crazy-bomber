@@ -26,29 +26,28 @@ export default function Profile() {
         password: 'testtest',
         score: '0000123',
     };
-    const email = useInput(currentUser.email, [{type: EValidationType.IS_EMAIL, value: true}]);
+    const email = useInput(currentUser.email, [
+        {type: EValidationType.REQUIRED, value: true},
+        {type: EValidationType.IS_EMAIL, value: true},
+    ]);
     const name = useInput(currentUser.name, [
+        {type: EValidationType.REQUIRED, value: true},
         {type: EValidationType.MIN_LENGTH, value: 4},
         {type: EValidationType.MAX_LENGTH, value: 15},
     ]);
     const login = useInput(currentUser.login, [
+        {type: EValidationType.REQUIRED, value: true},
         {type: EValidationType.MIN_LENGTH, value: 4},
         {type: EValidationType.MAX_LENGTH, value: 15},
     ]);
-    const oldPassword = useInput('', [], true);
-    const newPassword = useInput(
-        '',
-        [
-            {type: EValidationType.MIN_LENGTH, value: 4},
-            {type: EValidationType.MAX_LENGTH, value: 15},
-        ],
-        true
-    );
-    const newPasswordRepeat = useInput(
-        '',
-        [{type: EValidationType.IS_PASSWORD_EQUAL, value: newPassword.value}],
-        true
-    );
+    const oldPassword = useInput('', []);
+    const newPassword = useInput('', [
+        {type: EValidationType.MIN_LENGTH, value: 4},
+        {type: EValidationType.MAX_LENGTH, value: 15},
+    ]);
+    const newPasswordRepeat = useInput('', [
+        {type: EValidationType.IS_PASSWORD_EQUAL, value: newPassword.value},
+    ]);
     const formData: Data = {
         login: login.value,
         name: name.value,
@@ -153,7 +152,7 @@ export default function Profile() {
             nameField={consts.profilePage.newPassword}
             type="password"
             name="newPasswordRepeat"
-            textError={newPassword.isDirty ? newPasswordRepeat.errorText : ''}
+            textError={newPasswordRepeat.errorText}
             value={newPasswordRepeat.value}
             onChange={(e) => newPasswordRepeat.onChange(e)}
             onBlur={() => newPasswordRepeat.onBlur()}

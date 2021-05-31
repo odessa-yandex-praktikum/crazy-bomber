@@ -14,20 +14,27 @@ import {apiSignUp, Data} from '../../services/api';
 
 export default function Signin() {
     const history = useHistory();
-    const email = useInput('', [{type: EValidationType.IS_EMAIL, value: true}]);
+    const email = useInput('', [
+        {type: EValidationType.REQUIRED, value: true},
+        {type: EValidationType.IS_EMAIL, value: true},
+    ]);
     const password = useInput('', [
+        {type: EValidationType.REQUIRED, value: true},
         {type: EValidationType.MIN_LENGTH, value: 4},
         {type: EValidationType.MAX_LENGTH, value: 15},
     ]);
     const login = useInput('', [
+        {type: EValidationType.REQUIRED, value: true},
         {type: EValidationType.MIN_LENGTH, value: 4},
         {type: EValidationType.MAX_LENGTH, value: 15},
     ]);
     const name = useInput('', [
+        {type: EValidationType.REQUIRED, value: true},
         {type: EValidationType.MIN_LENGTH, value: 4},
         {type: EValidationType.MAX_LENGTH, value: 15},
     ]);
     const passwordRepeat = useInput('', [
+        {type: EValidationType.REQUIRED, value: true},
         {type: EValidationType.IS_PASSWORD_EQUAL, value: password.value},
     ]);
     const formData: Data = {
