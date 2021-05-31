@@ -1,6 +1,7 @@
 import * as React from 'react';
 import './login.css';
 import {useCallback, useState} from 'react';
+import {useDispatch} from 'react-redux';
 import {useHistory} from 'react-router';
 import BackgroundFront from '../../assets/images/bomber.png';
 import BackgroundBack from '../../assets/images/planet.png';
@@ -10,10 +11,12 @@ import {Input} from '../../components/input';
 import {consts} from '../../consts';
 import {useInput} from '../../hoc/use-input';
 import {EValidationType} from '../../hoc/use-validation';
-import {apiSignIn, Data} from '../../services/api';
+import {Data} from '../../services/api';
+import {userActions} from '../../store/actions/userActions';
 
 export default function Login() {
     const history = useHistory();
+    const dispatch = useDispatch();
     const login = useInput('', [
         {type: EValidationType.MIN_LENGTH, value: 4},
         {type: EValidationType.MAX_LENGTH, value: 15},
@@ -28,18 +31,8 @@ export default function Login() {
         password: password.value,
     };
     const onSignInClick = useCallback(() => {
-        apiSignIn(formData)
-            .then((result) => {
-                if (result.status === 200) {
-                    history.push('/start');
-                } else {
-                    setLoginError('Incorrect login or password');
-                    return Promise.reject(new Error(result.status.toString()));
-                }
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+        dispatch(userActions.login(formData));
+        history.push('/start');
     }, [formData]);
 
     const arrayInputs = [
