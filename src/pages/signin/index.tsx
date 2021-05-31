@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {useCallback} from 'react';
 import './signin.css';
+import {useDispatch} from 'react-redux';
 import {useHistory} from 'react-router';
 import BackgroundFront from '../../assets/images/bomber.png';
 import BackgroundBack from '../../assets/images/planet.png';
@@ -10,14 +11,13 @@ import {Input} from '../../components/input';
 import {consts} from '../../consts';
 import {useInput} from '../../hoc/use-input';
 import {EValidationType} from '../../hoc/use-validation';
-import {apiSignUp, Data} from '../../services/api';
+import {Data} from '../../services/api';
+import {userActions} from '../../store/actions/userActions';
 
 export default function Signin() {
     const history = useHistory();
-    const email = useInput('', [
-        {type: EValidationType.REQUIRED, value: true},
-        {type: EValidationType.IS_EMAIL, value: true},
-    ]);
+    const dispatch = useDispatch();
+    const email = useInput('', [{type: EValidationType.REQUIRED, value: true}, {type: EValidationType.IS_EMAIL, value: true}]);
     const password = useInput('', [
         {type: EValidationType.REQUIRED, value: true},
         {type: EValidationType.MIN_LENGTH, value: 4},
@@ -44,17 +44,8 @@ export default function Signin() {
         newPassword: password.value,
     };
     const onSignUpClick = useCallback(() => {
-        apiSignUp(formData)
-            .then((result) => {
-                if (result.status === 200) {
-                    history.push('/start');
-                } else {
-                    return Promise.reject(new Error(result.status.toString()));
-                }
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+        dispatch(userActions.register(formData));
+        history.push('/login');
     }, [formData]);
 
     const arrayInputs = [
