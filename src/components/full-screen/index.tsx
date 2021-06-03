@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {FC, useState} from 'react';
+import {FC, useCallback, useState} from 'react';
 import './full-screen.css';
 import {consts} from '../../consts';
 import {Button, EButtonType} from '../button';
@@ -23,7 +23,7 @@ export const FullScreen: Props = ({position}: TFullScreenProps) => {
             return EButtonType.FULL_SCREEN;
         }
     });
-    function onFullScreenClick() {
+    const onFullScreenClick = useCallback(function () {
         if (!document.fullscreenElement) {
             document.documentElement.requestFullscreen();
             setType(EButtonType.EXIT_FULL_SCREEN);
@@ -33,7 +33,7 @@ export const FullScreen: Props = ({position}: TFullScreenProps) => {
             }
             setType(EButtonType.FULL_SCREEN);
         }
-    }
+    }, []);
     return (
         <div className={`${getFullScreenClass(position)}`}>
             <Button

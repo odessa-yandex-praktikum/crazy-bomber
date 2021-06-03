@@ -33,15 +33,11 @@ export default function Login() {
     const onSignInClick = useCallback(() => {
         setLoginError('');
         apiSignIn(formData)
-            .then((response) => {
-                if (response.status === 200) {
-                    history.push('/start');
-                } else {
-                    return response.json().then((result) => setLoginError(result.reason));
-                }
+            .then(() => {
+                history.push('/start');
             })
-            .catch((error) => {
-                console.log(error);
+            .catch((error: Error) => {
+                setLoginError(error.message);
             });
     }, [formData]);
 

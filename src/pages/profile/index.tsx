@@ -56,9 +56,9 @@ export default function Profile() {
         newPassword: newPassword.value,
         email: email.value,
     };
-    const [passwordError, setPasswordError] = useState('');
+    const [changeError, setChangeError] = useState('');
     const onSaveChangesClick = useCallback(() => {
-        setPasswordError('');
+        setChangeError('');
         if (
             !email.inputValid ||
             !name.inputValid ||
@@ -72,27 +72,13 @@ export default function Profile() {
             newPasswordRepeat.isDirty = true;
             newPassword.isDirty = true;
         } else {
-            changeUserProfile(formData)
-                .then((result) => {
-                    if (result.status !== 200) {
-                        return Promise.reject(new Error(result.status.toString()));
-                    }
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
+            changeUserProfile(formData).catch((error: Error) => {
+                setChangeError(error.message);
+            });
             if (newPassword.value !== '') {
-                changePassword(formData)
-                    .then((response) => {
-                        if (response.status !== 200) {
-                            return response
-                                .json()
-                                .then((result) => setPasswordError(result.reason));
-                        }
-                    })
-                    .catch((error) => {
-                        console.log(error);
-                    });
+                changePassword(formData).catch((error: Error) => {
+                    setChangeError(error.message);
+                });
             }
         }
     }, [formData]);
@@ -173,7 +159,7 @@ export default function Profile() {
 
     return (
         <div className="profile-page profile-page__background">
-            <div className="form-error">{passwordError}</div>;
+            <div className="form-error">{changeError}</div>;
             <div className="container__left-part">
                 <Navigation navigationItems={navigationItems} />
                 <BackLink />

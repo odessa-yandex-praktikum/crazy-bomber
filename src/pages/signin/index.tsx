@@ -46,18 +46,13 @@ export default function Signin() {
     };
     const onSignUpClick = useCallback(() => {
         apiSignUp(formData)
-            .then((result) => {
-                if (result.status === 200) {
-                    history.push('/start');
-                } else {
-                    return Promise.reject(new Error(result.status.toString()));
-                }
+            .then(() => {
+                history.push('/start');
             })
-            .catch((error) => {
-                console.log(error);
+            .catch((error: Error) => {
+                console.log(error.message);
             });
     }, [formData]);
-
     const arrayInputs = [
         <Input
             key="email"
