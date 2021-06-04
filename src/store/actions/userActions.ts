@@ -13,16 +13,11 @@ function register(formData: Data) {
         dispatch(request());
 
         apiSignUp(formData)
-            .then((result) => {
-                if (result.status === 200) {
-                    dispatch(success());
-                } else {
-                    const error = new Error(result.status.toString());
-                    dispatch(failure(error.message));
-                    return Promise.reject(error);
-                }
+            .then(() => {
+                dispatch(success());
             })
-            .catch((error) => {
+            .catch((error: Error) => {
+                dispatch(failure(error.message));
                 console.log(error);
             });
     };
@@ -45,27 +40,21 @@ function login(formData: Data) {
         dispatch(request());
 
         apiSignIn(formData)
-            .then((result) => {
-                if (result.status === 200) {
-                    //fake testdata
-                    const user = {
-                        id: 402,
-                        img: 'https://freesvg.org/img/1514826571.png',
-                        email: 'vasia@mail.ru',
-                        login: 'Vasia001',
-                        name: 'Vasia',
-                        password: 'testtest',
-                        score: 123,
-                    };
-                    dispatch(success(user));
-                    localStorage.setItem('user', JSON.stringify(user));
-                } else {
-                    const error = new Error(result.status.toString());
-                    dispatch(failure(error.message));
-                    return Promise.reject(error);
-                }
+            .then(() => {
+                const user = {
+                    id: 402,
+                    img: 'https://freesvg.org/img/1514826571.png',
+                    email: 'vasia@mail.ru',
+                    login: 'Vasia001',
+                    name: 'Vasia',
+                    password: 'testtest',
+                    score: 123,
+                };
+                dispatch(success(user));
+                localStorage.setItem('user', JSON.stringify(user));
             })
-            .catch((error) => {
+            .catch((error: Error) => {
+                dispatch(failure(error.message));
                 console.log(error);
             });
     };

@@ -46,8 +46,8 @@ export default function Login() {
             name="login"
             textError={login.isDirty ? login.errorText : ''}
             value={login.value}
-            onChange={(e) => login.onChange(e)}
-            onBlur={() => login.onBlur()}
+            onChange={useCallback((e) => login.onChange(e), [])}
+            onBlur={useCallback(() => login.onBlur(), [])}
         />,
         <Input
             key="password"
@@ -56,8 +56,8 @@ export default function Login() {
             name="password"
             textError={password.isDirty ? password.errorText : ''}
             value={password.value}
-            onChange={(e) => password.onChange(e)}
-            onBlur={() => password.onBlur()}
+            onChange={useCallback((e) => password.onChange(e), [])}
+            onBlur={useCallback(() => password.onBlur(), [])}
         />,
     ];
     const arrayButtons = [
@@ -74,7 +74,7 @@ export default function Login() {
             text={consts.loginPage.buttonSignUp}
             buttonColor={EButtonColor.PRIMARY}
             buttonType={EButtonType.FORM}
-            onClick={() => history.push('/signin')}
+            onClick={useCallback(() => history.push('/signin'), [])}
         />,
     ];
     return (

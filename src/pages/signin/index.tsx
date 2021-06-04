@@ -17,7 +17,10 @@ import {userActions} from '../../store/actions/userActions';
 export default function Signin() {
     const history = useHistory();
     const dispatch = useDispatch();
-    const email = useInput('', [{type: EValidationType.REQUIRED, value: true}, {type: EValidationType.IS_EMAIL, value: true}]);
+    const email = useInput('', [
+        {type: EValidationType.REQUIRED, value: true},
+        {type: EValidationType.IS_EMAIL, value: true},
+    ]);
     const password = useInput('', [
         {type: EValidationType.REQUIRED, value: true},
         {type: EValidationType.MIN_LENGTH, value: 4},
@@ -55,8 +58,8 @@ export default function Signin() {
             type="email"
             name="email"
             value={email.value}
-            onChange={(e) => email.onChange(e)}
-            onBlur={() => email.onBlur()}
+            onChange={useCallback((e) => email.onChange(e), [])}
+            onBlur={useCallback(() => email.onBlur(), [])}
             textError={email.isDirty ? email.errorText : ''}
         />,
         <Input
@@ -66,8 +69,8 @@ export default function Signin() {
             name="login"
             textError={login.isDirty ? login.errorText : ''}
             value={login.value}
-            onChange={(e) => login.onChange(e)}
-            onBlur={() => login.onBlur()}
+            onChange={useCallback((e) => login.onChange(e), [])}
+            onBlur={useCallback(() => login.onBlur(), [])}
         />,
         <Input
             key="name"
@@ -76,8 +79,8 @@ export default function Signin() {
             name="name"
             textError={name.isDirty ? name.errorText : ''}
             value={name.value}
-            onChange={(e) => name.onChange(e)}
-            onBlur={() => name.onBlur()}
+            onChange={useCallback((e) => name.onChange(e), [])}
+            onBlur={useCallback(() => name.onBlur(), [])}
         />,
         <Input
             key="password"
@@ -86,8 +89,8 @@ export default function Signin() {
             name="password"
             textError={password.isDirty ? password.errorText : ''}
             value={password.value}
-            onChange={(e) => password.onChange(e)}
-            onBlur={() => password.onBlur()}
+            onChange={useCallback((e) => password.onChange(e), [])}
+            onBlur={useCallback(() => password.onBlur(), [])}
         />,
         <Input
             key="passwordRepeat"
@@ -96,8 +99,8 @@ export default function Signin() {
             name="passwordRepeat"
             textError={passwordRepeat.isDirty ? passwordRepeat.errorText : ''}
             value={passwordRepeat.value}
-            onChange={(e) => passwordRepeat.onChange(e)}
-            onBlur={() => passwordRepeat.onBlur()}
+            onChange={useCallback((e) => passwordRepeat.onChange(e), [])}
+            onBlur={useCallback(() => passwordRepeat.onBlur(), [])}
         />,
     ];
     const arrayButtons = [
@@ -106,7 +109,7 @@ export default function Signin() {
             text={consts.signinPage.buttonBack}
             buttonColor={EButtonColor.PRIMARY}
             buttonType={EButtonType.FORM}
-            onClick={() => history.goBack()}
+            onClick={useCallback(() => history.goBack(), [])}
         />,
         <Button
             key={consts.signinPage.buttonSignIn}
