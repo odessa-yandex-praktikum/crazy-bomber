@@ -1,4 +1,4 @@
-@import '../../common.css';
+@import '../../../common.css';
 
 .game-container__gameboard {
     overflow: hidden;
@@ -7,8 +7,7 @@
 }
 
 .game-container__background {
-    height: 100vh;
-    background-image: url('../../assets/images/game_background.png');
+    background-image: url('../../../assets/images/game_background.png');
     background-size: cover;
 }
 

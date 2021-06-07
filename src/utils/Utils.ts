@@ -1,4 +1,5 @@
-//util functions for leaderboard page
+import {IRectParams} from '../pages/gameboard/models';
+
 class Player {
     constructor(
         public id: number,
@@ -70,4 +71,33 @@ export function determineCreationDate(date: number) {
 //util functions for navigation
 export function createNaviPath(naviHeading: string) {
     return `/${naviHeading}`;
+}
+
+/**
+ * случайное число от min до max.
+ */
+export function randomInteger(min: number, max: number): number {
+    return Math.floor(min + Math.random() * (max + 1 - min));
+}
+
+/**
+ * Проверяет пересечение двух отрезков.
+ *
+ * @param a Левая координата первого отрезка.
+ * @param b Левая координата второго отрезка.
+ * @param c Правая координата первого отрезка.
+ * @param d Правая координата второго отрезка.
+ */
+export function intersectLine(a: number, b: number, c: number, d: number) {
+    return Math.max(a, c) <= Math.min(b, d);
+}
+
+/**
+ * Проверяет пересечение двух прямоугольников.
+ */
+export function intersect(rect1: IRectParams, rect2: IRectParams) {
+    return (
+        intersectLine(rect1.x, rect1.x + rect1.width, rect2.x, rect2.x + rect2.width) &&
+        intersectLine(rect1.y, rect1.y + rect1.height, rect2.y, rect2.y + rect2.height)
+    );
 }
