@@ -7,6 +7,7 @@ import {Navigation} from '../../components/navigation';
 import {consts} from '../../consts';
 import {discussions} from '../../testdata/ForumData';
 import {sortDescending} from '../../utils/Utils';
+import {EFullScreenPosition, FullScreen} from '../../components/full-screen';
 
 export default function Forum() {
     const pageTitle = consts.forumPage.pageTitle;
@@ -73,6 +74,7 @@ export default function Forum() {
                     </div>
                 </main>
             </div>
+            <FullScreen position={EFullScreenPosition.RIGHT_TOP} />
         </div>
     );
 }

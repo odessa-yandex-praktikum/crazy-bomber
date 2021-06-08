@@ -7,6 +7,7 @@ import BackgroundFront from '../../assets/images/bomber.png';
 import BackgroundBack from '../../assets/images/planet.png';
 import {Button, EButtonColor, EButtonType} from '../../components/button';
 import {Form} from '../../components/form';
+import {EFullScreenPosition, FullScreen} from '../../components/full-screen';
 import {Input} from '../../components/input';
 import {consts} from '../../consts';
 import {useInput} from '../../hoc/use-input';
@@ -96,6 +97,7 @@ export default function Login() {
                     arrayButtons={arrayButtons}
                 />
             </div>
+            <FullScreen position={EFullScreenPosition.RIGHT_TOP} />
         </div>
     );
 }
