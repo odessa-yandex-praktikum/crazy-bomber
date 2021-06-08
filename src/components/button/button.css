@@ -33,3 +33,17 @@
 .button__type-error {
     font-size: 72px;
 }
+
+.button__full-screen {
+    background-image: url('../../assets/icons/full-screen.png');
+    background-size: cover;
+    width: 64px;
+    height: 64px;
+}
+
+.button__exit-full-screen {
+    background-image: url('../../assets/icons/exit-full-screen.png');
+    background-size: cover;
+    width: 64px;
+    height: 64px;
+}

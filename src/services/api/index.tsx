@@ -22,9 +22,20 @@ const apiHost = {
     changePassword: 'user/password',
 };
 
+const processingRequest = (response: Response) => {
+    if (response.status === 200) {
+        return response;
+    } else {
+        return response.json().then((result: {reason: string}) => {
+            throw Error(result?.reason);
+        });
+    }
+};
+
 export function apiSignUp(formData: Data): Promise<Response> {
     return fetch(url + apiHost.signUp, {
         method: 'POST',
+        credentials: 'include',
         headers: {
             'Content-Type': 'application/json',
             accept: 'application/json',
@@ -37,18 +48,19 @@ export function apiSignUp(formData: Data): Promise<Response> {
             phone: '1111111',
             password: formData.newPassword,
         }),
-    });
+    }).then((response) => processingRequest(response));
 }
 
 export function apiSignIn(formData: Data): Promise<Response> {
     return fetch(url + apiHost.signIn, {
         method: 'POST',
+        credentials: 'include',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
             login: formData.login,
             password: formData.password,
         }),
-    });
+    }).then((response) => processingRequest(response));
 }
 
 export function getUserInfo(): Promise<Response> {
@@ -58,12 +70,13 @@ export function getUserInfo(): Promise<Response> {
             accept: 'application/json',
         },
         credentials: 'include',
-    });
+    }).then((response) => processingRequest(response));
 }
 
 export function changeUserProfile(formData: Data): Promise<Response> {
     return fetch(url + apiHost.changeUserProfile, {
         method: 'PUT',
+        credentials: 'include',
         headers: {
             'Content-Type': 'application/json',
             accept: 'application/json',
@@ -76,13 +89,13 @@ export function changeUserProfile(formData: Data): Promise<Response> {
             email: formData.email,
             phone: '1111111',
         }),
-        credentials: 'include',
-    });
+    }).then((response) => processingRequest(response));
 }
 
 export function changePassword(formData: Data): Promise<Response> {
     return fetch(url + apiHost.changePassword, {
         method: 'PUT',
+        credentials: 'include',
         headers: {
             'Content-Type': 'application/json',
             accept: 'application/json',
@@ -91,6 +104,5 @@ export function changePassword(formData: Data): Promise<Response> {
             oldPassword: formData.oldPassword,
             newPassword: formData.newPassword,
         }),
-        credentials: 'include',
-    });
+    }).then((response) => processingRequest(response));
 }

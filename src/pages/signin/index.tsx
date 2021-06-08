@@ -11,6 +11,7 @@ import {consts} from '../../consts';
 import {useInput} from '../../hoc/use-input';
 import {EValidationType} from '../../hoc/use-validation';
 import {apiSignUp, Data} from '../../services/api';
+import {EFullScreenPosition, FullScreen} from '../../components/full-screen';
 
 export default function Signin() {
     const history = useHistory();
@@ -45,18 +46,13 @@ export default function Signin() {
     };
     const onSignUpClick = useCallback(() => {
         apiSignUp(formData)
-            .then((result) => {
-                if (result.status === 200) {
-                    history.push('/start');
-                } else {
-                    return Promise.reject(new Error(result.status.toString()));
-                }
+            .then(() => {
+                history.push('/start');
             })
-            .catch((error) => {
-                console.log(error);
+            .catch((error: Error) => {
+                console.log(error.message);
             });
     }, [formData]);
-
     const arrayInputs = [
         <Input
             key="email"
@@ -151,6 +147,7 @@ export default function Signin() {
                     arrayButtons={arrayButtons}
                 />
             </div>
+            <FullScreen position={EFullScreenPosition.RIGHT_TOP} />
         </div>
     );
 }

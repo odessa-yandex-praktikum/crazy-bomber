@@ -4,6 +4,7 @@ import './gameboard.css';
 import {useHistory} from 'react-router';
 import {drawInitialStage} from '../../game/GameUtils';
 import {convertScoreToString} from '../../utils/Utils';
+import {EFullScreenPosition, FullScreen} from '../../components/full-screen';
 
 export default function Gameboard() {
     const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -41,6 +42,7 @@ export default function Gameboard() {
             <span className="game-container__gameboard-score">
                 Score: {convertScoreToString(score)}
             </span>
+            <FullScreen position={EFullScreenPosition.RIGHT_BOTTOM} />
         </div>
     );
 }
