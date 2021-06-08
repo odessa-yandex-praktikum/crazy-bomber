@@ -49,9 +49,8 @@ export default function Signin() {
     };
     const onSignUpClick = useCallback(() => {
         dispatch(userActions.register(formData));
-        history.push('/login');
+        history.push('/start');
     }, [formData]);
-
     const arrayInputs = [
         <Input
             key="email"

@@ -6,7 +6,6 @@ import BackgroundBack from '../../assets/images/planet.png';
 import {EFullScreenPosition, FullScreen} from '../../components/full-screen';
 import {Navigation} from '../../components/navigation';
 import {consts} from '../../consts';
-import {BackLink} from '../../components/backLink';
 
 export default function StartPage() {
     const gameTitle = consts.gamesTitle;
