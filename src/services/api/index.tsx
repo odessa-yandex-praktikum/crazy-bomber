@@ -36,6 +36,7 @@ export function apiSignUp(formData: Data): Promise<Response> {
     return fetch(url + apiHost.signUp, {
         method: 'POST',
         credentials: 'include',
+        mode: 'cors',
         headers: {
             'Content-Type': 'application/json',
             accept: 'application/json',
@@ -48,28 +49,40 @@ export function apiSignUp(formData: Data): Promise<Response> {
             phone: '1111111',
             password: formData.newPassword,
         }),
-    }).then((response) => processingRequest(response));
+    }).then(() => getUserInfo());
 }
 
 export function apiSignIn(formData: Data): Promise<Response> {
     return fetch(url + apiHost.signIn, {
         method: 'POST',
         credentials: 'include',
+        mode: 'cors',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
             login: formData.login,
             password: formData.password,
         }),
-    }).then((response) => processingRequest(response));
+    }).then(() => getUserInfo());
 }
 
-export function getUserInfo(): Promise<Response> {
+export async function apiLogout(): Promise<Response> {
+    const response = await fetch(url + apiHost.logout, {
+        method: 'POST',
+        credentials: 'include',
+        mode: 'cors',
+        headers: {'Content-Type': 'application/json'},
+    });
+    return processingRequest(response);
+}
+
+function getUserInfo(): Promise<Response> {
     return fetch(url + apiHost.getUserInfo, {
         method: 'GET',
+        credentials: 'include',
+        mode: 'cors',
         headers: {
             accept: 'application/json',
         },
-        credentials: 'include',
     }).then((response) => processingRequest(response));
 }
 
@@ -77,6 +90,7 @@ export function changeUserProfile(formData: Data): Promise<Response> {
     return fetch(url + apiHost.changeUserProfile, {
         method: 'PUT',
         credentials: 'include',
+        mode: 'cors',
         headers: {
             'Content-Type': 'application/json',
             accept: 'application/json',
