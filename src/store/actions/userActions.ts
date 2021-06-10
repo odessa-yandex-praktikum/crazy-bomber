@@ -13,7 +13,12 @@ function register(formData: Data) {
         dispatch(request());
 
         apiSignUp(formData)
-            .then((r) => r.json())
+            .catch((error: Error) => {
+                dispatch(failure(error.message));
+                console.log(error);
+                throw error;
+            })
+            .then((r: Response) => r.json())
             .then((data: UserData) => {
                 const user = {
                     id: data.id,
@@ -30,6 +35,7 @@ function register(formData: Data) {
             .catch((error: Error) => {
                 dispatch(failure(error.message));
                 console.log(error);
+                throw error;
             });
     };
 
@@ -66,7 +72,12 @@ function login(formData: Data) {
         dispatch(request());
 
         apiSignIn(formData)
-            .then((r) => r.json())
+            .catch((error: Error) => {
+                dispatch(failure(error.message));
+                console.log(error);
+                throw error;
+            })
+            .then((r: Response) => r.json())
             .then((data: UserData) => {
                 const user = {
                     id: data.id,
@@ -83,6 +94,7 @@ function login(formData: Data) {
             .catch((error: Error) => {
                 dispatch(failure(error.message));
                 console.log(error);
+                throw error;
             });
     };
 
