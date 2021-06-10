@@ -21,7 +21,7 @@ export interface User {
 }
 
 export interface UserState {
-    loggingIn: boolean;
+    loggedIn: boolean;
     currentUser: Nullable<User>;
     error: Nullable<string>;
 }

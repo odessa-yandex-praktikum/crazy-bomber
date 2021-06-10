@@ -43,11 +43,21 @@ function register(formData: Data) {
     }
 
     function success(user: User) {
-        return {type: UserActionTypes.USER_ACTION_SUCCESS, user};
+        return {
+            type: UserActionTypes.USER_ACTION_SUCCESS,
+            loggingIn: true,
+            currentUser: user,
+            error: '',
+        };
     }
 
     function failure(error: string) {
-        return {type: UserActionTypes.USER_ACTION_FAILURE, error};
+        return {
+            type: UserActionTypes.USER_ACTION_FAILURE,
+            loggingIn: false,
+            currentUser: null,
+            error: error,
+        };
     }
 }
 
@@ -86,11 +96,21 @@ function login(formData: Data) {
     }
 
     function success(user: User) {
-        return {type: UserActionTypes.USER_ACTION_SUCCESS, user};
+        return {
+            type: UserActionTypes.USER_ACTION_SUCCESS,
+            loggingIn: true,
+            currentUser: user,
+            error: '',
+        };
     }
 
     function failure(error: string) {
-        return {type: UserActionTypes.USER_ACTION_FAILURE, error};
+        return {
+            type: UserActionTypes.USER_ACTION_FAILURE,
+            loggingIn: false,
+            currentUser: null,
+            error: error,
+        };
     }
 }
 

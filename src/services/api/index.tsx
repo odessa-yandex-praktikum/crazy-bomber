@@ -65,14 +65,13 @@ export function apiSignIn(formData: Data): Promise<Response> {
     }).then(() => getUserInfo());
 }
 
-export async function apiLogout(): Promise<Response> {
-    const response = await fetch(url + apiHost.logout, {
+export function apiLogout(): Promise<Response> {
+    return fetch(url + apiHost.logout, {
         method: 'POST',
         credentials: 'include',
         mode: 'cors',
         headers: {'Content-Type': 'application/json'},
-    });
-    return processingRequest(response);
+    }).then((response) => processingRequest(response));
 }
 
 function getUserInfo(): Promise<Response> {

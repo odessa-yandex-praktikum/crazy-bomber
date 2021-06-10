@@ -12,10 +12,10 @@ export default function StartPage() {
     const navLinkProfile = consts.navigation.navLinkProfile;
     const navLinkForum = consts.navigation.navLinkForum;
     const navLinkLeaderboard = consts.navigation.navLinkLeaderboard;
-    const navLinkLogin = consts.navigation.navLinkLogin;
+    const navLinkLogout = consts.navigation.navLinkLogout;
     const buttonPlay = consts.startPage.buttonPlay;
 
-    const navigationItems = [navLinkProfile, navLinkForum, navLinkLeaderboard, navLinkLogin];
+    const navigationItems = [navLinkProfile, navLinkForum, navLinkLeaderboard, navLinkLogout];
 
     return (
         <div className="start-page">

@@ -1,11 +1,9 @@
 import * as React from 'react';
 import {RouteProps} from 'react-router';
 import {Route, Redirect} from 'react-router-dom';
+import {useTypedSelector} from '../store/hooks/useTypedSelector';
 
-const isLogged = () => {
-    // TODO: добавить логику проверки залоггированности.
-    return true;
+export const PrivateRoute: React.FC<RouteProps> = (props) => {
+    const currentUser = useTypedSelector((state) => state.user.currentUser);
+    return currentUser ? <Route {...props} /> : <Redirect to="/login" />;
 };
-
-export const PrivateRoute: React.FC<RouteProps> = (props) =>
-    isLogged() ? <Route {...props} /> : <Redirect to="/signin" />;

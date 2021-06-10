@@ -60,8 +60,10 @@ export default function Signin() {
 
     const onSignUpClick = useCallback(() => {
         dispatch(userActions.register(formData));
-        history.push('/start');
+        //without timeout Private Route returns null for current user after signup
+        setTimeout(() => history.push('/start'), 500);
     }, [formData]);
+
     const arrayInputs = [
         <Input
             key="email"
