@@ -81,15 +81,19 @@ export function randomInteger(min: number, max: number): number {
 }
 
 /**
- * Проверяет пересечение двух отрезков.
- *
  * @param a Левая координата первого отрезка.
  * @param b Левая координата второго отрезка.
- * @param c Правая координата первого отрезка.
- * @param d Правая координата второго отрезка.
  */
-export function intersectLine(a: number, b: number, c: number, d: number) {
-    return Math.max(a, c) <= Math.min(b, d);
+interface ILine {
+    a: number;
+    b: number;
+}
+
+/**
+ * Проверяет пересечение двух отрезков.
+ */
+export function intersectLine(line1: ILine, line2: ILine) {
+    return Math.max(line1.a, line2.a) <= Math.min(line1.b, line2.b);
 }
 
 /**
@@ -97,7 +101,13 @@ export function intersectLine(a: number, b: number, c: number, d: number) {
  */
 export function intersect(rect1: IRectParams, rect2: IRectParams) {
     return (
-        intersectLine(rect1.x, rect1.x + rect1.width, rect2.x, rect2.x + rect2.width) &&
-        intersectLine(rect1.y, rect1.y + rect1.height, rect2.y, rect2.y + rect2.height)
+        intersectLine(
+            {a: rect1.x, b: rect1.x + rect1.width},
+            {a: rect2.x, b: rect2.x + rect2.width}
+        ) &&
+        intersectLine(
+            {a: rect1.y, b: rect1.y + rect1.height},
+            {a: rect2.y, b: rect2.y + rect2.height}
+        )
     );
 }

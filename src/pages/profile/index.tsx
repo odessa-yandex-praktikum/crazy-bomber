@@ -4,13 +4,13 @@ import {useCallback, useState} from 'react';
 import {BackLink} from '../../components/backLink';
 import {Button, EButtonColor, EButtonType} from '../../components/button';
 import {Form} from '../../components/form';
+import {EFullScreenPosition, FullScreen} from '../../components/full-screen';
 import {Input} from '../../components/input';
 import {Navigation} from '../../components/navigation';
 import {consts} from '../../consts';
-import {useInput} from '../../hoc/use-input';
-import {EValidationType} from '../../hoc/use-validation';
+import {useInput} from '../../hooks/use-input';
+import {EValidationType} from '../../hooks/use-validation';
 import {changePassword, changeUserProfile, Data} from '../../services/api';
-import {EFullScreenPosition, FullScreen} from '../../components/full-screen';
 
 export default function Profile() {
     const pageTitle = consts.profilePage.pageTitle;

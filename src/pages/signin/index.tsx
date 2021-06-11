@@ -10,10 +10,10 @@ import {Form} from '../../components/form';
 import {EFullScreenPosition, FullScreen} from '../../components/full-screen';
 import {Input} from '../../components/input';
 import {consts} from '../../consts';
-import {useInput} from '../../hoc/use-input';
-import {userActions} from '../../store/actions/userActions';
+import {useInput} from '../../hooks/use-input';
 import {EValidationType} from '../../hooks/use-validation';
-import {apiSignUp, Data} from '../../services/api';
+import {Data} from '../../services/api';
+import {userActions} from '../../store/actions/userActions';
 
 export default function Signin() {
     const history = useHistory();

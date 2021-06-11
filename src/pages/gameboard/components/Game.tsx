@@ -9,6 +9,7 @@ import {Bomber} from '../entities/Bomber';
 import {Building} from '../entities/Building';
 import {Bullet} from '../entities/Bullet';
 import {EDirection} from '../enums';
+import {EFullScreenPosition, FullScreen} from '../../../components/full-screen';
 
 export default function Game() {
     const [score, setScore] = useState<number>(0);
@@ -175,6 +176,7 @@ export default function Game() {
             <span className="game-container__gameboard-score">
                 Score: {convertScoreToString(score)}
             </span>
+            <FullScreen position={EFullScreenPosition.RIGHT_BOTTOM} />
         </div>
     );
 }
