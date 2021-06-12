@@ -18,7 +18,6 @@ const apiHost = {
     getUserInfo: 'auth/user',
     logout: 'auth/logout',
     changeUserProfile: 'user/profile',
-    changeUserAvatar: 'user/profile/avatar',
     changePassword: 'user/password',
 };
 
@@ -85,7 +84,7 @@ function getUserInfo(): Promise<Response> {
     }).then((response) => processingRequest(response));
 }
 
-export function changeUserProfile(formData: Data): Promise<Response> {
+export function apiChangeProfile(formData: Data): Promise<Response> {
     return fetch(url + apiHost.changeUserProfile, {
         method: 'PUT',
         credentials: 'include',
@@ -97,7 +96,7 @@ export function changeUserProfile(formData: Data): Promise<Response> {
         body: JSON.stringify({
             first_name: formData.name,
             second_name: formData.name,
-            display_name: formData.name,
+            display_name: formData.name.concat(' ').concat(formData.name),
             login: formData.login,
             email: formData.email,
             phone: '1111111',
@@ -105,7 +104,7 @@ export function changeUserProfile(formData: Data): Promise<Response> {
     }).then((response) => processingRequest(response));
 }
 
-export function changePassword(formData: Data): Promise<Response> {
+export function apiChangePassword(formData: Data): Promise<Response> {
     return fetch(url + apiHost.changePassword, {
         method: 'PUT',
         credentials: 'include',
