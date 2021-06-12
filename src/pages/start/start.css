@@ -63,3 +63,23 @@
     position: absolute;
     width: 1400px;
 }
+
+.backgroundBack {
+    position: absolute;
+    height: 100%;
+}
+
+.backgroundFront {
+    position: absolute;
+    width: 1400px;
+}
+
+.backgroundBack {
+    position: absolute;
+    height: 100%;
+}
+
+.backgroundFront {
+    position: absolute;
+    width: 1400px;
+}
