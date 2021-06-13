@@ -27,7 +27,6 @@ export function apiSignUp(formData: Data): Promise<Response> {
     return fetch(url + apiHost.signUp, {
         method: 'POST',
         credentials: 'include',
-        mode: 'cors',
         headers: {
             'Content-Type': 'application/json',
             accept: 'application/json',
@@ -47,7 +46,6 @@ export function apiSignIn(formData: Data): Promise<Response> {
     return fetch(url + apiHost.signIn, {
         method: 'POST',
         credentials: 'include',
-        mode: 'cors',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
             login: formData.login,
@@ -60,7 +58,6 @@ export function apiLogout(): Promise<Response> {
     return fetch(url + apiHost.logout, {
         method: 'POST',
         credentials: 'include',
-        mode: 'cors',
         headers: {'Content-Type': 'application/json'},
     }).then((response) => processingRequest(response));
 }
@@ -69,7 +66,6 @@ function getUserInfo(): Promise<Response> {
     return fetch(url + apiHost.getUserInfo, {
         method: 'GET',
         credentials: 'include',
-        mode: 'cors',
         headers: {
             accept: 'application/json',
         },
@@ -80,7 +76,6 @@ export function apiChangeProfile(formData: Data): Promise<Response> {
     return fetch(url + apiHost.changeUserProfile, {
         method: 'PUT',
         credentials: 'include',
-        mode: 'cors',
         headers: {
             'Content-Type': 'application/json',
             accept: 'application/json',

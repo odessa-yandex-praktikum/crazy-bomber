@@ -47,7 +47,7 @@ export default function Login() {
     const onSignInClick = useCallback(() => {
         dispatch(userActions.login(formData));
         //without timeout Private Route returns null for current user after login
-        setTimeout(() => history.push('/start'), 500);
+        setTimeout(() => history.push('/start'), 1000);
     }, [formData]);
 
     const arrayInputs = [

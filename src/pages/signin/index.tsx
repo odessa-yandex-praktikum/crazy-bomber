@@ -61,7 +61,7 @@ export default function Signin() {
     const onSignUpClick = useCallback(() => {
         dispatch(userActions.register(formData));
         //without timeout Private Route returns null for current user after signup
-        setTimeout(() => history.push('/start'), 500);
+        setTimeout(() => history.push('/start'), 1000);
     }, [formData]);
 
     const arrayInputs = [

@@ -23,7 +23,7 @@ export default function Game() {
     const buildingsRef = useRef<Building[]>([]);
     const history = useHistory();
     const dispatch = useDispatch();
-    const {avatar, login} = useTypedSelector((state) => state.user.currentUser);
+    const {login} = useTypedSelector((state) => state.user.currentUser);
 
     /** Монтирование */
     useEffect(() => {
@@ -128,7 +128,7 @@ export default function Game() {
                             ?.getElementsByClassName('game-container__gameboard-score')[0]
                             .innerHTML.split(' ')[1]
                     );
-                    dispatch(leaderboardActions.saveScore(avatar, login, currentScore));
+                    dispatch(leaderboardActions.saveScore(login, currentScore));
                     history.push('/gameover', {currentScore});
                 }
 
@@ -180,7 +180,7 @@ export default function Game() {
                         ?.getElementsByClassName('game-container__gameboard-score')[0]
                         .innerHTML.split(' ')[1]
                 );
-                dispatch(leaderboardActions.saveScore(avatar, login, currentScore));
+                dispatch(leaderboardActions.saveScore(login, currentScore));
                 history.push('/gameover', {currentScore});
             }
         }
