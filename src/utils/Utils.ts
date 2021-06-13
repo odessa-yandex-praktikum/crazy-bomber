@@ -1,4 +1,5 @@
 import {IRectParams} from '../pages/gameboard/models';
+import {GameResultData, GameResultsData} from '../store/types/leaderboard';
 
 class Player {
     constructor(
@@ -9,10 +10,13 @@ class Player {
     ) {}
 }
 
-export function findFiveLeaders(playersArray: Player[]) {
+export function findFiveLeaders(gameResultsArray: GameResultsData) {
     //5 - потому что мы ищем пять лидеров для отображения на борде
-    return playersArray
-        .sort((player1: Player, player2: Player) => player2.score - player1.score)
+    return gameResultsArray
+        .sort(
+            (gameResult1: GameResultData, gameResult2: GameResultData) =>
+                gameResult2.bomberscore - gameResult1.bomberscore
+        )
         .slice(0, 5);
 }
 

@@ -5,20 +5,7 @@ import {
 } from '../../store/types/leaderboard';
 import {processingRequest} from './common';
 
-export interface Data {
-    name?: string;
-    login?: string;
-    email?: string;
-    newPassword?: string;
-    phone?: string;
-    password?: string;
-    title?: string;
-    display_name?: string;
-    oldPassword?: string;
-    second_name?: string;
-}
-
-const url = 'https://ya-praktikum.tech/game/v2/';
+const url = 'https://ya-praktikum.tech/api/v2/';
 const apiHost = {
     addNewLeader: 'leaderboard',
     getAll: 'leaderboard/all',
@@ -30,8 +17,9 @@ const toGameResultsData = (gameResults: GameResults) => {
     return gameResults.map((result, key) => ({...result.data, id: key}));
 };
 
-const toGameResultForAPI = (login: string, score: number): GameResultForAPI => ({
+const toGameResultForAPI = (avatar: string, login: string, score: number): GameResultForAPI => ({
     data: {
+        avatar,
         login,
         bomberscore: score,
     },
@@ -45,8 +33,9 @@ const toGetLeaderboardDataRequest = (page = 0): GetLeaderboardDataRequest => ({
 });
 
 const leaderboardApi = () => {
-    const saveNewLeader = (login: string, score: number) => {
-        const data = toGameResultForAPI(login, score);
+    const saveLeader = (avatar: string, login: string, score: number) => {
+        const data = toGameResultForAPI(avatar, login, score);
+        console.log(data);
         return fetch(url + apiHost.addNewLeader, {
             method: 'POST',
             credentials: 'include',
@@ -74,7 +63,7 @@ const leaderboardApi = () => {
     };
 
     return {
-        saveNewLeader,
+        saveLeader,
         getAll,
     };
 };

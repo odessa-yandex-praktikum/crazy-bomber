@@ -1,6 +1,5 @@
 import {Dispatch} from 'redux';
 import {leaderboardApi} from '../../services/api/leaderboard-api';
-import {RootState} from '../reducers';
 import {GameResultsData, LeaderboardActionTypes} from '../types/leaderboard';
 
 export const leaderboardActions = {
@@ -42,31 +41,28 @@ export const leaderboardLoadingFailure = (error: string): LeaderboardFailure => 
     };
 };
 
-function saveScore(score: number) {
-    return async (dispatch: Dispatch, state: RootState) => {
+function saveScore(avatar: string, login: string, score: number) {
+    return async (dispatch: Dispatch) => {
         dispatch(leaderboardLoading());
-        const {saveNewLeader: saveLeader} = leaderboardApi();
-        try {
-            const currentUser = state.user.currentUser;
-            if (!currentUser) {
-                throw new Error('Failed to load user data');
-            }
-            await saveLeader(currentUser.login, score);
-        } catch (error) {
-            dispatch(leaderboardLoadingFailure(error));
-        }
+        const {saveLeader} = leaderboardApi();
+
+        await saveLeader(avatar, login, score).catch((error: Error) => {
+            dispatch(leaderboardLoadingFailure(error.message));
+            console.log(error);
+        });
     };
 }
 
 function loadLeaderboard(page = 0) {
     return async (dispatch: Dispatch) => {
         dispatch(leaderboardLoading());
-        const {getAll: getLeaderboard} = leaderboardApi();
+        const {getAll} = leaderboardApi();
         try {
-            const gameResultsData = await getLeaderboard(page);
-            dispatch(leaderboardLoadingSuccess(gameResultsData));
+            const gameResults = await getAll(page);
+            dispatch(leaderboardLoadingSuccess(gameResults));
         } catch (error) {
             dispatch(leaderboardLoadingFailure(error));
+            console.log(error);
         }
     };
 }

@@ -13,7 +13,7 @@ export interface UserData {
 
 export interface User {
     id: number;
-    avatar: string | null;
+    avatar: string;
     name: string;
     login: string;
     email: string;

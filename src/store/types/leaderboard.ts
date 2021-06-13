@@ -1,11 +1,13 @@
 type GameResultData = {
     id: number;
+    avatar: string;
     login: string;
     bomberscore: number;
 };
 
 type GameResult = {
     data: {
+        avatar: string;
         login: string;
         bomberscore: number;
     };
@@ -30,4 +32,11 @@ export enum LeaderboardActionTypes {
     LEADERBOARD_FAILURE = 'LEADERBOARD_FAILURE',
 }
 
-export {GameResult, GameResultForAPI, GameResults, GameResultsData, GetLeaderboardDataRequest};
+export {
+    GameResult,
+    GameResultForAPI,
+    GameResults,
+    GameResultData,
+    GameResultsData,
+    GetLeaderboardDataRequest,
+};
