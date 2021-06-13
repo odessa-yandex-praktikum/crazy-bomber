@@ -11,6 +11,7 @@ const apiHost = {
     getAll: 'leaderboard/all',
 };
 
+//5 - потому что мы ищем пять лидеров для отображения на борде
 const limit = 5;
 
 const toGameResultsData = (gameResults: GameResults) => {

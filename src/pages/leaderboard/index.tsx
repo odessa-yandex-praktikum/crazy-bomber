@@ -31,7 +31,7 @@ export default function LeaderboardPage() {
 
     return (
         <div className="leaderboard-page leaderboard-page__background">
-            <div className="form-error">{error}</div>;
+            <div className="form-error">{error}</div>
             <div className="container__left-part">
                 <Navigation navigationItems={navigationItems} />
                 <BackLink />
