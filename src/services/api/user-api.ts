@@ -1,3 +1,5 @@
+import {processingRequest} from './common';
+
 export interface Data {
     name?: string;
     login?: string;
@@ -19,16 +21,6 @@ const apiHost = {
     logout: 'auth/logout',
     changeUserProfile: 'user/profile',
     changePassword: 'user/password',
-};
-
-const processingRequest = (response: Response) => {
-    if (response.status === 200) {
-        return response;
-    } else {
-        return response.json().then((result: {reason: string}) => {
-            throw Error(result?.reason);
-        });
-    }
 };
 
 export function apiSignUp(formData: Data): Promise<Response> {
@@ -96,7 +88,8 @@ export function apiChangeProfile(formData: Data): Promise<Response> {
         body: JSON.stringify({
             first_name: formData.name,
             second_name: formData.name,
-            display_name: formData.name.concat(' ').concat(formData.name),
+            //display_name: formData.name.concat(' ').concat(formData.name),
+            display_name: formData.name,
             login: formData.login,
             email: formData.email,
             phone: '1111111',

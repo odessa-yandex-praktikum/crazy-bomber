@@ -53,7 +53,6 @@ export const consts = {
         navLinkLeaderboard: 'leaderboard',
         navLinkForum: 'forum',
         navLinkPlayAgain: 'play again',
-        navLinkLogin: 'login',
         navLinkLogout: 'logout',
     },
     errorBoundary: {

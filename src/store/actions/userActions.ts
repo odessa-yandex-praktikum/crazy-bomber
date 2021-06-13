@@ -6,7 +6,7 @@ import {
     Data,
     apiChangeProfile,
     apiChangePassword,
-} from '../../services/api';
+} from '../../services/api/user-api';
 import {UserActionTypes, User, UserData} from '../types/user';
 
 export const userActions = {
@@ -23,8 +23,6 @@ function register(formData: Data) {
 
         apiSignUp(formData)
             .catch((error: Error) => {
-                dispatch(failure(error.message));
-                console.log(error);
                 throw error;
             })
             .then((r: Response) => r.json())
@@ -44,7 +42,6 @@ function register(formData: Data) {
             .catch((error: Error) => {
                 dispatch(failure(error.message));
                 console.log(error);
-                throw error;
             });
     };
 
@@ -79,8 +76,6 @@ function login(formData: Data) {
 
         apiSignIn(formData)
             .catch((error: Error) => {
-                dispatch(failure(error.message));
-                console.log(error);
                 throw error;
             })
             .then((r: Response) => r.json())
@@ -98,9 +93,14 @@ function login(formData: Data) {
                 localStorage.setItem('user', JSON.stringify(user));
             })
             .catch((error: Error) => {
-                dispatch(failure(error.message));
+                dispatch(
+                    failure(
+                        error.message === 'Cookie is not valid'
+                            ? 'Login or password is incorrect'
+                            : error.message
+                    )
+                );
                 console.log(error);
-                throw error;
             });
     };
 
@@ -149,7 +149,6 @@ function changeProfile(formData: Data) {
             .catch((error: Error) => {
                 dispatch(failure(error.message));
                 console.log(error);
-                throw error;
             });
     };
 
@@ -178,7 +177,6 @@ function changePassword(formData: Data) {
             .catch((error: Error) => {
                 dispatch(failure(error.message));
                 console.log(error);
-                throw error;
             });
     };
 

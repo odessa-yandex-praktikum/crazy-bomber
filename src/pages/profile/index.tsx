@@ -11,7 +11,7 @@ import {Navigation} from '../../components/navigation';
 import {consts} from '../../consts';
 import {useInput} from '../../hoc/use-input';
 import {EValidationType} from '../../hoc/use-validation';
-import {Data} from '../../services/api';
+import {Data} from '../../services/api/user-api';
 import {userActions} from '../../store/actions/userActions';
 import {useTypedSelector} from '../../store/hooks/useTypedSelector';
 import {convertScoreToString} from '../../utils/Utils';
