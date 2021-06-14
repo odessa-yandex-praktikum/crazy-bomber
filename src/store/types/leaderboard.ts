@@ -1,11 +1,13 @@
 type GameResultData = {
     id: number;
+    avatar: string;
     login: string;
     bomberscore: number;
 };
 
 type GameResult = {
     data: {
+        avatar: string;
         login: string;
         bomberscore: number;
     };

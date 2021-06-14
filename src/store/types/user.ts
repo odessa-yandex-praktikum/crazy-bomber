@@ -17,7 +17,6 @@ export interface User {
     name: string;
     login: string;
     email: string;
-    score: number;
 }
 
 export interface UserState {
@@ -34,6 +33,8 @@ export enum UserActionTypes {
     USER_CHANGE_PROFILE_FAILURE = 'USER_CHANGE_PROFILE_FAILURE',
     USER_CHANGE_PASSWORD_SUCCESS = 'USER_CHANGE_PASSWORD_SUCCESS',
     USER_CHANGE_PASSWORD_FAILURE = 'USER_CHANGE_PASSWORD_FAILURE',
+    USER_CHANGE_AVATAR_SUCCESS = 'USER_CHANGE_AVATAR_SUCCESS',
+    USER_CHANGE_AVATAR_FAILURE = 'USER_CHANGE_AVATAR_FAILURE',
     LOGOUT = 'LOGOUT',
 }
 

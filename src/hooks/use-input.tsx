@@ -14,11 +14,14 @@ export const useInput = (initialValue: string, validations: Validation[]) => {
         setDirty(true);
     }, []);
 
+    const clear = () => setValue('');
+
     return {
         value,
         onChange,
         onBlur,
         isDirty,
         ...valid,
+        clear,
     };
 };

@@ -11,7 +11,6 @@ import {useTypedSelector} from '../../store/hooks/useTypedSelector';
 import {convertScoreToString} from '../../utils/Utils';
 
 export default function LeaderboardPage() {
-    const avatar = 'https://freesvg.org/img/1514826571.png';
     const pageTitle = consts.leaderBoardPage.pageTitle;
     const loginHeader = consts.leaderBoardPage.loginHeader;
     const scoreHeader = consts.leaderBoardPage.scoreHeader;
@@ -51,12 +50,12 @@ export default function LeaderboardPage() {
                             <span className="leaderboard-page__table-col">
                                 <strong>{scoreHeader}</strong>
                             </span>
-                            {gameResultsData.map((player, index) => (
+                            {gameResultsData!.map((player, index) => (
                                 <div className="leaderboard-page__table-row" key={player.id}>
                                     <span className="leaderboard-page__table-col">{index + 1}</span>
                                     <span className="leaderboard-page__table-col">
                                         <img
-                                            src={avatar}
+                                            src={player.avatar}
                                             className="leaderboard-page__table-image"
                                             alt=""
                                         />

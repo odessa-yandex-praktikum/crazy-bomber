@@ -1,6 +1,7 @@
 import {processingRequest} from './common';
 
 export interface Data {
+    avatar?: string;
     name?: string;
     login?: string;
     email?: string;
@@ -20,6 +21,7 @@ const apiHost = {
     getUserInfo: 'auth/user',
     logout: 'auth/logout',
     changeUserProfile: 'user/profile',
+    changeUserAvatar: 'user/profile/avatar',
     changePassword: 'user/password',
 };
 
@@ -89,6 +91,17 @@ export function apiChangeProfile(formData: Data): Promise<Response> {
             email: formData.email,
             phone: '1111111',
         }),
+    }).then((response) => processingRequest(response));
+}
+
+export function apiChangeProfileAvatar(formData: FormData): Promise<Response> {
+    return fetch(url + apiHost.changeUserAvatar, {
+        method: 'PUT',
+        credentials: 'include',
+        headers: {
+            'Access-Control-Allow-Origin': '*',
+        },
+        body: formData,
     }).then((response) => processingRequest(response));
 }
 

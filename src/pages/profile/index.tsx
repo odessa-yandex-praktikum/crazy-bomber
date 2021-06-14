@@ -1,7 +1,8 @@
 import * as React from 'react';
 import './profile.css';
-import {useCallback, useEffect, useState} from 'react';
+import {ChangeEvent, useCallback, useEffect, useState} from 'react';
 import {useDispatch} from 'react-redux';
+import pencil from '../../assets/icons/pencil.png';
 import {BackLink} from '../../components/backLink';
 import {Button, EButtonColor, EButtonType} from '../../components/button';
 import {Form} from '../../components/form';
@@ -14,7 +15,6 @@ import {EValidationType} from '../../hooks/use-validation';
 import {Data} from '../../services/api/user-api';
 import {userActions} from '../../store/actions/userActions';
 import {useTypedSelector} from '../../store/hooks/useTypedSelector';
-import {convertScoreToString} from '../../utils/Utils';
 
 export default function Profile() {
     const pageTitle = consts.profilePage.pageTitle;
@@ -34,16 +34,16 @@ export default function Profile() {
         }
     }, [errorMessage]);
 
-    const email = useInput(currentUser.email, [
+    const email = useInput(currentUser!.email, [
         {type: EValidationType.REQUIRED, value: true},
         {type: EValidationType.IS_EMAIL, value: true},
     ]);
-    const name = useInput(currentUser.name, [
+    const name = useInput(currentUser!.name, [
         {type: EValidationType.REQUIRED, value: true},
         {type: EValidationType.MIN_LENGTH, value: 4},
         {type: EValidationType.MAX_LENGTH, value: 15},
     ]);
-    const login = useInput(currentUser.login, [
+    const login = useInput(currentUser!.login, [
         {type: EValidationType.REQUIRED, value: true},
         {type: EValidationType.MIN_LENGTH, value: 4},
         {type: EValidationType.MAX_LENGTH, value: 15},
@@ -63,6 +63,17 @@ export default function Profile() {
         newPassword: newPassword.value,
         email: email.value,
     };
+
+    const displayMessage = useCallback(
+        (message: string) => {
+            if (!errorMessage) {
+                setChangeError(message);
+                setTimeout(() => setChangeError(''), 2000);
+            }
+        },
+        [setChangeError]
+    );
+
     const onSaveChangesClick = useCallback(() => {
         setChangeError('');
         if (
@@ -79,11 +90,33 @@ export default function Profile() {
             newPassword.isDirty = true;
         } else {
             dispatch(userActions.changeProfile(formData));
+            displayMessage('Profile is changed');
         }
         if (newPassword.value !== '') {
             dispatch(userActions.changePassword(formData));
+            oldPassword.clear();
+            newPassword.clear();
+            newPasswordRepeat.clear();
+            displayMessage('Password is changed');
         }
-    }, [formData]);
+    }, [formData, dispatch]);
+
+    const onAvatarInputChange = useCallback(
+        (event: ChangeEvent) => {
+            console.log(event);
+            const {target} = event;
+            const fileList = (target as HTMLInputElement).files;
+
+            if (target && fileList && fileList.length > 0) {
+                const formData = new FormData();
+                formData.append('avatar', fileList[0]);
+                console.log(formData.get('avatar'));
+                dispatch(userActions.changeAvatar(formData));
+                displayMessage('Avatar is changed');
+            }
+        },
+        [dispatch]
+    );
 
     const arrayInputs = [
         <Input
@@ -174,12 +207,27 @@ export default function Profile() {
                     <div className="profile-page__container">
                         <div className="profile-page__user-info">
                             <div className="profile-page__common-info">
-                                <img src={currentUser.avatar} alt="" />
-                                <span className="profile-page__user-name">{currentUser.login}</span>
-                            </div>
-                            <div>
-                                <span className="profile-page__score">
-                                    Score: {convertScoreToString(currentUser.score)}
+                                <div className="profile-page__avatar-wrapper">
+                                    <label className="profile-page__avatar-input-label">
+                                        <input
+                                            type="file"
+                                            className="profile-page__avatar-input"
+                                            onChange={onAvatarInputChange}
+                                        />
+                                    </label>
+                                    <img
+                                        src={pencil as string}
+                                        alt="edit"
+                                        className="profile-page__avatar-edit-icon"
+                                    />
+                                    <img
+                                        src={currentUser!.avatar}
+                                        alt="Your avatar"
+                                        className="profile-page__avatar"
+                                    />
+                                </div>
+                                <span className="profile-page__user-name">
+                                    {currentUser!.login}
                                 </span>
                             </div>
                         </div>

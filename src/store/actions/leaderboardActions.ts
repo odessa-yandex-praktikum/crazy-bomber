@@ -41,12 +41,12 @@ export const leaderboardLoadingFailure = (error: string): LeaderboardFailure => 
     };
 };
 
-function saveScore(login: string, score: number) {
+function saveScore(avatar: string, login: string, score: number) {
     return async (dispatch: Dispatch) => {
         dispatch(leaderboardLoading());
         const {saveLeader} = leaderboardApi();
 
-        await saveLeader(login, score).catch((error: Error) => {
+        await saveLeader(avatar, login, score).catch((error: Error) => {
             dispatch(leaderboardLoadingFailure(error.message));
             console.log(error);
         });

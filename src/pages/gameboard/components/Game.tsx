@@ -15,7 +15,7 @@ import {Bullet} from '../entities/Bullet';
 import {EDirection} from '../enums';
 
 export default function Game() {
-    const [score, setScore] = useState<number>(0);
+    const [score, setScore] = useState<number>(35);
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const contextRef = useRef<CanvasRenderingContext2D | null>(null);
     const bomberRef = useRef<Bomber>();
@@ -23,7 +23,7 @@ export default function Game() {
     const buildingsRef = useRef<Building[]>([]);
     const history = useHistory();
     const dispatch = useDispatch();
-    const {login} = useTypedSelector((state) => state.user.currentUser);
+    const {avatar, login} = useTypedSelector((state) => state.user.currentUser!);
 
     /** Монтирование */
     useEffect(() => {
@@ -128,7 +128,7 @@ export default function Game() {
                             ?.getElementsByClassName('game-container__gameboard-score')[0]
                             .innerHTML.split(' ')[1]
                     );
-                    dispatch(leaderboardActions.saveScore(login, currentScore));
+                    dispatch(leaderboardActions.saveScore(avatar, login, currentScore));
                     history.push('/gameover', {currentScore});
                 }
 
@@ -180,7 +180,7 @@ export default function Game() {
                         ?.getElementsByClassName('game-container__gameboard-score')[0]
                         .innerHTML.split(' ')[1]
                 );
-                dispatch(leaderboardActions.saveScore(login, currentScore));
+                dispatch(leaderboardActions.saveScore(avatar, login, currentScore));
                 history.push('/gameover', {currentScore});
             }
         }
