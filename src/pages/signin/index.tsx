@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {useCallback} from 'react';
+import {useCallback, useEffect, useState} from 'react';
 import './signin.css';
 import {useDispatch} from 'react-redux';
 import {useHistory} from 'react-router';
@@ -14,10 +14,14 @@ import {useInput} from '../../hooks/use-input';
 import {EValidationType} from '../../hooks/use-validation';
 import {Data} from '../../services/api';
 import {userActions} from '../../store/actions/userActions';
+import {useTypedSelector} from '../../store/hooks/useTypedSelector';
 
 export default function Signin() {
     const history = useHistory();
     const dispatch = useDispatch();
+    const errorMessage = useTypedSelector((state) => state.user.error);
+    const [signupError, setSignupError] = useState(errorMessage);
+
     const email = useInput('', [
         {type: EValidationType.REQUIRED, value: true},
         {type: EValidationType.IS_EMAIL, value: true},
@@ -47,10 +51,17 @@ export default function Signin() {
         email: email.value,
         newPassword: password.value,
     };
+
+    useEffect(() => {
+        if (errorMessage) {
+            setSignupError(errorMessage);
+        }
+    }, [errorMessage]);
+
     const onSignUpClick = useCallback(() => {
-        dispatch(userActions.register(formData));
-        history.push('/start');
+        dispatch(userActions.register(formData, history));
     }, [formData]);
+
     const arrayInputs = [
         <Input
             key="email"
@@ -135,6 +146,7 @@ export default function Signin() {
                 className="backgroundFront"
                 alt="BackgroundFront"
             />
+            <div className="form-error">{signupError}</div>
             <div className="container__games-title">
                 <span className="games-title">{consts.gamesTitle}</span>
             </div>

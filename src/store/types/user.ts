@@ -1,46 +1,38 @@
 export type Nullable<T> = T | null;
 
+export interface UserData {
+    id: number;
+    avatar: string | null;
+    first_name: string;
+    second_name: string;
+    display_name: string;
+    login: string;
+    email: string;
+    phone: string;
+}
+
 export interface User {
     id: number;
-    img: string;
-    email: string;
-    login: string;
+    avatar: string | null;
     name: string;
-    password: string;
-    score: number;
+    login: string;
+    email: string;
 }
 
-export interface RegistrationState {
-    registering: boolean;
-    error: Nullable<string>;
-}
-
-export enum RegistrationActionTypes {
-    REGIST_REQUEST = 'REGISTER_REQUEST',
-    REGISTER_SUCCESS = 'REGISTER_SUCCESS',
-    REGISTER_FAILURE = 'REGISTER_FAILURE',
-}
-
-export type RegistrationAction = {
-    type: string;
-    registering: boolean;
-    error: Nullable<string>;
-};
-
-export interface AuthenticationState {
-    loggingIn: boolean;
+export interface UserState {
+    loggedIn: boolean;
     currentUser: Nullable<User>;
     error: Nullable<string>;
 }
 
-export enum AuthenticationActionTypes {
-    LOGIN_REQUEST = 'LOGIN_REQUEST',
-    LOGIN_SUCCESS = 'LOGIN_SUCCESS',
-    LOGIN_FAILURE = 'LOGIN_FAILURE',
+export enum UserActionTypes {
+    USER_ACTION_REQUEST = 'USER_ACTION_REQUEST',
+    USER_ACTION_SUCCESS = 'USER_ACTION_SUCCESS',
+    USER_ACTION_FAILURE = 'USER_ACTION_FAILURE',
     LOGOUT = 'LOGOUT',
 }
 
-export type AuthenticationAction = {
+export type UserAction = {
     type: string;
     loggingIn: boolean;
     currentUser: Nullable<User>;

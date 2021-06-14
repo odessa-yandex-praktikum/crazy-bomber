@@ -28,3 +28,10 @@
 .navi__link:focus {
     color: var(--color-shadow);
 }
+
+.navi__button {
+    font-family: inherit;
+    border: none;
+    background: none;
+    cursor: pointer;
+}

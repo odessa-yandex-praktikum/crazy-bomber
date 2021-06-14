@@ -1,6 +1,6 @@
 import * as React from 'react';
 import './login.css';
-import {useCallback, useState} from 'react';
+import {useCallback, useEffect, useState} from 'react';
 import {useDispatch} from 'react-redux';
 import {useHistory} from 'react-router';
 import BackgroundFront from '../../assets/images/bomber.png';
@@ -14,10 +14,14 @@ import {useInput} from '../../hooks/use-input';
 import {EValidationType} from '../../hooks/use-validation';
 import {Data} from '../../services/api';
 import {userActions} from '../../store/actions/userActions';
+import {useTypedSelector} from '../../store/hooks/useTypedSelector';
 
 export default function Login() {
     const history = useHistory();
     const dispatch = useDispatch();
+    const errorMessage = useTypedSelector((state) => state.user.error);
+    const [loginError, setLoginError] = useState(errorMessage);
+
     const login = useInput('', [
         {type: EValidationType.REQUIRED, value: true},
         {type: EValidationType.MIN_LENGTH, value: 4},
@@ -28,15 +32,20 @@ export default function Login() {
         {type: EValidationType.MIN_LENGTH, value: 4},
         {type: EValidationType.MAX_LENGTH, value: 15},
     ]);
-    const [loginError, setLoginError] = useState('');
+
     const formData: Data = {
         login: login.value,
         password: password.value,
     };
+
+    useEffect(() => {
+        if (errorMessage) {
+            setLoginError(errorMessage);
+        }
+    }, [errorMessage]);
+
     const onSignInClick = useCallback(() => {
-        setLoginError('');
-        dispatch(userActions.login(formData));
-        history.push('/start');
+        dispatch(userActions.login(formData, history));
     }, [formData]);
 
     const arrayInputs = [
@@ -86,7 +95,7 @@ export default function Login() {
                 className="backgroundFront"
                 alt="BackgroundFront"
             />
-            <div className="form-error">{loginError}</div>;
+            <div className="form-error">{loginError}</div>
             <div className="container__games-title">
                 <span className="games-title">{consts.gamesTitle}</span>
             </div>

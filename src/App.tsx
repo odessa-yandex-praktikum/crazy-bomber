@@ -26,7 +26,7 @@ export function App() {
                     <PrivateRoute path="/leaderboard" exact component={Leaderboard} />
                     <PrivateRoute path="/game" exact component={Game} />
                     <PrivateRoute path="/gameover" exact component={Gameover} />
-                    <Route path="/start" exact component={Main} />
+                    <PrivateRoute path="/start" exact component={Main} />
                     <PrivateRoute path="/profile" exact component={Profile} />
                     <PrivateRoute path="/forum" exact component={Forum} />
                     <PrivateRoute path="/forum/:id" exact component={ForumTopic} />
