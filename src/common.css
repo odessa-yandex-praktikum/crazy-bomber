@@ -85,3 +85,31 @@
     text-shadow: var(--color-shadow) 2px 2px 0, var(--color-shadow) -2px -2px 0,
         var(--color-shadow) -2px 2px 0, var(--color-shadow) 2px -2px 0;
 }
+
+.container__games-title {
+    z-index: 999;
+    padding-right: 66px;
+    padding-top: 322px;
+}
+
+.games-title {
+    color: var(--color-games-title);
+    z-index: 999;
+    font-size: 96px;
+    text-shadow: var(--color-shadow) 2px 2px 0, var(--color-shadow) -2px -2px 0,
+        var(--color-shadow) -2px 2px 0, var(--color-shadow) 2px -2px 0;
+}
+
+.container__games-title {
+    z-index: 999;
+    padding-right: 66px;
+    padding-top: 322px;
+}
+
+.games-title {
+    color: var(--color-games-title);
+    z-index: 999;
+    font-size: 96px;
+    text-shadow: var(--color-shadow) 2px 2px 0, var(--color-shadow) -2px -2px 0,
+        var(--color-shadow) -2px 2px 0, var(--color-shadow) 2px -2px 0;
+}
