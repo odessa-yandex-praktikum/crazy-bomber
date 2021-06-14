@@ -49,7 +49,7 @@ export function apiSignUp(formData: Data): Promise<Response> {
             phone: '1111111',
             password: formData.newPassword,
         }),
-    }).then(() => getUserInfo());
+    }).then(getUserInfo);
 }
 
 export function apiSignIn(formData: Data): Promise<Response> {
@@ -62,7 +62,7 @@ export function apiSignIn(formData: Data): Promise<Response> {
             login: formData.login,
             password: formData.password,
         }),
-    }).then(() => getUserInfo());
+    }).then(getUserInfo);
 }
 
 export function apiLogout(): Promise<Response> {

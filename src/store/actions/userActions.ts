@@ -1,3 +1,4 @@
+import {History, LocationState} from 'history';
 import {Dispatch} from 'redux';
 import {apiSignIn, apiSignUp, apiLogout, Data} from '../../services/api';
 import {UserActionTypes, User, UserData} from '../types/user';
@@ -8,7 +9,7 @@ export const userActions = {
     logout,
 };
 
-function register(formData: Data) {
+function register(formData: Data, history: History<LocationState>) {
     return (dispatch: Dispatch) => {
         dispatch(request());
 
@@ -26,11 +27,10 @@ function register(formData: Data) {
                     name: data.first_name,
                     login: data.login,
                     email: data.email,
-                    score: Math.floor(Math.random() * (999 - 100)),
                 };
-                console.log('user', user);
                 dispatch(success(user));
                 localStorage.setItem('user', JSON.stringify(user));
+                history.push('/start');
             })
             .catch((error: Error) => {
                 dispatch(failure(error.message));
@@ -67,7 +67,7 @@ function register(formData: Data) {
     }
 }
 
-function login(formData: Data) {
+function login(formData: Data, history: History<LocationState>) {
     return (dispatch: Dispatch) => {
         dispatch(request());
 
@@ -85,11 +85,10 @@ function login(formData: Data) {
                     name: data.first_name,
                     login: data.login,
                     email: data.email,
-                    score: Math.floor(Math.random() * (999 - 100)),
                 };
-                console.log('user', user);
                 dispatch(success(user));
                 localStorage.setItem('user', JSON.stringify(user));
+                history.push('/start');
             })
             .catch((error: Error) => {
                 dispatch(failure(error.message));

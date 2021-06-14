@@ -17,7 +17,6 @@ export interface User {
     name: string;
     login: string;
     email: string;
-    score: number;
 }
 
 export interface UserState {
