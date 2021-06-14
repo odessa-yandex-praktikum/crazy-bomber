@@ -1,3 +1,4 @@
+import {History, LocationState} from 'history';
 import {Dispatch} from 'redux';
 import {
     apiSignIn,
@@ -19,7 +20,7 @@ export const userActions = {
     logout,
 };
 
-function register(formData: Data) {
+function register(formData: Data, history: History<LocationState>) {
     return (dispatch: Dispatch) => {
         dispatch(request());
 
@@ -38,6 +39,7 @@ function register(formData: Data) {
                 };
                 dispatch(success(user));
                 localStorage.setItem('user', JSON.stringify(user));
+                history.push('start');
             })
             .catch((error: Error) => {
                 dispatch(failure(error.message));
@@ -70,7 +72,7 @@ function register(formData: Data) {
     }
 }
 
-function login(formData: Data) {
+function login(formData: Data, history: History<LocationState>) {
     return (dispatch: Dispatch) => {
         dispatch(request());
 
@@ -89,6 +91,7 @@ function login(formData: Data) {
                 };
                 dispatch(success(user));
                 localStorage.setItem('user', JSON.stringify(user));
+                history.push('start');
             })
             .catch((error: Error) => {
                 dispatch(

@@ -44,9 +44,9 @@ export const leaderboardLoadingFailure = (error: string): LeaderboardFailure => 
 function saveScore(avatar: string, login: string, score: number) {
     return async (dispatch: Dispatch) => {
         dispatch(leaderboardLoading());
-        const {saveLeader} = leaderboardApi();
+        const {apiSaveLeader} = leaderboardApi();
 
-        await saveLeader(avatar, login, score).catch((error: Error) => {
+        await apiSaveLeader(avatar, login, score).catch((error: Error) => {
             dispatch(leaderboardLoadingFailure(error.message));
             console.log(error);
         });
@@ -56,9 +56,9 @@ function saveScore(avatar: string, login: string, score: number) {
 function loadLeaderboard(page = 0) {
     return async (dispatch: Dispatch) => {
         dispatch(leaderboardLoading());
-        const {getAll} = leaderboardApi();
+        const {apiGetAll} = leaderboardApi();
         try {
-            const gameResults = await getAll(page);
+            const gameResults = await apiGetAll(page);
             dispatch(leaderboardLoadingSuccess(gameResults));
         } catch (error) {
             dispatch(leaderboardLoadingFailure(error));

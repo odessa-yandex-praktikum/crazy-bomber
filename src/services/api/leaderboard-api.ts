@@ -34,7 +34,7 @@ const toGetLeaderboardDataRequest = (page = 0): GetLeaderboardDataRequest => ({
 });
 
 const leaderboardApi = () => {
-    const saveLeader = (avatar: string, login: string, score: number) => {
+    const apiSaveLeader = (avatar: string, login: string, score: number) => {
         const data = toGameResultForAPI(avatar, login, score);
         console.log(data);
         return fetch(url + apiHost.addNewLeader, {
@@ -48,7 +48,7 @@ const leaderboardApi = () => {
         }).then((response) => processingRequest(response));
     };
 
-    const getAll = (page = 0) => {
+    const apiGetAll = (page = 0) => {
         const data = toGetLeaderboardDataRequest(page);
         return fetch(url + apiHost.getAll, {
             method: 'POST',
@@ -64,8 +64,8 @@ const leaderboardApi = () => {
     };
 
     return {
-        saveLeader,
-        getAll,
+        apiSaveLeader,
+        apiGetAll,
     };
 };
 

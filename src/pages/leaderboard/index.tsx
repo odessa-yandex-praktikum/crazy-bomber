@@ -25,7 +25,6 @@ export default function LeaderboardPage() {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(leaderboardActions.loadLeaderboard(0));
-        console.log(gameResultsData);
     }, [dispatch]);
 
     return (

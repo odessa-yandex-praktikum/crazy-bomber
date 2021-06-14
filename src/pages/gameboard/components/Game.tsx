@@ -15,7 +15,7 @@ import {Bullet} from '../entities/Bullet';
 import {EDirection} from '../enums';
 
 export default function Game() {
-    const [score, setScore] = useState<number>(35);
+    const [score, setScore] = useState<number>(0);
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const contextRef = useRef<CanvasRenderingContext2D | null>(null);
     const bomberRef = useRef<Bomber>();
