@@ -12,7 +12,7 @@ import {Input} from '../../components/input';
 import {consts} from '../../consts';
 import {useInput} from '../../hooks/use-input';
 import {EValidationType} from '../../hooks/use-validation';
-import {Data} from '../../services/api';
+import {Data} from '../../services/api/user-api';
 import {userActions} from '../../store/actions/userActions';
 import {useTypedSelector} from '../../store/hooks/useTypedSelector';
 

@@ -1,15 +1,18 @@
 import * as React from 'react';
 import {useEffect, useRef, useState} from 'react';
 import './Game.css';
+import {useDispatch} from 'react-redux';
 import {useHistory} from 'react-router';
+import {EFullScreenPosition, FullScreen} from '../../../components/full-screen';
 import {useAnimationFrame} from '../../../hooks/use-animation-frame';
+import {leaderboardActions} from '../../../store/actions/leaderboardActions';
+import {useTypedSelector} from '../../../store/hooks/useTypedSelector';
 import {convertScoreToString, intersect, randomInteger} from '../../../utils/Utils';
 import {GAME_CONFIG, SCENE_HEIGHT, SCENE_WIDTH} from '../config';
 import {Bomber} from '../entities/Bomber';
 import {Building} from '../entities/Building';
 import {Bullet} from '../entities/Bullet';
 import {EDirection} from '../enums';
-import {EFullScreenPosition, FullScreen} from '../../../components/full-screen';
 
 export default function Game() {
     const [score, setScore] = useState<number>(0);
@@ -19,6 +22,8 @@ export default function Game() {
     const bulletsRef = useRef<Bullet[]>([]);
     const buildingsRef = useRef<Building[]>([]);
     const history = useHistory();
+    const dispatch = useDispatch();
+    const {avatar, login} = useTypedSelector((state) => state.user.currentUser!);
 
     /** Монтирование */
     useEffect(() => {
@@ -116,7 +121,17 @@ export default function Game() {
 
                 /** Проверяем, врезался ли самолет в здание. */
                 if (intersect(bld, bmb)) {
-                    history.push('/gameover');
+                    //workaround - score всегда равен 0
+                    console.log(score);
+                    const currentScore = parseInt(
+                        document
+                            ?.getElementsByClassName('game-container__gameboard-score')[0]
+                            .innerHTML.split(' ')[1]
+                    );
+                    dispatch(
+                        leaderboardActions.saveScore(avatar, login.substr(0, 11), currentScore)
+                    );
+                    history.push('/gameover', {currentScore});
                 }
 
                 /** Проверяем, попал ли какой-нибудь из снарядов в здание ... */
@@ -160,7 +175,15 @@ export default function Game() {
             /** Проверяем, что уничтожены все здания. */
             if (buildingsRef.current.length === 0) {
                 // TODO: реализовать победу.
-                alert('Вы выиграли!');
+                //workaround - score всегда равен 0
+                console.log(score);
+                const currentScore = parseInt(
+                    document
+                        ?.getElementsByClassName('game-container__gameboard-score')[0]
+                        .innerHTML.split(' ')[1]
+                );
+                dispatch(leaderboardActions.saveScore(avatar, login.substr(0, 11), currentScore));
+                history.push('/gameover', {currentScore});
             }
         }
     });

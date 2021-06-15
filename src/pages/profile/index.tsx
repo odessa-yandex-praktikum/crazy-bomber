@@ -1,6 +1,8 @@
 import * as React from 'react';
 import './profile.css';
-import {useCallback, useState} from 'react';
+import {ChangeEvent, useCallback, useEffect, useState} from 'react';
+import {useDispatch} from 'react-redux';
+import pencil from '../../assets/icons/pencil.png';
 import {BackLink} from '../../components/backLink';
 import {Button, EButtonColor, EButtonType} from '../../components/button';
 import {Form} from '../../components/form';
@@ -10,7 +12,9 @@ import {Navigation} from '../../components/navigation';
 import {consts} from '../../consts';
 import {useInput} from '../../hooks/use-input';
 import {EValidationType} from '../../hooks/use-validation';
-import {changePassword, changeUserProfile, Data} from '../../services/api';
+import {Data} from '../../services/api/user-api';
+import {userActions} from '../../store/actions/userActions';
+import {useTypedSelector} from '../../store/hooks/useTypedSelector';
 
 export default function Profile() {
     const pageTitle = consts.profilePage.pageTitle;
@@ -18,15 +22,18 @@ export default function Profile() {
     const navLinkForum = consts.navigation.navLinkForum;
     const navLinkLeaderboard = consts.navigation.navLinkLeaderboard;
     const navLinkLogout = consts.navigation.navLinkLogout;
-    const currentUser = {
-        id: 1,
-        img: 'https://freesvg.org/img/1514826571.png',
-        email: 'vasia@mail.ru',
-        login: 'Vasia001',
-        name: 'Vasia',
-        password: 'testtest',
-        score: '0000123',
-    };
+
+    const dispatch = useDispatch();
+    const currentUser = useTypedSelector((state) => state.user.currentUser!);
+    const errorMessage = useTypedSelector((state) => state.user.error);
+    const [changeError, setChangeError] = useState(errorMessage);
+
+    useEffect(() => {
+        if (errorMessage) {
+            setChangeError(errorMessage);
+        }
+    }, [errorMessage]);
+
     const email = useInput(currentUser.email, [
         {type: EValidationType.REQUIRED, value: true},
         {type: EValidationType.IS_EMAIL, value: true},
@@ -56,7 +63,17 @@ export default function Profile() {
         newPassword: newPassword.value,
         email: email.value,
     };
-    const [changeError, setChangeError] = useState('');
+
+    const displayMessage = useCallback(
+        (message: string) => {
+            if (!errorMessage) {
+                setChangeError(message);
+                setTimeout(() => setChangeError(''), 2000);
+            }
+        },
+        [setChangeError]
+    );
+
     const onSaveChangesClick = useCallback(() => {
         setChangeError('');
         if (
@@ -72,16 +89,32 @@ export default function Profile() {
             newPasswordRepeat.isDirty = true;
             newPassword.isDirty = true;
         } else {
-            changeUserProfile(formData).catch((error: Error) => {
-                setChangeError(error.message);
-            });
-            if (newPassword.value !== '') {
-                changePassword(formData).catch((error: Error) => {
-                    setChangeError(error.message);
-                });
-            }
+            dispatch(userActions.changeProfile(formData));
+            displayMessage('Profile is changed');
         }
-    }, [formData]);
+        if (newPassword.value !== '') {
+            dispatch(userActions.changePassword(formData));
+            oldPassword.clear();
+            newPassword.clear();
+            newPasswordRepeat.clear();
+            displayMessage('Password is changed');
+        }
+    }, [formData, dispatch]);
+
+    const onAvatarInputChange = useCallback(
+        (event: ChangeEvent) => {
+            const {target} = event;
+            const fileList = (target as HTMLInputElement).files;
+
+            if (target && fileList && fileList.length > 0) {
+                const formData = new FormData();
+                formData.append('avatar', fileList[0]);
+                dispatch(userActions.changeAvatar(formData));
+                displayMessage('Avatar is changed');
+            }
+        },
+        [dispatch]
+    );
 
     const arrayInputs = [
         <Input
@@ -172,13 +205,26 @@ export default function Profile() {
                     <div className="profile-page__container">
                         <div className="profile-page__user-info">
                             <div className="profile-page__common-info">
-                                <img src={currentUser.img} alt="" />
-                                <span className="profile-page__user-name">{currentUser.name}</span>
-                            </div>
-                            <div>
-                                <span className="profile-page__score">
-                                    Score: {currentUser.score}
-                                </span>
+                                <div className="profile-page__avatar-wrapper">
+                                    <label className="profile-page__avatar-input-label">
+                                        <input
+                                            type="file"
+                                            className="profile-page__avatar-input"
+                                            onChange={onAvatarInputChange}
+                                        />
+                                    </label>
+                                    <img
+                                        src={pencil as string}
+                                        alt="edit"
+                                        className="profile-page__avatar-edit-icon"
+                                    />
+                                    <img
+                                        src={currentUser.avatar}
+                                        alt="Your avatar"
+                                        className="profile-page__avatar"
+                                    />
+                                </div>
+                                <span className="profile-page__user-name">{currentUser.login}</span>
                             </div>
                         </div>
                         <Form

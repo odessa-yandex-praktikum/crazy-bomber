@@ -1,10 +1,15 @@
 import * as React from 'react';
 import './gameover.css';
+import {useLocation} from 'react-router';
 import {Link} from 'react-router-dom';
+import {EFullScreenPosition, FullScreen} from '../../components/full-screen';
 import {Navigation} from '../../components/navigation';
 import {consts} from '../../consts';
 import {convertScoreToString} from '../../utils/Utils';
-import {EFullScreenPosition, FullScreen} from '../../components/full-screen';
+
+type LocationState = {
+    currentScore: number;
+};
 
 export default function GameoverPage() {
     const title = consts.gameover.title;
@@ -13,8 +18,9 @@ export default function GameoverPage() {
     const navLinkForum = consts.navigation.navLinkForum;
     const navLinkProfile = consts.navigation.navLinkProfile;
     const navLinkLeaderboard = consts.navigation.navLinkLeaderboard;
-    const currentScore = 125; //тестовое значение, после подключения Redux можно хранить финальное значение для текущей игры в store
 
+    const {state} = useLocation<LocationState>();
+    const currentScore = state.currentScore;
     const navigationItems = [navLinkForum, navLinkProfile, navLinkLeaderboard];
 
     return (

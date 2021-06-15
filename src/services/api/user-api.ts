@@ -1,4 +1,7 @@
+import {processingRequest} from './common';
+
 export interface Data {
+    avatar?: string;
     name?: string;
     login?: string;
     email?: string;
@@ -22,21 +25,10 @@ const apiHost = {
     changePassword: 'user/password',
 };
 
-const processingRequest = (response: Response) => {
-    if (response.status === 200) {
-        return response;
-    } else {
-        return response.json().then((result: {reason: string}) => {
-            throw Error(result?.reason);
-        });
-    }
-};
-
 export function apiSignUp(formData: Data): Promise<Response> {
     return fetch(url + apiHost.signUp, {
         method: 'POST',
         credentials: 'include',
-        mode: 'cors',
         headers: {
             'Content-Type': 'application/json',
             accept: 'application/json',
@@ -56,7 +48,6 @@ export function apiSignIn(formData: Data): Promise<Response> {
     return fetch(url + apiHost.signIn, {
         method: 'POST',
         credentials: 'include',
-        mode: 'cors',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
             login: formData.login,
@@ -69,7 +60,6 @@ export function apiLogout(): Promise<Response> {
     return fetch(url + apiHost.logout, {
         method: 'POST',
         credentials: 'include',
-        mode: 'cors',
         headers: {'Content-Type': 'application/json'},
     }).then((response) => processingRequest(response));
 }
@@ -78,18 +68,16 @@ function getUserInfo(): Promise<Response> {
     return fetch(url + apiHost.getUserInfo, {
         method: 'GET',
         credentials: 'include',
-        mode: 'cors',
         headers: {
             accept: 'application/json',
         },
     }).then((response) => processingRequest(response));
 }
 
-export function changeUserProfile(formData: Data): Promise<Response> {
+export function apiChangeProfile(formData: Data): Promise<Response> {
     return fetch(url + apiHost.changeUserProfile, {
         method: 'PUT',
         credentials: 'include',
-        mode: 'cors',
         headers: {
             'Content-Type': 'application/json',
             accept: 'application/json',
@@ -97,6 +85,7 @@ export function changeUserProfile(formData: Data): Promise<Response> {
         body: JSON.stringify({
             first_name: formData.name,
             second_name: formData.name,
+            //display_name: formData.name.concat(' ').concat(formData.name),
             display_name: formData.name,
             login: formData.login,
             email: formData.email,
@@ -105,7 +94,18 @@ export function changeUserProfile(formData: Data): Promise<Response> {
     }).then((response) => processingRequest(response));
 }
 
-export function changePassword(formData: Data): Promise<Response> {
+export function apiChangeProfileAvatar(formData: FormData): Promise<Response> {
+    return fetch(url + apiHost.changeUserAvatar, {
+        method: 'PUT',
+        credentials: 'include',
+        headers: {
+            'Access-Control-Allow-Origin': '*',
+        },
+        body: formData,
+    }).then((response) => processingRequest(response));
+}
+
+export function apiChangePassword(formData: Data): Promise<Response> {
     return fetch(url + apiHost.changePassword, {
         method: 'PUT',
         credentials: 'include',
