@@ -12,7 +12,8 @@
 
 .gameover-page__lose-background {
     background-image: url('../../assets/images/gameover_background.png');
-    background-size: cover;
+    background-size: 90%;
+    background-repeat: no-repeat;
 }
 
 .gameover-page__win-background {
