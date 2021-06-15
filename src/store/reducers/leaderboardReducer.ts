@@ -16,9 +16,7 @@ export const leaderboardReducer = (
 ): LeaderboardState => {
     switch (action.type) {
         case LeaderboardActionTypes.LEADERBOARD_LOADING:
-            return {
-                ...state,
-            };
+            return state;
         case LeaderboardActionTypes.LEADERBOARD_SUCCESS:
             return {
                 ...state,

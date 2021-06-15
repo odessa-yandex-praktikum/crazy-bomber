@@ -24,7 +24,7 @@ export default function Profile() {
     const navLinkLogout = consts.navigation.navLinkLogout;
 
     const dispatch = useDispatch();
-    const currentUser = useTypedSelector((state) => state.user.currentUser);
+    const currentUser = useTypedSelector((state) => state.user.currentUser!);
     const errorMessage = useTypedSelector((state) => state.user.error);
     const [changeError, setChangeError] = useState(errorMessage);
 
@@ -34,16 +34,16 @@ export default function Profile() {
         }
     }, [errorMessage]);
 
-    const email = useInput(currentUser!.email, [
+    const email = useInput(currentUser.email, [
         {type: EValidationType.REQUIRED, value: true},
         {type: EValidationType.IS_EMAIL, value: true},
     ]);
-    const name = useInput(currentUser!.name, [
+    const name = useInput(currentUser.name, [
         {type: EValidationType.REQUIRED, value: true},
         {type: EValidationType.MIN_LENGTH, value: 4},
         {type: EValidationType.MAX_LENGTH, value: 15},
     ]);
-    const login = useInput(currentUser!.login, [
+    const login = useInput(currentUser.login, [
         {type: EValidationType.REQUIRED, value: true},
         {type: EValidationType.MIN_LENGTH, value: 4},
         {type: EValidationType.MAX_LENGTH, value: 15},
@@ -103,14 +103,12 @@ export default function Profile() {
 
     const onAvatarInputChange = useCallback(
         (event: ChangeEvent) => {
-            console.log(event);
             const {target} = event;
             const fileList = (target as HTMLInputElement).files;
 
             if (target && fileList && fileList.length > 0) {
                 const formData = new FormData();
                 formData.append('avatar', fileList[0]);
-                console.log(formData.get('avatar'));
                 dispatch(userActions.changeAvatar(formData));
                 displayMessage('Avatar is changed');
             }
@@ -221,14 +219,12 @@ export default function Profile() {
                                         className="profile-page__avatar-edit-icon"
                                     />
                                     <img
-                                        src={currentUser!.avatar}
+                                        src={currentUser.avatar}
                                         alt="Your avatar"
                                         className="profile-page__avatar"
                                     />
                                 </div>
-                                <span className="profile-page__user-name">
-                                    {currentUser!.login}
-                                </span>
+                                <span className="profile-page__user-name">{currentUser.login}</span>
                             </div>
                         </div>
                         <Form

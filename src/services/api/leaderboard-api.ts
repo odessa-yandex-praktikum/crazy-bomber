@@ -36,7 +36,6 @@ const toGetLeaderboardDataRequest = (page = 0): GetLeaderboardDataRequest => ({
 const leaderboardApi = () => {
     const apiSaveLeader = (avatar: string, login: string, score: number) => {
         const data = toGameResultForAPI(avatar, login, score);
-        console.log(data);
         return fetch(url + apiHost.addNewLeader, {
             method: 'POST',
             credentials: 'include',

@@ -26,7 +26,7 @@ export const userReducer = (state = initialState, action: UserAction): UserState
         case UserActionTypes.USER_CHANGE_PROFILE_FAILURE:
             return {...state, error: action.error};
         case UserActionTypes.USER_CHANGE_PASSWORD_SUCCESS:
-            return {...state};
+            return state;
         case UserActionTypes.USER_CHANGE_PASSWORD_FAILURE:
             return {...state, error: action.error};
         case UserActionTypes.USER_CHANGE_AVATAR_SUCCESS:

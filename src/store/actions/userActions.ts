@@ -197,7 +197,6 @@ function changeAvatar(formData: FormData) {
         apiChangeProfileAvatar(formData)
             .then((r: Response) => r.json())
             .then((data: UserData) => {
-                console.log(data);
                 const user = {
                     id: data.id,
                     avatar: data.avatar ? data.avatar : 'https://freesvg.org/img/1514826571.png',

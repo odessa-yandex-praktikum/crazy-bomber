@@ -128,7 +128,9 @@ export default function Game() {
                             ?.getElementsByClassName('game-container__gameboard-score')[0]
                             .innerHTML.split(' ')[1]
                     );
-                    dispatch(leaderboardActions.saveScore(avatar, login, currentScore));
+                    dispatch(
+                        leaderboardActions.saveScore(avatar, login.substr(0, 11), currentScore)
+                    );
                     history.push('/gameover', {currentScore});
                 }
 
@@ -180,7 +182,7 @@ export default function Game() {
                         ?.getElementsByClassName('game-container__gameboard-score')[0]
                         .innerHTML.split(' ')[1]
                 );
-                dispatch(leaderboardActions.saveScore(avatar, login, currentScore));
+                dispatch(leaderboardActions.saveScore(avatar, login.substr(0, 11), currentScore));
                 history.push('/gameover', {currentScore});
             }
         }
