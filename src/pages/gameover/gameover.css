@@ -17,6 +17,7 @@
 
 .gameover-page__win-background {
     background-image: url('../../assets/images/bomber.png');
+    background-position: 100px 60px;
     background-size: cover;
 }
 
