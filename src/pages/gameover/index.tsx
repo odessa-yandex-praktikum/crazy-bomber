@@ -9,28 +9,30 @@ import {convertScoreToString} from '../../utils/Utils';
 
 type LocationState = {
     currentScore: number;
+    isWinner: boolean;
 };
 
 export default function GameoverPage() {
-    const title = consts.gameover.title;
-    const scoreText = consts.gameover.scoreText;
-    const buttonPlayAgain = consts.gameover.buttonPlayAgain;
-    const navLinkForum = consts.navigation.navLinkForum;
-    const navLinkProfile = consts.navigation.navLinkProfile;
-    const navLinkLeaderboard = consts.navigation.navLinkLeaderboard;
+    const {titleLose, titleWin, scoreText, buttonPlayAgain} = consts.gameover;
+    const {navLinkForum, navLinkProfile, navLinkLeaderboard} = consts.navigation;
 
     const {state} = useLocation<LocationState>();
-    const currentScore = state.currentScore;
+    const {currentScore, isWinner} = state;
     const navigationItems = [navLinkForum, navLinkProfile, navLinkLeaderboard];
 
     return (
-        <div className="gameover-page gameover-page__background">
+        <div
+            className={
+                'gameover-page ' +
+                (isWinner ? 'gameover-page__win-background' : 'gameover-page__lose-background')
+            }
+        >
             <div className="container__left-part">
                 <Navigation navigationItems={navigationItems} />
             </div>
             <div className="container__right-part">
                 <div className="gameover-page__container">
-                    <h2 className="gameover-page__title">{title}</h2>
+                    <h2 className="gameover-page__title">{isWinner ? titleWin : titleLose}</h2>
                     <Link to="/game" className="gameover-page__play-button">
                         {buttonPlayAgain}
                     </Link>
