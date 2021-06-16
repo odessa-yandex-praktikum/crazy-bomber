@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<li
+  className="forum-page__item"
+>
+  <div
+    className="forum-page__topic-message"
+  >
+    <img
+      alt="author_image"
+      className="forum-page__author-image"
+    />
+    <p
+      className="forum-page__discussion-message"
+    >
+      Hello, World
+    </p>
+  </div>
+  <div
+    className="forum-page__discussion-content_created"
+  >
+    <p
+      className="forum-page__created-date"
+    >
+      Left 
+      1 month ago
+    </p>
+  </div>
+</li>
+`;

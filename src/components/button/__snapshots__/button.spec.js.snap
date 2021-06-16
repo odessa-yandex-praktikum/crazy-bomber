@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly Error 1`] = `
+<button
+  className="button color-error button__type-error "
+  type="button"
+>
+  Error
+</button>
+`;
+
+exports[`renders correctly Ok 1`] = `
+<button
+  className="button color-primary button__type-form "
+  type="button"
+>
+  OK
+</button>
+`;
+
+exports[`renders correctly exit full screen 1`] = `
+<button
+  className="button color-primary button__exit-full-screen "
+  type="button"
+>
+  Exit full screen
+</button>
+`;
+
+exports[`renders correctly forum 1`] = `
+<button
+  className="button color-secondary forum-page__button "
+  type="button"
+>
+  forum
+</button>
+`;
+
+exports[`renders correctly full screen 1`] = `
+<button
+  className="button color-primary button__full-screen "
+  type="button"
+>
+  Full screen
+</button>
+`;
