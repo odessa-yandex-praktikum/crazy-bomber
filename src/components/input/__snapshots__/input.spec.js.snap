@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="container__input-with-error"
+>
+  <div
+    className="container__input"
+  >
+    <span>
+      
+    </span>
+    <input
+      className="input"
+    />
+  </div>
+  <span
+    className="input__error-text"
+  >
+    
+  </span>
+</div>
+`;
+
+exports[`renders correctly with InputHTMLAttributes 1`] = `
+<div
+  className="container__input-with-error"
+>
+  <div
+    className="container__input"
+  >
+    <span>
+      name
+    </span>
+    <input
+      border="2"
+      className="input"
+      value="123"
+    />
+  </div>
+  <span
+    className="input__error-text"
+  >
+    error name
+  </span>
+</div>
+`;

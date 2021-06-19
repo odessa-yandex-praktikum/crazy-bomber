@@ -1,8 +1,11 @@
+const path = require('path');
+
 module.exports = {
     env: {
         browser: true,
         es2021: true,
         node: true,
+        "jest/globals": true
     },
     extends: [
         'eslint:recommended',
@@ -19,7 +22,7 @@ module.exports = {
             jsx: true,
         },
     },
-    plugins: ['react', '@typescript-eslint', 'eslint-plugin-import-helpers'],
+    plugins: ['react', '@typescript-eslint', 'eslint-plugin-import-helpers', 'jest'],
     rules: {
         'react/prop-types': 'off',
         '@typescript-eslint/no-unused-vars': ['warn', {argsIgnorePattern: '^_'}],
