@@ -10,6 +10,7 @@ import {Navigation} from '../../components/navigation';
 import {consts} from '../../consts';
 import {discussions} from '../../testdata/ForumData';
 import {Discussion} from '../../utils/Utils';
+import {EFullScreenPosition, FullScreen} from '../../components/full-screen';
 
 type TParams = {id: string};
 
@@ -83,6 +84,7 @@ export default function ForumTopic({match}: RouteComponentProps<TParams>) {
                     </div>
                 </main>
             </div>
+            <FullScreen position={EFullScreenPosition.RIGHT_TOP} />
         </div>
     );
 }

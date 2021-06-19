@@ -1,45 +1,51 @@
 import * as React from 'react';
 import './login.css';
-import {useCallback, useState} from 'react';
+import {useCallback, useEffect, useState} from 'react';
+import {useDispatch} from 'react-redux';
 import {useHistory} from 'react-router';
 import BackgroundFront from '../../assets/images/bomber.png';
 import BackgroundBack from '../../assets/images/planet.png';
 import {Button, EButtonColor, EButtonType} from '../../components/button';
 import {Form} from '../../components/form';
+import {EFullScreenPosition, FullScreen} from '../../components/full-screen';
 import {Input} from '../../components/input';
 import {consts} from '../../consts';
-import {useInput} from '../../hoc/use-input';
-import {EValidationType} from '../../hoc/use-validation';
-import {apiSignIn, Data} from '../../services/api';
+import {useInput} from '../../hooks/use-input';
+import {EValidationType} from '../../hooks/use-validation';
+import {Data} from '../../services/api/user-api';
+import {userActions} from '../../store/actions/userActions';
+import {useTypedSelector} from '../../store/hooks/useTypedSelector';
 
 export default function Login() {
     const history = useHistory();
+    const dispatch = useDispatch();
+    const errorMessage = useTypedSelector((state) => state.user.error);
+    const [loginError, setLoginError] = useState(errorMessage);
+
     const login = useInput('', [
+        {type: EValidationType.REQUIRED, value: true},
         {type: EValidationType.MIN_LENGTH, value: 4},
         {type: EValidationType.MAX_LENGTH, value: 15},
     ]);
     const password = useInput('', [
+        {type: EValidationType.REQUIRED, value: true},
         {type: EValidationType.MIN_LENGTH, value: 4},
         {type: EValidationType.MAX_LENGTH, value: 15},
     ]);
-    const [loginError, setLoginError] = useState('');
+
     const formData: Data = {
         login: login.value,
         password: password.value,
     };
+
+    useEffect(() => {
+        if (errorMessage) {
+            setLoginError(errorMessage);
+        }
+    }, [errorMessage]);
+
     const onSignInClick = useCallback(() => {
-        apiSignIn(formData)
-            .then((result) => {
-                if (result.status === 200) {
-                    history.push('/start');
-                } else {
-                    setLoginError('Incorrect login or password');
-                    return Promise.reject(new Error(result.status.toString()));
-                }
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+        dispatch(userActions.login(formData, history));
     }, [formData]);
 
     const arrayInputs = [
@@ -50,8 +56,8 @@ export default function Login() {
             name="login"
             textError={login.isDirty ? login.errorText : ''}
             value={login.value}
-            onChange={(e) => login.onChange(e)}
-            onBlur={() => login.onBlur()}
+            onChange={useCallback((e) => login.onChange(e), [])}
+            onBlur={useCallback(() => login.onBlur(), [])}
         />,
         <Input
             key="password"
@@ -60,8 +66,8 @@ export default function Login() {
             name="password"
             textError={password.isDirty ? password.errorText : ''}
             value={password.value}
-            onChange={(e) => password.onChange(e)}
-            onBlur={() => password.onBlur()}
+            onChange={useCallback((e) => password.onChange(e), [])}
+            onBlur={useCallback(() => password.onBlur(), [])}
         />,
     ];
     const arrayButtons = [
@@ -78,7 +84,7 @@ export default function Login() {
             text={consts.loginPage.buttonSignUp}
             buttonColor={EButtonColor.PRIMARY}
             buttonType={EButtonType.FORM}
-            onClick={() => history.push('/signin')}
+            onClick={useCallback(() => history.push('/signin'), [])}
         />,
     ];
     return (
@@ -89,7 +95,7 @@ export default function Login() {
                 className="backgroundFront"
                 alt="BackgroundFront"
             />
-            <div className="login-error">{loginError}</div>;
+            <div className="form-error">{loginError}</div>
             <div className="container__games-title">
                 <span className="games-title">{consts.gamesTitle}</span>
             </div>
@@ -100,6 +106,7 @@ export default function Login() {
                     arrayButtons={arrayButtons}
                 />
             </div>
+            <FullScreen position={EFullScreenPosition.RIGHT_TOP} />
         </div>
     );
 }

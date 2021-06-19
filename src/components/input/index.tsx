@@ -9,7 +9,7 @@ import {FC} from 'react';
  */
 export type TInputProps = {
     nameField: string;
-    textError: string;
+    textError: string | null;
 } & InputHTMLAttributes<HTMLInputElement>;
 
 type Props = FC<TInputProps>;

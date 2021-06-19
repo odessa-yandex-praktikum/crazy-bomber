@@ -32,10 +32,10 @@ export const consts = {
         pageTitle: 'Profile',
         email: 'email',
         login: 'Login',
+        name: 'Name',
         oldPassword: 'Old password',
         newPassword: 'New password',
-        buttonSave: 'save',
-        buttonChange: 'change',
+        buttonSaveChanges: 'Save changes',
     },
     startPage: {
         buttonPlay: 'Play!',
@@ -53,7 +53,6 @@ export const consts = {
         navLinkLeaderboard: 'leaderboard',
         navLinkForum: 'forum',
         navLinkPlayAgain: 'play again',
-        navLinkLogin: 'login',
         navLinkLogout: 'logout',
     },
     errorBoundary: {
@@ -61,7 +60,8 @@ export const consts = {
         text: 'Something went wrong',
     },
     gameover: {
-        title: 'GAME OVER',
+        titleLose: 'GAME OVER',
+        titleWin: 'YOU WIN!',
         scoreText: 'Score: ',
         buttonPlayAgain: 'Play again!',
     },

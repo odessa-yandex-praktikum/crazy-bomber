@@ -5,7 +5,7 @@ import {FallBack} from './Pages/FallBack';
 import {ErrorBoundary} from './components/errorBoundary';
 
 const Leaderboard = React.lazy(() => import('./pages/leaderboard/index'));
-const Gameboard = React.lazy(() => import('./pages/gameboard/index'));
+const Game = React.lazy(() => import('./pages/gameboard/components/Game'));
 const Gameover = React.lazy(() => import('./pages/gameover/index'));
 const Main = React.lazy(() => import('./pages/start/index'));
 const Profile = React.lazy(() => import('./pages/profile/index'));
@@ -24,9 +24,9 @@ export function App() {
                     <Route path="/login" exact component={Login} />
                     <Route path="/signin" exact component={Signin} />
                     <PrivateRoute path="/leaderboard" exact component={Leaderboard} />
-                    <PrivateRoute path="/game" exact component={Gameboard} />
+                    <PrivateRoute path="/game" exact component={Game} />
                     <PrivateRoute path="/gameover" exact component={Gameover} />
-                    <Route path="/start" exact component={Main} />
+                    <PrivateRoute path="/start" exact component={Main} />
                     <PrivateRoute path="/profile" exact component={Profile} />
                     <PrivateRoute path="/forum" exact component={Forum} />
                     <PrivateRoute path="/forum/:id" exact component={ForumTopic} />

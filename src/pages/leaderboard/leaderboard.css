@@ -28,7 +28,7 @@
 
 .leaderboard-page__table-grid {
     display: grid;
-    grid-template-columns: 1fr 2fr 2fr 3fr;
+    grid-template-columns: 1fr 2fr 3fr 3fr;
 }
 
 .leaderboard-page__table-row {
@@ -40,7 +40,8 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    margin-bottom: 15px;
+    margin: 10px 0;
+    font-size: 50px;
 }
 
 .leaderboard-page__table-image {

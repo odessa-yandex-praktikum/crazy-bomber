@@ -1,33 +1,48 @@
 import * as React from 'react';
-import {useCallback} from 'react';
+import {useCallback, useEffect, useState} from 'react';
 import './signin.css';
+import {useDispatch} from 'react-redux';
 import {useHistory} from 'react-router';
 import BackgroundFront from '../../assets/images/bomber.png';
 import BackgroundBack from '../../assets/images/planet.png';
 import {Button, EButtonColor, EButtonType} from '../../components/button';
 import {Form} from '../../components/form';
+import {EFullScreenPosition, FullScreen} from '../../components/full-screen';
 import {Input} from '../../components/input';
 import {consts} from '../../consts';
-import {useInput} from '../../hoc/use-input';
-import {EValidationType} from '../../hoc/use-validation';
-import {apiSignUp, Data} from '../../services/api';
+import {useInput} from '../../hooks/use-input';
+import {EValidationType} from '../../hooks/use-validation';
+import {Data} from '../../services/api/user-api';
+import {userActions} from '../../store/actions/userActions';
+import {useTypedSelector} from '../../store/hooks/useTypedSelector';
 
 export default function Signin() {
     const history = useHistory();
-    const email = useInput('', [{type: EValidationType.IS_EMAIL, value: true}]);
+    const dispatch = useDispatch();
+    const errorMessage = useTypedSelector((state) => state.user.error);
+    const [signupError, setSignupError] = useState(errorMessage);
+
+    const email = useInput('', [
+        {type: EValidationType.REQUIRED, value: true},
+        {type: EValidationType.IS_EMAIL, value: true},
+    ]);
     const password = useInput('', [
+        {type: EValidationType.REQUIRED, value: true},
         {type: EValidationType.MIN_LENGTH, value: 4},
         {type: EValidationType.MAX_LENGTH, value: 15},
     ]);
     const login = useInput('', [
+        {type: EValidationType.REQUIRED, value: true},
         {type: EValidationType.MIN_LENGTH, value: 4},
         {type: EValidationType.MAX_LENGTH, value: 15},
     ]);
     const name = useInput('', [
+        {type: EValidationType.REQUIRED, value: true},
         {type: EValidationType.MIN_LENGTH, value: 4},
         {type: EValidationType.MAX_LENGTH, value: 15},
     ]);
     const passwordRepeat = useInput('', [
+        {type: EValidationType.REQUIRED, value: true},
         {type: EValidationType.IS_PASSWORD_EQUAL, value: password.value},
     ]);
     const formData: Data = {
@@ -36,18 +51,15 @@ export default function Signin() {
         email: email.value,
         newPassword: password.value,
     };
+
+    useEffect(() => {
+        if (errorMessage) {
+            setSignupError(errorMessage);
+        }
+    }, [errorMessage]);
+
     const onSignUpClick = useCallback(() => {
-        apiSignUp(formData)
-            .then((result) => {
-                if (result.status === 200) {
-                    history.push('/start');
-                } else {
-                    return Promise.reject(new Error(result.status.toString()));
-                }
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+        dispatch(userActions.register(formData, history));
     }, [formData]);
 
     const arrayInputs = [
@@ -57,8 +69,8 @@ export default function Signin() {
             type="email"
             name="email"
             value={email.value}
-            onChange={(e) => email.onChange(e)}
-            onBlur={() => email.onBlur()}
+            onChange={useCallback((e) => email.onChange(e), [])}
+            onBlur={useCallback(() => email.onBlur(), [])}
             textError={email.isDirty ? email.errorText : ''}
         />,
         <Input
@@ -68,8 +80,8 @@ export default function Signin() {
             name="login"
             textError={login.isDirty ? login.errorText : ''}
             value={login.value}
-            onChange={(e) => login.onChange(e)}
-            onBlur={() => login.onBlur()}
+            onChange={useCallback((e) => login.onChange(e), [])}
+            onBlur={useCallback(() => login.onBlur(), [])}
         />,
         <Input
             key="name"
@@ -78,8 +90,8 @@ export default function Signin() {
             name="name"
             textError={name.isDirty ? name.errorText : ''}
             value={name.value}
-            onChange={(e) => name.onChange(e)}
-            onBlur={() => name.onBlur()}
+            onChange={useCallback((e) => name.onChange(e), [])}
+            onBlur={useCallback(() => name.onBlur(), [])}
         />,
         <Input
             key="password"
@@ -88,8 +100,8 @@ export default function Signin() {
             name="password"
             textError={password.isDirty ? password.errorText : ''}
             value={password.value}
-            onChange={(e) => password.onChange(e)}
-            onBlur={() => password.onBlur()}
+            onChange={useCallback((e) => password.onChange(e), [])}
+            onBlur={useCallback(() => password.onBlur(), [])}
         />,
         <Input
             key="passwordRepeat"
@@ -98,8 +110,8 @@ export default function Signin() {
             name="passwordRepeat"
             textError={passwordRepeat.isDirty ? passwordRepeat.errorText : ''}
             value={passwordRepeat.value}
-            onChange={(e) => passwordRepeat.onChange(e)}
-            onBlur={() => passwordRepeat.onBlur()}
+            onChange={useCallback((e) => passwordRepeat.onChange(e), [])}
+            onBlur={useCallback(() => passwordRepeat.onBlur(), [])}
         />,
     ];
     const arrayButtons = [
@@ -108,7 +120,7 @@ export default function Signin() {
             text={consts.signinPage.buttonBack}
             buttonColor={EButtonColor.PRIMARY}
             buttonType={EButtonType.FORM}
-            onClick={() => history.goBack()}
+            onClick={useCallback(() => history.goBack(), [])}
         />,
         <Button
             key={consts.signinPage.buttonSignIn}
@@ -134,6 +146,7 @@ export default function Signin() {
                 className="backgroundFront"
                 alt="BackgroundFront"
             />
+            <div className="form-error">{signupError}</div>
             <div className="container__games-title">
                 <span className="games-title">{consts.gamesTitle}</span>
             </div>
@@ -144,6 +157,7 @@ export default function Signin() {
                     arrayButtons={arrayButtons}
                 />
             </div>
+            <FullScreen position={EFullScreenPosition.RIGHT_TOP} />
         </div>
     );
 }

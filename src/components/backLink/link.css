@@ -6,10 +6,10 @@
     font-family: 'JollyLodger-Regular', serif;
     background-color: #000;
     font-size: 13em;
-    margin-left: 2%;
-    margin-top: 60%;
     border: none;
     cursor: pointer;
+    padding: 25px;
+    align-self: flex-start;
 }
 
 .backlink:hover,

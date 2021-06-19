@@ -1,4 +1,5 @@
-//util functions for leaderboard page
+import {IRectParams} from '../pages/gameboard/models';
+
 class Player {
     constructor(
         public id: number,
@@ -6,13 +7,6 @@ class Player {
         public login: string,
         public score: number
     ) {}
-}
-
-export function findFiveLeaders(playersArray: Player[]) {
-    //5 - потому что мы ищем пять лидеров для отображения на борде
-    return playersArray
-        .sort((player1: Player, player2: Player) => player2.score - player1.score)
-        .slice(0, 5);
 }
 
 export function convertScoreToString(num: number) {
@@ -70,4 +64,43 @@ export function determineCreationDate(date: number) {
 //util functions for navigation
 export function createNaviPath(naviHeading: string) {
     return `/${naviHeading}`;
+}
+
+/**
+ * случайное число от min до max.
+ */
+export function randomInteger(min: number, max: number): number {
+    return Math.floor(min + Math.random() * (max + 1 - min));
+}
+
+/**
+ * @param a Левая координата первого отрезка.
+ * @param b Левая координата второго отрезка.
+ */
+interface ILine {
+    a: number;
+    b: number;
+}
+
+/**
+ * Проверяет пересечение двух отрезков.
+ */
+export function intersectLine(line1: ILine, line2: ILine) {
+    return Math.max(line1.a, line2.a) <= Math.min(line1.b, line2.b);
+}
+
+/**
+ * Проверяет пересечение двух прямоугольников.
+ */
+export function intersect(rect1: IRectParams, rect2: IRectParams) {
+    return (
+        intersectLine(
+            {a: rect1.x, b: rect1.x + rect1.width},
+            {a: rect2.x, b: rect2.x + rect2.width}
+        ) &&
+        intersectLine(
+            {a: rect1.y, b: rect1.y + rect1.height},
+            {a: rect2.y, b: rect2.y + rect2.height}
+        )
+    );
 }

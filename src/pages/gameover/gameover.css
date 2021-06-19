@@ -10,8 +10,15 @@
     color: var(--color-games-title);
 }
 
-.gameover-page__background {
+.gameover-page__lose-background {
     background-image: url('../../assets/images/gameover_background.png');
+    background-size: 90%;
+    background-repeat: no-repeat;
+}
+
+.gameover-page__win-background {
+    background-image: url('../../assets/images/bomber.png');
+    background-position: 100px 40px;
     background-size: cover;
 }
 
@@ -19,7 +26,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin-top: 43%;
+    margin-top: 32%;
 }
 
 .gameover-page__play-button {
@@ -38,11 +45,12 @@
     color: var(--color-games-title);
     font-size: 96px;
     text-shadow: var(--color-shadow) 2px 2px 0, var(--color-shadow) -2px -2px 0,
-    var(--color-shadow) -2px 2px 0, var(--color-shadow) 2px -2px 0;
+        var(--color-shadow) -2px 2px 0, var(--color-shadow) 2px -2px 0;
     margin-top: 10%;
     margin-bottom: 0;
 }
 
 .gameover-page__score {
+    margin-top: -10%;
     font-size: 52px;
 }
