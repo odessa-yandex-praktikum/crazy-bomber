@@ -60,7 +60,8 @@ export const consts = {
         text: 'Something went wrong',
     },
     gameover: {
-        title: 'GAME OVER',
+        titleLose: 'GAME OVER',
+        titleWin: 'YOU WIN!',
         scoreText: 'Score: ',
         buttonPlayAgain: 'Play again!',
     },

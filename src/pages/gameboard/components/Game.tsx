@@ -15,6 +15,7 @@ import {Bullet} from '../entities/Bullet';
 import {EDirection} from '../enums';
 
 export default function Game() {
+    let currentScore: number;
     const [score, setScore] = useState<number>(0);
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const contextRef = useRef<CanvasRenderingContext2D | null>(null);
@@ -121,17 +122,11 @@ export default function Game() {
 
                 /** Проверяем, врезался ли самолет в здание. */
                 if (intersect(bld, bmb)) {
-                    //workaround - score всегда равен 0
-                    console.log(score);
-                    const currentScore = parseInt(
-                        document
-                            ?.getElementsByClassName('game-container__gameboard-score')[0]
-                            .innerHTML.split(' ')[1]
-                    );
+                    /** Сохраняем в лидерборд короткие имена пользователя - до 12 символов*/
                     dispatch(
                         leaderboardActions.saveScore(avatar, login.substr(0, 11), currentScore)
                     );
-                    history.push('/gameover', {currentScore});
+                    history.push('/gameover', {currentScore, isWinner: false});
                 }
 
                 /** Проверяем, попал ли какой-нибудь из снарядов в здание ... */
@@ -146,7 +141,11 @@ export default function Game() {
                         /** ... если да, то уменьшаем пробивающую силу снаряда и убираем один этаж в здании. */
                         bullet.decPower();
                         building.deleteFloor();
-                        setScore((prevState) => prevState + 1);
+                        /** Сохраняем значение в переменную currentScore */
+                        setScore((prevState) => {
+                            currentScore = prevState + 1;
+                            return prevState + 1;
+                        });
                     }
                 });
             });
@@ -174,16 +173,9 @@ export default function Game() {
 
             /** Проверяем, что уничтожены все здания. */
             if (buildingsRef.current.length === 0) {
-                // TODO: реализовать победу.
-                //workaround - score всегда равен 0
-                console.log(score);
-                const currentScore = parseInt(
-                    document
-                        ?.getElementsByClassName('game-container__gameboard-score')[0]
-                        .innerHTML.split(' ')[1]
-                );
+                /** Сохраняем в лидерборд короткие имена пользователя - до 12 символов*/
                 dispatch(leaderboardActions.saveScore(avatar, login.substr(0, 11), currentScore));
-                history.push('/gameover', {currentScore});
+                history.push('/gameover', {currentScore, isWinner: true});
             }
         }
     });
