@@ -1,16 +1,16 @@
 import * as React from 'react';
 import './forumtopic.css';
 import {RouteComponentProps} from 'react-router-dom';
-import {BackLink} from '../../components/backLink';
-import {Button, EButtonColor, EButtonType} from '../../components/button';
-import {Form} from '../../components/form';
-import {Input} from '../../components/input';
-import {MessageItem} from '../../components/message';
-import {Navigation} from '../../components/navigation';
+import {BackLink} from 'Components/backLink';
+import {Button, EButtonColor, EButtonType} from 'Components/button';
+import {Form} from 'Components/form';
+import {EFullScreenPosition, FullScreen} from 'Components/full-screen';
+import {Input} from 'Components/input';
+import {MessageItem} from 'Components/message';
+import {Navigation} from 'Components/navigation';
 import {consts} from '../../consts';
 import {discussions} from '../../testdata/ForumData';
 import {Discussion} from '../../utils/Utils';
-import {EFullScreenPosition, FullScreen} from '../../components/full-screen';
 
 type TParams = {id: string};
 
