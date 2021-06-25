@@ -2,9 +2,12 @@ import * as React from 'react';
 import './gameover.css';
 import {useLocation} from 'react-router';
 import {Link} from 'react-router-dom';
+import soundGameover from '../../assets/audio/gameover.wav';
+import soundWin from '../../assets/audio/level-completed.wav';
 import {EFullScreenPosition, FullScreen} from '../../components/full-screen';
 import {Navigation} from '../../components/navigation';
 import {consts} from '../../consts';
+import {useAudio} from '../../hooks/use-audio';
 import {convertScoreToString} from '../../utils/Utils';
 
 type LocationState = {
@@ -18,6 +21,7 @@ export default function GameoverPage() {
 
     const {state} = useLocation<LocationState>();
     const {currentScore, isWinner} = state;
+    const [pauseAudio] = useAudio(isWinner ? soundWin : soundGameover);
     const navigationItems = [navLinkForum, navLinkProfile, navLinkLeaderboard];
 
     return (
@@ -33,7 +37,11 @@ export default function GameoverPage() {
             <div className="container__right-part">
                 <div className="gameover-page__container">
                     <h2 className="gameover-page__title">{isWinner ? titleWin : titleLose}</h2>
-                    <Link to="/game" className="gameover-page__play-button">
+                    <Link
+                        to="/game"
+                        className="gameover-page__play-button"
+                        onClick={() => pauseAudio()}
+                    >
                         {buttonPlayAgain}
                     </Link>
                 </div>
