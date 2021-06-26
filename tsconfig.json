@@ -3,7 +3,7 @@
         "moduleResolution": "node",
         "target": "es5",
         "declaration": false,
-        "module": "esnext",
+        "module": "commonjs",
         "strictNullChecks": true,
         "sourceMap": true,
         "noImplicitAny": true,
@@ -12,8 +12,15 @@
         "skipLibCheck": true,
         "lib": ["es2017", "es2016", "dom", "es5"],
         "allowJs": true,
-        "jsx": "react"
+        "jsx": "react",
+        "allowSyntheticDefaultImports": true,
+        "baseUrl": "./src",
+        "paths": {
+            "Components/*": ["./components/*"],
+            "Assets/*": ["./assets/*"],
+        },
+        "importHelpers": true
     },
     "exclude": ["**/node_modules/**/*", "**/*.spec.js"],
-    "include": ["src/**/*"]
+    "include": ["./src/**/*"]
 }

@@ -1,8 +1,8 @@
 import * as React from 'react';
 import './form.css';
+import {ReactElement} from 'react';
 import {TButtonProps} from '../button';
 import {TInputProps} from '../input';
-import {ReactElement} from 'react';
 
 /**
  * @param classForm класс задающий размеры формы.

@@ -1,13 +1,13 @@
 import * as React from 'react';
 import './forum.css';
-import {BackLink} from '../../components/backLink';
-import {Button, EButtonColor, EButtonType} from '../../components/button';
-import {DiscussionItem} from '../../components/discussion';
-import {Navigation} from '../../components/navigation';
+import {BackLink} from 'Components/backLink';
+import {Button, EButtonColor, EButtonType} from 'Components/button';
+import {DiscussionItem} from 'Components/discussion';
+import {EFullScreenPosition, FullScreen} from 'Components/full-screen';
+import {Navigation} from 'Components/navigation';
 import {consts} from '../../consts';
 import {discussions} from '../../testdata/ForumData';
 import {sortDescending} from '../../utils/Utils';
-import {EFullScreenPosition, FullScreen} from '../../components/full-screen';
 
 export default function Forum() {
     const pageTitle = consts.forumPage.pageTitle;
