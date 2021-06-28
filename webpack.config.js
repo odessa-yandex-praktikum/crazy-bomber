@@ -7,7 +7,4 @@ const basePreset = require('./webpack/parts/base-preset.js');
  */
 const webpackMode = (mode) => require(`./webpack/parts/${mode}-preset.js`)(mode);
 
-module.exports = (_env, {mode}) => merge(appPreset(),
-    basePreset(),
-    webpackMode(mode)
-);
+module.exports = (_env, {mode}) => merge(appPreset(), basePreset(), webpackMode(mode));

@@ -8,6 +8,9 @@ import {startServiceWorker} from './utils/service-worker';
 
 if (process.env.NODE_ENV === 'production') {
     startServiceWorker();
+} else {
+    /** Принудительная перезагрузка для hmr */
+    module?.hot?.accept?.();
 }
 
 ReactDOM.render(

@@ -1,6 +1,6 @@
 import BlockImg from '../../../assets/images/block.png';
-import {Rect} from './Rect';
 import {GAME_CONFIG, SCENE_HEIGHT} from '../config';
+import {Rect} from './Rect';
 
 /**
  * Начальные параметры снаряда.

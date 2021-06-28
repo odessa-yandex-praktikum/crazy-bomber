@@ -23,6 +23,7 @@ module.exports = {
         },
     },
     plugins: ['react', '@typescript-eslint', 'eslint-plugin-import-helpers', 'jest'],
+    ignorePatterns: ['dist', '.eslintrc.js', 'node_modules', 'webpack', 'webpack.config.js', 'heroku'],
     rules: {
         'react/prop-types': 'off',
         '@typescript-eslint/no-unused-vars': ['warn', {argsIgnorePattern: '^_'}],

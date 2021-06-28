@@ -25,11 +25,11 @@ export const FullScreen: Props = ({position}: TFullScreenProps) => {
     });
     const onFullScreenClick = useCallback(function () {
         if (!document.fullscreenElement) {
-            document.documentElement.requestFullscreen();
+            document?.documentElement.requestFullscreen();
             setType(EButtonType.EXIT_FULL_SCREEN);
         } else {
             if (document.exitFullscreen) {
-                document.exitFullscreen();
+                document?.exitFullscreen();
             }
             setType(EButtonType.FULL_SCREEN);
         }
