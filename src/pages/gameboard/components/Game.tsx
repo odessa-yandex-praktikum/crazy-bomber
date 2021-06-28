@@ -3,8 +3,10 @@ import {useEffect, useRef, useState} from 'react';
 import './Game.css';
 import {useDispatch} from 'react-redux';
 import {useHistory} from 'react-router';
+import soundBackground from '../../../assets/audio/background.mp3';
 import {EFullScreenPosition, FullScreen} from '../../../components/full-screen';
 import {useAnimationFrame} from '../../../hooks/use-animation-frame';
+import {useAudio} from '../../../hooks/use-audio';
 import {leaderboardActions} from '../../../store/actions/leaderboardActions';
 import {useTypedSelector} from '../../../store/hooks/useTypedSelector';
 import {convertScoreToString, intersect, randomInteger} from '../../../utils/Utils';
@@ -25,6 +27,7 @@ export default function Game() {
     const history = useHistory();
     const dispatch = useDispatch();
     const {avatar, login} = useTypedSelector((state) => state.user.currentUser!);
+    const [pauseAudio] = useAudio(soundBackground);
 
     /** Монтирование */
     useEffect(() => {
@@ -126,6 +129,7 @@ export default function Game() {
                     dispatch(
                         leaderboardActions.saveScore(avatar, login.substr(0, 11), currentScore)
                     );
+                    pauseAudio();
                     history.push('/gameover', {currentScore, isWinner: false});
                 }
 
@@ -175,6 +179,7 @@ export default function Game() {
             if (buildingsRef.current.length === 0) {
                 /** Сохраняем в лидерборд короткие имена пользователя - до 12 символов*/
                 dispatch(leaderboardActions.saveScore(avatar, login.substr(0, 11), currentScore));
+                pauseAudio();
                 history.push('/gameover', {currentScore, isWinner: true});
             }
         }
