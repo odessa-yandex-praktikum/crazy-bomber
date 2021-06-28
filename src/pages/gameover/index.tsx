@@ -40,7 +40,7 @@ export default function GameoverPage() {
                     <Link
                         to="/game"
                         className="gameover-page__play-button"
-                        onClick={() => pauseAudio()}
+                        onClick={pauseAudio}
                     >
                         {buttonPlayAgain}
                     </Link>
