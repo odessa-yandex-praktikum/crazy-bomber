@@ -49,7 +49,7 @@ export default function LeaderboardPage() {
                             <span className="leaderboard-page__table-col">
                                 <strong>{scoreHeader}</strong>
                             </span>
-                            {gameResultsData!.map((player, index) => (
+                            {gameResultsData?.map((player, index) => (
                                 <div className="leaderboard-page__table-row" key={player.id}>
                                     <span className="leaderboard-page__table-col">{index + 1}</span>
                                     <span className="leaderboard-page__table-col">

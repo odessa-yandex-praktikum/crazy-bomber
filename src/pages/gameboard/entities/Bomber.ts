@@ -1,7 +1,7 @@
 import BomberImg from '../../../assets/images/bomber_icon.png';
-import {Rect} from './Rect';
 import {GAME_CONFIG, SCENE_HEIGHT} from '../config';
 import {EDirection} from '../enums';
+import {Rect} from './Rect';
 
 export class Bomber extends Rect {
     /** Контекст канваса. */

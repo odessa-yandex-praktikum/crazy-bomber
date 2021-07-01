@@ -4,13 +4,13 @@ import {RouteComponentProps} from 'react-router-dom';
 import {BackLink} from '../../components/backLink';
 import {Button, EButtonColor, EButtonType} from '../../components/button';
 import {Form} from '../../components/form';
+import {EFullScreenPosition, FullScreen} from '../../components/full-screen';
 import {Input} from '../../components/input';
 import {MessageItem} from '../../components/message';
 import {Navigation} from '../../components/navigation';
 import {consts} from '../../consts';
 import {discussions} from '../../testdata/ForumData';
 import {Discussion} from '../../utils/Utils';
-import {EFullScreenPosition, FullScreen} from '../../components/full-screen';
 
 type TParams = {id: string};
 

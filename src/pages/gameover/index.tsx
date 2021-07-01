@@ -37,11 +37,7 @@ export default function GameoverPage() {
             <div className="container__right-part">
                 <div className="gameover-page__container">
                     <h2 className="gameover-page__title">{isWinner ? titleWin : titleLose}</h2>
-                    <Link
-                        to="/game"
-                        className="gameover-page__play-button"
-                        onClick={pauseAudio}
-                    >
+                    <Link to="/game" className="gameover-page__play-button" onClick={pauseAudio}>
                         {buttonPlayAgain}
                     </Link>
                 </div>
