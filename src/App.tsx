@@ -1,8 +1,8 @@
 import * as React from 'react';
 import {Redirect, Route, Switch, useLocation} from 'react-router';
-import {PrivateRoute} from './Components/PrivateRoute';
+import {PrivateRoute} from 'Components/PrivateRoute';
+import {ErrorBoundary} from 'Components/errorBoundary';
 import {FallBack} from './Pages/FallBack';
-import {ErrorBoundary} from './components/errorBoundary';
 
 const Leaderboard = React.lazy(() => import('./pages/leaderboard/index'));
 const Game = React.lazy(() => import('./pages/gameboard/components/Game'));
