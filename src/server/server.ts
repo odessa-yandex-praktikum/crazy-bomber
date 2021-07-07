@@ -2,6 +2,7 @@ import * as express from 'express';
 import * as path from 'path';
 import * as webpack from 'webpack';
 import * as webpackFn from '../../webpack.config';
+import {sequelize} from './db/db';
 import {webpackDev} from './middlewares/webpack-dev';
 import {webpackHot} from './middlewares/webpack-hot';
 
@@ -25,4 +26,8 @@ app.use('/', (_req: express.Request, res: express.Response) => {
 
 app.listen(PORT, () => {
     console.log(`App on http://localhost:${PORT}`);
+    sequelize
+        .sync()
+        .then(() => console.log(`PostgreSQL is successfully connected`))
+        .catch((error) => console.log(error));
 });

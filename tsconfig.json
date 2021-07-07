@@ -19,7 +19,9 @@
             "Components/*": ["./components/*"],
             "Assets/*": ["./assets/*"],
         },
-        "importHelpers": true
+        "importHelpers": true,
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true
     },
     "exclude": ["**/node_modules/**/*", "**/*.spec.js"],
     "include": ["./src/**/*"]
