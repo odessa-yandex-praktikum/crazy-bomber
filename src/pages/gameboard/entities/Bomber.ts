@@ -1,4 +1,4 @@
-import BomberImg from '../../../assets/images/bomber_icon.png';
+import BomberImg from 'assets/images/bomber_icon.png';
 import {GAME_CONFIG, SCENE_HEIGHT} from '../config';
 import {EDirection} from '../enums';
 import {Rect} from './Rect';

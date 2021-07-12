@@ -1,7 +1,8 @@
 import {UserActionTypes, Nullable, User, UserState, UserAction} from '../types/user';
 
-const currentUser: Nullable<User> = JSON.parse(<string>localStorage.getItem('user'));
-const initialState: UserState = currentUser
+const currentUser: Nullable<User> = {}; // TODO. Добавить middleware на сервере для проверки пользователя.
+
+export const initialState: UserState = currentUser
     ? {
           loggedIn: true,
           currentUser: currentUser,

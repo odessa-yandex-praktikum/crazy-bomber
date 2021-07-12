@@ -1,14 +1,12 @@
+import {Button, EButtonColor, EButtonType} from 'components/button';
+import {Form} from 'components/form';
+import {EFullScreenPosition, FullScreen} from 'components/full-screen';
+import {Input} from 'components/input';
 import * as React from 'react';
 import {useCallback, useEffect, useState} from 'react';
 import './signin.css';
 import {useDispatch} from 'react-redux';
-import {useHistory} from 'react-router';
-import BackgroundFront from '../../assets/images/bomber.png';
-import BackgroundBack from '../../assets/images/planet.png';
-import {Button, EButtonColor, EButtonType} from '../../components/button';
-import {Form} from '../../components/form';
-import {EFullScreenPosition, FullScreen} from '../../components/full-screen';
-import {Input} from '../../components/input';
+import {useHistory} from 'react-router-dom';
 import {consts} from '../../consts';
 import {useInput} from '../../hooks/use-input';
 import {EValidationType} from '../../hooks/use-validation';
@@ -140,12 +138,6 @@ export default function Signin() {
 
     return (
         <div className="login-signin-page">
-            <img src={BackgroundBack as string} className="backgroundBack" alt="BackgroundBack" />
-            <img
-                src={BackgroundFront as string}
-                className="backgroundFront"
-                alt="BackgroundFront"
-            />
             <div className="form-error">{signupError}</div>
             <div className="container__games-title">
                 <span className="games-title">{consts.gamesTitle}</span>

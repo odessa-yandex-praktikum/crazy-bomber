@@ -1,29 +1,33 @@
 import * as express from 'express';
 import * as path from 'path';
-import * as webpack from 'webpack';
-import * as webpackFn from '../../webpack.config';
 import {sequelize} from './db/db';
-import {webpackDev} from './middlewares/webpack-dev';
-import {webpackHot} from './middlewares/webpack-hot';
+import {getWebpackMiddlewares} from './middlewares';
 
+/**
+ * Определение режима сборки по аргументам запуска команды.
+ */
 const inputMode = process.argv.find((arg) => !arg.indexOf('--mode'))?.slice(7);
 const mode: 'development' | 'production' =
     inputMode === 'development' ? 'development' : 'production';
-const isDev = mode === 'development';
+
+console.log('[server started in mode]: ', mode);
 
 const app = express();
 const PORT = 3000;
-const config = webpackFn(null, {mode});
-const compiler = webpack(config);
 
-isDev && app.use('/', [webpackDev(compiler), webpackHot(compiler)]);
+/**
+ * Отдаём статику приложения.
+ */
+app.use(express.static(path.posix.resolve('dist')));
 
-app.use(express.static(path.resolve('dist')));
+/**
+ * На все get запросы запускаем сначала middleware dev server, а потом middleware рендеринга приложения.
+ */
+app.get('/*', getWebpackMiddlewares(mode));
 
-app.use('/', (_req: express.Request, res: express.Response) => {
-    res.sendFile(path.resolve('dist', 'index.html'));
-});
-
+/**
+ * Запуск приложения.
+ */
 app.listen(PORT, () => {
     console.log(`App on http://localhost:${PORT}`);
     sequelize

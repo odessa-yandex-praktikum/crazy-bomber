@@ -1,10 +1,10 @@
+import {BackLink} from 'components/backLink';
+import {EFullScreenPosition, FullScreen} from 'components/full-screen';
+import {Navigation} from 'components/navigation';
 import * as React from 'react';
 import './leaderboard.css';
 import {useEffect} from 'react';
 import {useDispatch} from 'react-redux';
-import {BackLink} from '../../components/backLink';
-import {EFullScreenPosition, FullScreen} from '../../components/full-screen';
-import {Navigation} from '../../components/navigation';
 import {consts} from '../../consts';
 import {leaderboardActions} from '../../store/actions/leaderboardActions';
 import {useTypedSelector} from '../../store/hooks/useTypedSelector';

@@ -1,11 +1,11 @@
-import * as React from 'react';
 import './gameover.css';
-import {useLocation} from 'react-router';
+import soundGameover from 'assets/audio/gameover.wav';
+import soundWin from 'assets/audio/level-completed.wav';
+import {EFullScreenPosition, FullScreen} from 'components/full-screen';
+import {Navigation} from 'components/navigation';
+import * as React from 'react';
+import {useLocation} from 'react-router-dom';
 import {Link} from 'react-router-dom';
-import soundGameover from '../../assets/audio/gameover.wav';
-import soundWin from '../../assets/audio/level-completed.wav';
-import {EFullScreenPosition, FullScreen} from '../../components/full-screen';
-import {Navigation} from '../../components/navigation';
 import {consts} from '../../consts';
 import {useAudio} from '../../hooks/use-audio';
 import {convertScoreToString} from '../../utils/Utils';
