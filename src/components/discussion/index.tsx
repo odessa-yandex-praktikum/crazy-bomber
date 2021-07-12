@@ -1,9 +1,9 @@
-import * as React from 'react';
+import ChatIcon from 'assets/icons/chat.png';
+import VoteIcon from 'assets/icons/check-mark.png';
+import React from 'react';
 import './discussion.css';
 import {FC} from 'react';
 import {Link} from 'react-router-dom';
-import ChatIcon from '../../assets/icons/chat.png';
-import VoteIcon from '../../assets/icons/check-mark.png';
 import {determineCreationDate, Discussion} from '../../utils/Utils';
 
 /**

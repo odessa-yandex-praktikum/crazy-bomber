@@ -2,6 +2,7 @@ import * as React from 'react';
 import {FC, useCallback, useState} from 'react';
 import './full-screen.css';
 import {consts} from '../../consts';
+import {getBrowserDocument} from '../../utils/Utils';
 import {Button, EButtonType} from '../button';
 
 export enum EFullScreenPosition {
@@ -16,22 +17,22 @@ export type TFullScreenProps = {
 type Props = FC<TFullScreenProps>;
 
 export const FullScreen: Props = ({position}: TFullScreenProps) => {
+    const document = getBrowserDocument();
+
     const [type, setType] = useState(() => {
-        if (document.fullscreenElement) {
+        if (document?.fullscreenElement) {
             return EButtonType.EXIT_FULL_SCREEN;
         } else {
             return EButtonType.FULL_SCREEN;
         }
     });
     const onFullScreenClick = useCallback(function () {
-        if (!document.fullscreenElement) {
-            document?.documentElement.requestFullscreen();
-            setType(EButtonType.EXIT_FULL_SCREEN);
-        } else {
-            if (document.exitFullscreen) {
-                document?.exitFullscreen();
-            }
+        if (document?.fullscreenElement) {
+            document.exitFullscreen?.();
             setType(EButtonType.FULL_SCREEN);
+        } else {
+            document?.documentElement?.requestFullscreen();
+            setType(EButtonType.EXIT_FULL_SCREEN);
         }
     }, []);
     return (

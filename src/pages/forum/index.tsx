@@ -1,10 +1,10 @@
-import * as React from 'react';
 import './forum.css';
-import {BackLink} from '../../components/backLink';
-import {Button, EButtonColor, EButtonType} from '../../components/button';
-import {DiscussionItem} from '../../components/discussion';
-import {EFullScreenPosition, FullScreen} from '../../components/full-screen';
-import {Navigation} from '../../components/navigation';
+import {BackLink} from 'components/backLink';
+import {Button, EButtonColor, EButtonType} from 'components/button';
+import {DiscussionItem} from 'components/discussion';
+import {EFullScreenPosition, FullScreen} from 'components/full-screen';
+import {Navigation} from 'components/navigation';
+import React from 'react';
 import {consts} from '../../consts';
 import {discussions} from '../../testdata/ForumData';
 import {sortDescending} from '../../utils/Utils';
