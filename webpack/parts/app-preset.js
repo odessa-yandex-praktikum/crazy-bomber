@@ -7,7 +7,7 @@ module.exports = () => ({
         path: path.resolve('dist'),
         /** Очищает dist-директорию перед каждой сборкой. */
         clean: true,
-        publicPath: path.resolve(__dirname, '/'),
+        publicPath: path.posix.resolve(__dirname, '/'),
     },
     resolve: {
         /** Почему сначала резолвим ts и tsx: https://github.com/webpack/webpack/issues/2404 */

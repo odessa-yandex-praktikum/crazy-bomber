@@ -64,10 +64,11 @@ export function apiLogout(): Promise<Response> {
     }).then((response) => processingRequest(response));
 }
 
-function getUserInfo(): Promise<Response> {
+export function getUserInfo(): Promise<Response> {
     return fetch(url + apiHost.getUserInfo, {
         method: 'GET',
         credentials: 'include',
+
         headers: {
             accept: 'application/json',
         },

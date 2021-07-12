@@ -15,6 +15,7 @@ export enum EButtonType {
     FORUM_PAGE,
     FULL_SCREEN,
     EXIT_FULL_SCREEN,
+    OAUTH,
 }
 
 /**
@@ -87,6 +88,10 @@ function getButtonClass(buttonType: EButtonType, buttonColor?: EButtonColor): st
         }
         case EButtonType.EXIT_FULL_SCREEN: {
             cssString += ' button__exit-full-screen';
+            break;
+        }
+        case EButtonType.OAUTH: {
+            cssString += ' button__oauth';
             break;
         }
     }

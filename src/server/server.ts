@@ -12,7 +12,7 @@ const mode: 'development' | 'production' =
 const isDev = mode === 'development';
 
 const app = express();
-const PORT = 5000;
+const PORT = 3000;
 const config = webpackFn(null, {mode});
 const compiler = webpack(config);
 

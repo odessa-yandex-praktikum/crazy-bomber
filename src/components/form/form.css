@@ -14,6 +14,7 @@
     justify-content: space-between;
     width: inherit;
     align-self: flex-end;
+    flex-wrap: wrap;
 }
 
 .form-error {

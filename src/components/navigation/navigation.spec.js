@@ -19,10 +19,6 @@ jest.mock('react-redux', () => {
 });
 it('renders correctly', () => {
     const navigationItems = ['start'];
-    const navigation = renderer
-        .create(
-            <Navigation navigationItems={navigationItems} />
-        )
-        .toJSON();
+    const navigation = renderer.create(<Navigation navigationItems={navigationItems} />).toJSON();
     expect(navigation).toMatchSnapshot();
 });

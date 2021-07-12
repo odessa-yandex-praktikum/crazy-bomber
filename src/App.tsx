@@ -1,8 +1,9 @@
 import * as React from 'react';
 import {Redirect, Route, Switch, useLocation} from 'react-router';
-import {PrivateRoute} from 'Components/PrivateRoute';
-import {ErrorBoundary} from 'Components/errorBoundary';
+import {PrivateRoute} from './Components/PrivateRoute';
 import {FallBack} from './Pages/FallBack';
+import {ErrorBoundary} from './components/errorBoundary';
+import {getUserOauth} from './action';
 
 const Leaderboard = React.lazy(() => import('./pages/leaderboard/index'));
 const Game = React.lazy(() => import('./pages/gameboard/components/Game'));
@@ -16,7 +17,6 @@ const ForumTopic = React.lazy(() => import('./pages/forumtopic/index'));
 
 export function App() {
     const location = useLocation();
-
     return (
         <React.Suspense fallback={<FallBack />}>
             <ErrorBoundary key={location.pathname}>
@@ -30,6 +30,7 @@ export function App() {
                     <PrivateRoute path="/profile" exact component={Profile} />
                     <PrivateRoute path="/forum" exact component={Forum} />
                     <PrivateRoute path="/forum/:id" exact component={ForumTopic} />
+                    <Redirect from="/" to={getUserOauth()} />
                     <Redirect from="*" to="/start" />
                 </Switch>
             </ErrorBoundary>

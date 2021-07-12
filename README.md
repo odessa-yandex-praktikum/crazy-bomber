@@ -20,7 +20,7 @@
 ### `git clone https://github.com/odessa-yandex-praktikum/crazy-bomber.git`
 ### `npm install`
 ### `npm start`
-Открыть в браузере [http://localhost:3003](http://localhost:3003) 
+Открыть в браузере [http://localhost:3000](http://localhost:3000) 
 
 ##TODO: 
 1. узнать насчет ошибки в IDE про абсолютные пути

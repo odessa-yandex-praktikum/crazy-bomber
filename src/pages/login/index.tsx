@@ -3,12 +3,13 @@ import './login.css';
 import {useCallback, useEffect, useState} from 'react';
 import {useDispatch} from 'react-redux';
 import {useHistory} from 'react-router';
-import BackgroundFront from 'Assets/images/bomber.png';
-import BackgroundBack from 'Assets/images/planet.png';
-import {Button, EButtonColor, EButtonType} from 'Components/button';
-import {Form} from 'Components/form';
-import {EFullScreenPosition, FullScreen} from 'Components/full-screen';
-import {Input} from 'Components/input';
+import {yandexLogin} from '../../action';
+import BackgroundFront from '../../assets/images/bomber.png';
+import BackgroundBack from '../../assets/images/planet.png';
+import {Button, EButtonColor, EButtonType} from '../../components/button';
+import {Form} from '../../components/form';
+import {EFullScreenPosition, FullScreen} from '../../components/full-screen';
+import {Input} from '../../components/input';
 import {consts} from '../../consts';
 import {useInput} from '../../hooks/use-input';
 import {EValidationType} from '../../hooks/use-validation';
@@ -47,6 +48,9 @@ export default function Login() {
     const onSignInClick = useCallback(() => {
         dispatch(userActions.login(formData, history));
     }, [formData]);
+    const onOAuthClick = useCallback(() => {
+        yandexLogin();
+    }, []);
 
     const arrayInputs = [
         <Input
@@ -85,6 +89,13 @@ export default function Login() {
             buttonColor={EButtonColor.PRIMARY}
             buttonType={EButtonType.FORM}
             onClick={useCallback(() => history.push('/signin'), [])}
+        />,
+        <Button
+            key={consts.loginPage.buttonOAuth}
+            text={consts.loginPage.buttonOAuth}
+            buttonColor={EButtonColor.ERROR}
+            buttonType={EButtonType.OAUTH}
+            onClick={onOAuthClick}
         />,
     ];
     return (

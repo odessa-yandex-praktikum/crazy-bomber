@@ -6,6 +6,7 @@ export const consts = {
         password: 'password',
         buttonOK: 'OK!',
         buttonSignUp: 'sign up',
+        buttonOAuth: 'Yandex',
     },
     signinPage: {
         email: 'email',
