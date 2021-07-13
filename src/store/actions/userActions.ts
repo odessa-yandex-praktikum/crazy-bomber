@@ -1,5 +1,12 @@
 import {History, LocationState} from 'history';
 import {Dispatch} from 'redux';
+import {updateTheme} from '../../components/theme-switcher';
+import {
+    getIDByTheme,
+    getUserTheme,
+    updateUserTheme,
+    writeUserTheme,
+} from '../../services/api/theme-api';
 import {
     apiSignIn,
     apiSignUp,
@@ -10,7 +17,7 @@ import {
     apiChangeProfileAvatar,
     getUserInfo,
 } from '../../services/api/user-api';
-import {UserActionTypes, User, UserData} from '../types/user';
+import {UserActionTypes, User, UserData, Nullable} from '../types/user';
 
 export const userActions = {
     getUser,
@@ -20,6 +27,7 @@ export const userActions = {
     changePassword,
     changeAvatar,
     logout,
+    changeTheme,
 };
 
 function register(formData: Data, history: History<LocationState>) {
@@ -30,7 +38,6 @@ function register(formData: Data, history: History<LocationState>) {
             .catch((error: Error) => {
                 throw error;
             })
-            .then((r: Response) => r.json())
             .then((data: UserData) => {
                 const user = {
                     id: data.id,
@@ -132,7 +139,6 @@ function login(formData: Data, history: History<LocationState>) {
             .catch((error: Error) => {
                 throw error;
             })
-            .then((r: Response) => r.json())
             .then((data: UserData) => {
                 const user = {
                     id: data.id,
@@ -280,4 +286,47 @@ function changeAvatar(formData: FormData) {
 function logout() {
     void apiLogout();
     return {type: UserActionTypes.LOGOUT};
+}
+
+function changeTheme(clickTheme: string, id: number) {
+    return (dispatch: Dispatch) => {
+        getIDByTheme(clickTheme)
+            .then((newTheme: {id: number; theme: string}) => {
+                getUserTheme(id)
+                    .then((oldThemeID: {theme_id: number; user_id: number}) => {
+                        if (oldThemeID.theme_id !== newTheme.id) {
+                            updateUserTheme({user_id: id, theme_id: newTheme.id}).catch((err) => {
+                                Error(err);
+                            });
+                            updateTheme(newTheme.theme);
+                            dispatch(success(newTheme.theme));
+                        }
+                    })
+                    .catch(() => {
+                        writeUserTheme({user_id: id, theme_id: newTheme.id}).catch((err) => {
+                            Error(err);
+                        });
+                        updateTheme(newTheme.theme);
+                        dispatch(success(newTheme.theme));
+                    });
+            })
+            .catch((error: Error) => {
+                dispatch(failure(error.message));
+                console.log(error);
+            });
+    };
+
+    function success(theme: Nullable<string>) {
+        return {
+            type: UserActionTypes.USER_CHANGE_THEME_SUCCESS,
+            theme: theme,
+        };
+    }
+
+    function failure(error: string) {
+        return {
+            type: UserActionTypes.USER_CHANGE_THEME_FAILURE,
+            error: error,
+        };
+    }
 }

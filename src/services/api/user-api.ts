@@ -1,4 +1,7 @@
+import {updateTheme} from '../../components/theme-switcher';
+import {UserData} from '../../store/types/user';
 import {processingRequest} from './common';
+import {getThemeById, getUserTheme} from './theme-api';
 
 export interface Data {
     avatar?: string;
@@ -25,7 +28,7 @@ const apiHost = {
     changePassword: 'user/password',
 };
 
-export function apiSignUp(formData: Data): Promise<Response> {
+export function apiSignUp(formData: Data): Promise<any> {
     return fetch(url + apiHost.signUp, {
         method: 'POST',
         credentials: 'include',
@@ -44,7 +47,7 @@ export function apiSignUp(formData: Data): Promise<Response> {
     }).then(getUserInfo);
 }
 
-export function apiSignIn(formData: Data): Promise<Response> {
+export function apiSignIn(formData: Data): Promise<any> {
     return fetch(url + apiHost.signIn, {
         method: 'POST',
         credentials: 'include',
@@ -64,7 +67,7 @@ export function apiLogout(): Promise<Response> {
     }).then((response) => processingRequest(response));
 }
 
-export function getUserInfo(): Promise<Response> {
+export function getUserInfo(): Promise<Response | void | UserData> {
     return fetch(url + apiHost.getUserInfo, {
         method: 'GET',
         credentials: 'include',
@@ -72,7 +75,21 @@ export function getUserInfo(): Promise<Response> {
         headers: {
             accept: 'application/json',
         },
-    }).then((response) => processingRequest(response));
+    })
+        .then((response) => processingRequest(response))
+        .then((r: Response) => r.json())
+        .then((user: UserData) => {
+            getUserTheme(user.id)
+                .then((ThemeId: any) => {
+                    getThemeById(ThemeId.theme_id).then((Theme: any) => {
+                        updateTheme(Theme.theme);
+                    });
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+            return user;
+        });
 }
 
 export function apiChangeProfile(formData: Data): Promise<Response> {
@@ -86,7 +103,6 @@ export function apiChangeProfile(formData: Data): Promise<Response> {
         body: JSON.stringify({
             first_name: formData.name,
             second_name: formData.name,
-            //display_name: formData.name.concat(' ').concat(formData.name),
             display_name: formData.name,
             login: formData.login,
             email: formData.email,

@@ -1,0 +1,45 @@
+.theme-switcher {
+    padding-bottom: 25px;
+    padding-right: 25px;
+}
+
+.theme-switcher__right-top {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: 5;
+}
+
+.theme-switcher__input {
+    background-size: cover;
+    width: 30px;
+    height: 30px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 30px;
+}
+
+.theme-switcher__green {
+    border: 3px solid var(--color-green);
+}
+
+.theme-switcher__green:checked {
+    border: 10px solid var(--color-green);
+}
+
+.theme-switcher__grey {
+    border: 3px solid var(--color-grey);
+}
+
+.theme-switcher__grey:checked {
+    border: 10px solid var(--color-grey);
+}
+
+.theme-switcher__red {
+    border: 3px solid var(--color-red);
+}
+
+.theme-switcher__red:checked {
+    border: 10px solid var(--color-red);
+}
