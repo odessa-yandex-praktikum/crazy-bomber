@@ -15,6 +15,7 @@ import {EValidationType} from '../../hooks/use-validation';
 import {Data} from '../../services/api/user-api';
 import {userActions} from '../../store/actions/userActions';
 import {useTypedSelector} from '../../store/hooks/useTypedSelector';
+import {ThemeSwitcher} from '../../components/theme-switcher';
 
 export default function Profile() {
     const pageTitle = consts.profilePage.pageTitle;
@@ -236,6 +237,7 @@ export default function Profile() {
                 </main>
             </div>
             <FullScreen position={EFullScreenPosition.RIGHT_TOP} />
+            <ThemeSwitcher />
         </div>
     );
 }

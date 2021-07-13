@@ -5,10 +5,14 @@
     --color-button-primary: #000000;
     --color-form-input: #000000;
     --color-form: rgba(174, 180, 189, 0.35);
+    --color-container: #aeb4bd;
     --color-games-title: #aeb4bd;
     --color-button-secondary: #aeb4bd;
     --color-button-shadow: #aeb4bd;
     --font-family: 'JollyLodger-Regular', cursive;
+    --color-green: rgba(93, 230, 71, 1);
+    --color-grey: rgba(174, 180, 189, 1);
+    --color-red: rgba(186, 0, 53, 1);
 }
 
 body {
@@ -112,4 +116,64 @@ body {
     font-size: 96px;
     text-shadow: var(--color-shadow) 2px 2px 0, var(--color-shadow) -2px -2px 0,
         var(--color-shadow) -2px 2px 0, var(--color-shadow) 2px -2px 0;
+}
+
+.container__theme-green {
+    background: rgba(93, 230, 71, 1);
+}
+.form__theme-green {
+    background: rgba(93, 230, 71, 0.35);
+}
+
+.container__theme-grey {
+    background: rgba(174, 180, 189, 1);
+}
+.form__theme-grey {
+    background: rgba(174, 180, 189, 0.35);
+}
+.container__theme-red {
+    background: rgba(186, 0, 53, 1);
+}
+.form__theme-red {
+    background: rgba(186, 0, 53, 0.35);
+}
+
+.container__theme-green {
+    background: rgba(93, 230, 71, 1);
+}
+.form__theme-green {
+    background: rgba(93, 230, 71, 0.35);
+}
+
+.container__theme-grey {
+    background: rgba(174, 180, 189, 1);
+}
+.form__theme-grey {
+    background: rgba(174, 180, 189, 0.35);
+}
+.container__theme-red {
+    background: rgba(186, 0, 53, 1);
+}
+.form__theme-red {
+    background: rgba(186, 0, 53, 0.35);
+}
+
+.container__theme-green {
+    background: rgba(93, 230, 71, 1);
+}
+.form__theme-green {
+    background: rgba(93, 230, 71, 0.35);
+}
+
+.container__theme-grey {
+    background: rgba(174, 180, 189, 1);
+}
+.form__theme-grey {
+    background: rgba(174, 180, 189, 0.35);
+}
+.container__theme-red {
+    background: rgba(186, 0, 53, 1);
+}
+.form__theme-red {
+    background: rgba(186, 0, 53, 0.35);
 }

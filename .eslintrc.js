@@ -14,7 +14,7 @@ module.exports = {
     ],
     parser: '@typescript-eslint/parser',
     parserOptions: {
-        project: 'tsconfig.json',
+        project: 'tsconfig.eslint.json',
         tsconfigRootDir: '.',
         ecmaFeatures: {
             jsx: true,
@@ -29,6 +29,7 @@ module.exports = {
         '@typescript-eslint/no-explicit-any': 0,
         '@typescript-eslint/no-this-alias': 0,
         '@typescript-eslint/no-empty-function': 0,
+        '@typescript-eslint/no-floating-promises': 0,
         'import-helpers/order-imports': [
             'warn',
             {

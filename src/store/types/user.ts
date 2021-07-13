@@ -9,6 +9,7 @@ export interface UserData {
     login: string;
     email: string;
     phone: string;
+    theme: string;
 }
 
 export interface User {
@@ -22,6 +23,7 @@ export interface User {
 export interface UserState {
     loggedIn: boolean;
     currentUser: Nullable<User>;
+    theme: Nullable<string>;
     error: Nullable<string>;
 }
 
@@ -36,11 +38,14 @@ export enum UserActionTypes {
     USER_CHANGE_AVATAR_SUCCESS = 'USER_CHANGE_AVATAR_SUCCESS',
     USER_CHANGE_AVATAR_FAILURE = 'USER_CHANGE_AVATAR_FAILURE',
     LOGOUT = 'LOGOUT',
+    USER_CHANGE_THEME_SUCCESS = 'USER_CHANGE_THEME_SUCCESS',
+    USER_CHANGE_THEME_FAILURE = 'USER_CHANGE_THEME_FAILURE',
 }
 
 export type UserAction = {
     type: string;
     loggingIn: boolean;
     currentUser: Nullable<User>;
+    theme: Nullable<string>;
     error: Nullable<string>;
 };
