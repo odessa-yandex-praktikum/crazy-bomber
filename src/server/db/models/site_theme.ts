@@ -27,4 +27,3 @@ export class SiteTheme extends Model<SiteTheme> {
     @Column(DataType.STRING)
     theme: string;
 }
-
