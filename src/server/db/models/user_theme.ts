@@ -6,7 +6,8 @@ import {
     ForeignKey,
     Model,
     PrimaryKey,
-    Table, Unique,
+    Table,
+    Unique,
 } from 'sequelize-typescript';
 import {SiteTheme} from './site_theme';
 

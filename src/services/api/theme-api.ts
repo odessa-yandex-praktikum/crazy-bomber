@@ -3,7 +3,8 @@ export interface UserThemeData {
     theme_id: number;
 }
 
-const url = 'http://localhost:4400';
+const url = 'http://localhost:3000';
+
 const apiHost = {
     getUserTheme: '/get-user-theme',
     getTheme: '/get-theme',
