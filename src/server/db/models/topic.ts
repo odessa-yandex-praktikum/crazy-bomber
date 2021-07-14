@@ -3,13 +3,14 @@ import {
     AutoIncrement,
     Column,
     DataType,
-    HasOne,
+    Default,
+    ForeignKey,
     Index,
     Model,
     PrimaryKey,
     Table,
 } from 'sequelize-typescript';
-import Message from './message';
+import User from './user';
 
 @Table({
     timestamps: true,
@@ -22,13 +23,23 @@ class Topic extends Model<Topic> {
     @Column(DataType.INTEGER)
     id: number;
 
+    @ForeignKey(() => User)
+    @AllowNull(false)
+    @Column(DataType.INTEGER)
+    author_id: number;
+
     @Index
     @AllowNull(false)
     @Column(DataType.STRING)
     title: string;
 
-    @HasOne(() => Message, 'topic_id')
-    message: Message;
+    @AllowNull(false)
+    @Column(DataType.STRING)
+    text: string;
+
+    @Default(0)
+    @Column(DataType.INTEGER)
+    likes: number;
 }
 
 export default Topic;
