@@ -21,59 +21,98 @@ export const getThemeHandler = async (req: Request, res: Response): Promise<void
         return SiteTheme.findAll({});
     };
     const themes = await find();
-    res.send(themes);
-};
-
-export const writeThemeHandler = async (req: Request, res: Response): Promise<void> => {
-    try {
-        await UserTheme.create(req.body);
-        res.send('ok');
-    } catch (err) {
-        res.status(500).send('db error');
+    console.log(themes);
+    if (themes) {
+        res.send(themes);
+    } else {
+        res.status(404).send('not found');
     }
-};
 
-export const updateThemeHandler = async (req: Request, res: Response): Promise<void> => {
-    try {
-        const user = await UserTheme.findOne({
-            where: {user_id: req.body.user_id},
-        });
-        user.theme_id = req.body.theme_id;
-        await user.save();
-        res.send('ok');
-    } catch (err) {
-        res.status(500).send('db error');
-    }
 };
 
 export const getUserTheme = async (req: Request, res: Response): Promise<void> => {
     if (req.query.user_id && typeof req.query.user_id !== 'string') {
-        res.status(500).send('wrong params');
-        return;
+        throw Error('wrong params');
     }
 
-    const find: () => Promise<string | undefined | Response> = () => {
-        return UserTheme.findOne({
+    const find: () => Promise<UserTheme | null | UserTheme[] > | undefined = () => {
+        if (req.query.user_id) {
+            return UserTheme.findOne({
             where: {
-                user_id: req.query.user_id,
+                user_id: Number(req.query.user_id),
             },
-        }).then((theme) => theme?.theme_id);
+        }
+            )}
     };
 
-    try {
         const theme_id = await find();
-        res.send({theme_id: theme_id});
-    } catch (e) {
-        res.status(404).send('not found');
+        if (theme_id){
+            res.send( theme_id);
+        } else{
+            res.status(404).send('not found');
+        }
+
+};
+
+export const createSiteTheme = async (): Promise<void> => {
+    try {
+        await SiteTheme.findOrCreate({
+            where: { theme: 'RED' },
+            defaults: {
+                theme: 'RED',
+            }
+        });
+        await SiteTheme.findOrCreate({
+            where: { theme: 'GREY' },
+            defaults: {
+                theme: 'GREY',
+            }
+        });
+        await SiteTheme.findOrCreate({
+            where: { theme: 'GREEN' },
+            defaults: {
+                theme: 'GREEN',
+            }
+        });
+    } catch (err) {
+        Error('db error');
+    }
+};
+
+export const updateThemeHandler = async (req: Request, res: Response): Promise<void> => {
+    const updated: () => Promise<[number, UserTheme[]]> | undefined = () => {
+        console.log(req.body.theme_id + ' ' + req.body.user_id)
+        if (req.body.user_id) {
+            return UserTheme.update(
+                {
+                    theme_id: req.body.theme_id
+                },
+                {
+                    where: {user_id: req.body.user_id},
+                }
+            );}
+    };
+    try {await updated();
+        res.send('ok');}
+        catch (err) {
+        res.status(500).send('db error');
     }
 };
 
 export const writeNewTheme = async (req: Request, res: Response): Promise<void> => {
-    console.log(req.body);
     try {
-        await SiteTheme.create(req.body as any);
+        await SiteTheme.create(req.body);
+        res.send('ok');
     } catch (err) {
-        res.send('db error');
+        res.status(500).send('db error');
     }
-    res.send('ok');
+};
+
+export const writeThemeHandler = async (req: Request, res: Response): Promise<void> => {
+    try {
+        await UserTheme.create({user_id: req.body.user_id, theme_id: req.body.theme_id} as UserTheme);
+        res.send('ok');
+    } catch (err) {
+        res.status(500).send('db error');
+    }
 };

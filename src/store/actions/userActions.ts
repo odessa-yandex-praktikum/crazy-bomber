@@ -19,6 +19,7 @@ import {
 } from '../../services/api/user-api';
 import {UserActionTypes, User, UserData, Nullable} from '../types/user';
 
+
 export const userActions = {
     getUser,
     register,
@@ -88,7 +89,6 @@ function getUser(history: History<LocationState>): (dispatch: Dispatch) => void 
             .catch((error: Error) => {
                 throw error;
             })
-            .then((r: Response) => r.json())
             .then((data: UserData) => {
                 const user = {
                     id: data.id,

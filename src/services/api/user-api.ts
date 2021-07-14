@@ -78,8 +78,8 @@ export function getUserInfo(): Promise<Response | void | UserData> {
     })
         .then((response) => processingRequest(response))
         .then((r: Response) => r.json())
-        .then((user: UserData) => {
-            getUserTheme(user.id)
+        .then(async (user: UserData) => {
+            await getUserTheme(user.id)
                 .then((ThemeId: any) => {
                     getThemeById(ThemeId.theme_id).then((Theme: any) => {
                         updateTheme(Theme.theme);

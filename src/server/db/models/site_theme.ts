@@ -21,9 +21,9 @@ export class SiteTheme extends Model<SiteTheme> {
     @Column(DataType.INTEGER)
     id: number;
 
-    @Index
     @AllowNull(false)
     @Unique
+    @Index
     @Column(DataType.STRING)
     theme: string;
 }
