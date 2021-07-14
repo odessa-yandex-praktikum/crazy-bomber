@@ -25,10 +25,10 @@ export class UserTheme extends Model<UserTheme> {
     @PrimaryKey
     @Unique
     @Column(DataType.INTEGER)
-    user_id: string;
+    user_id: number;
 
     @ForeignKey(() => SiteTheme)
     @AllowNull(false)
     @Column(DataType.INTEGER)
-    theme_id: string;
+    theme_id: number;
 }

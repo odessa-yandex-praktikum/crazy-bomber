@@ -1,6 +1,6 @@
 import {History, LocationState} from 'history';
 import {Dispatch} from 'redux';
-import {updateTheme} from '../../components/theme-switcher';
+import {updateTheme} from 'Components/theme-switcher';
 import {
     getIDByTheme,
     getUserTheme,
@@ -88,7 +88,6 @@ function getUser(history: History<LocationState>): (dispatch: Dispatch) => void 
             .catch((error: Error) => {
                 throw error;
             })
-            .then((r: Response) => r.json())
             .then((data: UserData) => {
                 const user = {
                     id: data.id,
