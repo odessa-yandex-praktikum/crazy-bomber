@@ -1,7 +1,9 @@
 @import '../../common.css';
 
 .login-signin-page {
-    background: var(--color-background);
+    background-color: var(--color-background);
+    background-image: url('../../assets/images/bomber.png'), url('../../assets/images/planet.png');
+    background-size: cover;
     width: 100%;
     height: 100vh;
     display: flex;

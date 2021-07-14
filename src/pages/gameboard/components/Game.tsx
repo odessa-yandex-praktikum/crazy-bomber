@@ -1,10 +1,10 @@
+import soundBackground from 'assets/audio/background.mp3';
+import {EFullScreenPosition, FullScreen} from 'components/full-screen';
 import * as React from 'react';
 import {useEffect, useRef, useState} from 'react';
 import './Game.css';
 import {useDispatch} from 'react-redux';
-import {useHistory} from 'react-router';
-import soundBackground from '../../../assets/audio/background.mp3';
-import {EFullScreenPosition, FullScreen} from '../../../components/full-screen';
+import {useHistory} from 'react-router-dom';
 import {useAnimationFrame} from '../../../hooks/use-animation-frame';
 import {useAudio} from '../../../hooks/use-audio';
 import {leaderboardActions} from '../../../store/actions/leaderboardActions';

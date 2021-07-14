@@ -104,3 +104,16 @@ export function intersect(rect1: IRectParams, rect2: IRectParams) {
         )
     );
 }
+
+/**
+ * Функция, проверяющая, выполняется ли код на сервере или на клиенте.
+ */
+export const isServer = () =>
+    !(typeof window !== 'undefined' && window.document && window.document.createElement);
+
+/**
+ * Геттер-функция Документа DOM'а.
+ */
+export const getBrowserDocument = (): Document | undefined => {
+    return isServer() ? undefined : window?.document;
+};

@@ -40,7 +40,6 @@ function register(formData: Data, history: History<LocationState>) {
                     email: data.email,
                 };
                 dispatch(success(user));
-                localStorage.setItem('user', JSON.stringify(user));
                 history.push('start');
             })
             .catch((error: Error) => {
@@ -92,7 +91,6 @@ function getUser(history: History<LocationState>): (dispatch: Dispatch) => void 
                     email: data.email,
                 };
                 dispatch(success(user));
-                localStorage.setItem('user', JSON.stringify(user));
                 history.push('/start');
             })
             .catch((error: Error) => {
@@ -144,7 +142,6 @@ function login(formData: Data, history: History<LocationState>) {
                     email: data.email,
                 };
                 dispatch(success(user));
-                localStorage.setItem('user', JSON.stringify(user));
                 history.push('start');
             })
             .catch((error: Error) => {
@@ -197,7 +194,6 @@ function changeProfile(formData: Data) {
                     email: data.email,
                 };
                 dispatch(success(user));
-                localStorage.setItem('user', JSON.stringify(user));
             })
             .catch((error: Error) => {
                 dispatch(failure(error.message));
@@ -259,7 +255,6 @@ function changeAvatar(formData: FormData) {
                     email: data.email,
                 };
                 dispatch(success(user));
-                localStorage.setItem('user', JSON.stringify(user));
             })
             .catch((error: Error) => {
                 dispatch(failure(error.message));
@@ -284,6 +279,5 @@ function changeAvatar(formData: FormData) {
 
 function logout() {
     void apiLogout();
-    localStorage.removeItem('user');
     return {type: UserActionTypes.LOGOUT};
 }
