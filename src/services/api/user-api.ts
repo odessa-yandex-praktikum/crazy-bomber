@@ -1,7 +1,4 @@
-import {updateTheme} from '../../components/theme-switcher';
-import {UserData} from '../../store/types/user';
-import {processingRequest} from './common';
-import {getThemeById, getUserTheme} from './theme-api';
+import {getFetchToJson, processingRequest} from './common';
 
 export interface Data {
     avatar?: string;
@@ -28,7 +25,7 @@ const apiHost = {
     changePassword: 'user/password',
 };
 
-export function apiSignUp(formData: Data): Promise<any> {
+export function apiSignUp(formData: Data): Promise<{}> {
     return fetch(url + apiHost.signUp, {
         method: 'POST',
         credentials: 'include',
@@ -47,7 +44,7 @@ export function apiSignUp(formData: Data): Promise<any> {
     }).then(getUserInfo);
 }
 
-export function apiSignIn(formData: Data): Promise<any> {
+export function apiSignIn(formData: Data): Promise<{}> {
     return fetch(url + apiHost.signIn, {
         method: 'POST',
         credentials: 'include',
@@ -67,29 +64,8 @@ export function apiLogout(): Promise<Response> {
     }).then((response) => processingRequest(response));
 }
 
-export function getUserInfo(): Promise<Response | void | UserData> {
-    return fetch(url + apiHost.getUserInfo, {
-        method: 'GET',
-        credentials: 'include',
-
-        headers: {
-            accept: 'application/json',
-        },
-    })
-        .then((response) => processingRequest(response))
-        .then((r: Response) => r.json())
-        .then(async (user: UserData) => {
-            await getUserTheme(user.id)
-                .then((ThemeId: any) => {
-                    getThemeById(ThemeId.theme_id).then((Theme: any) => {
-                        updateTheme(Theme.theme);
-                    });
-                })
-                .catch((err) => {
-                    console.log(err);
-                });
-            return user;
-        });
+export function getUserInfo(): Promise<{}> {
+    return getFetchToJson(url + apiHost.getUserInfo);
 }
 
 export function apiChangeProfile(formData: Data): Promise<Response> {

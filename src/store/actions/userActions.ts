@@ -1,24 +1,23 @@
 import {History, LocationState} from 'history';
 import {Dispatch} from 'redux';
-import {updateTheme} from '../../components/theme-switcher';
 import {
     getIDByTheme,
+    getThemeById,
     getUserTheme,
     updateUserTheme,
     writeUserTheme,
 } from '../../services/api/theme-api';
 import {
+    apiChangePassword,
+    apiChangeProfile,
+    apiChangeProfileAvatar,
+    apiLogout,
     apiSignIn,
     apiSignUp,
-    apiLogout,
     Data,
-    apiChangeProfile,
-    apiChangePassword,
-    apiChangeProfileAvatar,
     getUserInfo,
 } from '../../services/api/user-api';
-import {UserActionTypes, User, UserData, Nullable} from '../types/user';
-
+import {Nullable, User, UserActionTypes, UserData} from '../types/user';
 
 export const userActions = {
     getUser,
@@ -34,7 +33,6 @@ export const userActions = {
 function register(formData: Data, history: History<LocationState>) {
     return (dispatch: Dispatch) => {
         dispatch(request());
-
         apiSignUp(formData)
             .catch((error: Error) => {
                 throw error;
@@ -48,6 +46,10 @@ function register(formData: Data, history: History<LocationState>) {
                     email: data.email,
                 };
                 dispatch(success(user));
+                return user;
+            })
+            .then((user) => getUserThemeById(user.id, dispatch))
+            .then(() => {
                 history.push('start');
             })
             .catch((error: Error) => {
@@ -98,7 +100,11 @@ function getUser(history: History<LocationState>): (dispatch: Dispatch) => void 
                     email: data.email,
                 };
                 dispatch(success(user));
-                history.push('/start');
+                return user;
+            })
+            .then((user) => getUserThemeById(user.id, dispatch))
+            .then(() => {
+                history.push('start');
             })
             .catch((error: Error) => {
                 dispatch(failure(error.message));
@@ -148,6 +154,10 @@ function login(formData: Data, history: History<LocationState>) {
                     email: data.email,
                 };
                 dispatch(success(user));
+                return user;
+            })
+            .then((user) => getUserThemeById(user.id, dispatch))
+            .then(() => {
                 history.push('start');
             })
             .catch((error: Error) => {
@@ -298,7 +308,6 @@ function changeTheme(clickTheme: string, id: number) {
                             updateUserTheme({user_id: id, theme_id: newTheme.id}).catch((err) => {
                                 Error(err);
                             });
-                            updateTheme(newTheme.theme);
                             dispatch(success(newTheme.theme));
                         }
                     })
@@ -306,7 +315,6 @@ function changeTheme(clickTheme: string, id: number) {
                         writeUserTheme({user_id: id, theme_id: newTheme.id}).catch((err) => {
                             Error(err);
                         });
-                        updateTheme(newTheme.theme);
                         dispatch(success(newTheme.theme));
                     });
             })
@@ -318,15 +326,30 @@ function changeTheme(clickTheme: string, id: number) {
 
     function success(theme: Nullable<string>) {
         return {
-            type: UserActionTypes.USER_CHANGE_THEME_SUCCESS,
+            type: UserActionTypes.USER_SET_THEME_SUCCESS,
             theme: theme,
         };
     }
 
     function failure(error: string) {
         return {
-            type: UserActionTypes.USER_CHANGE_THEME_FAILURE,
+            type: UserActionTypes.USER_SET_THEME_FAILURE,
             error: error,
         };
     }
+}
+
+function getUserThemeById(UserId: number, dispatch: Dispatch) {
+    return getUserTheme(UserId).then((ThemeId: {theme_id: number; id: number; user_id: number}) => {
+        getThemeById(ThemeId.theme_id)
+            .then((Theme: {id: number; theme: string}) => {
+                dispatch({
+                    type: UserActionTypes.USER_SET_THEME_SUCCESS,
+                    theme: Theme.theme,
+                });
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    });
 }

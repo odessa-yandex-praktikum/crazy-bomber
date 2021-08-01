@@ -11,12 +11,10 @@ const redirect =
 
 export function yandexLogin() {
     if (!isServer()) {
-        void apiGetServiceID()
-            .then((response) => response?.json())
-            .then((response: Promise<string>) => {
-                const serviceId = response['service_id'] as string;
-                location.assign(url + serviceId + '&redirect_uri=' + redirect);
-            });
+        void apiGetServiceID().then((response) => {
+            const serviceId = response['service_id'] as string;
+            location.assign(url + serviceId + '&redirect_uri=' + redirect);
+        });
     }
 }
 

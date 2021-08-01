@@ -1,24 +1,24 @@
 import {UserActionTypes, Nullable, User, UserState, UserAction} from '../types/user';
 
-const currentUser: Nullable<User> = null; // TODO. Добавить middleware на сервере для проверки пользователя.
+const currentUser: Nullable<User> = {}; // TODO. Добавить middleware на сервере для проверки пользователя.
 export const initialState: UserState = currentUser
     ? {
           loggedIn: true,
           currentUser: currentUser,
           error: '',
-          theme: '',
+          theme: undefined,
       }
     : {
           loggedIn: false,
           currentUser: null,
           error: '',
-          theme: '',
+          theme: undefined,
       };
 
 export const userReducer = (state = initialState, action: UserAction): UserState => {
     switch (action.type) {
         case UserActionTypes.USER_AUTH_REQUEST:
-            return {loggedIn: false, currentUser: null, error: '', theme: null};
+            return {loggedIn: false, currentUser: null, error: '', theme: undefined};
         case UserActionTypes.USER_AUTH_SUCCESS:
             return {
                 loggedIn: true,
@@ -27,7 +27,7 @@ export const userReducer = (state = initialState, action: UserAction): UserState
                 theme: action.theme,
             };
         case UserActionTypes.USER_AUTH_FAILURE:
-            return {loggedIn: false, currentUser: null, error: action.error, theme: null};
+            return {loggedIn: false, currentUser: null, error: action.error, theme: undefined};
         case UserActionTypes.USER_CHANGE_PROFILE_SUCCESS:
             return {...state, currentUser: action.currentUser};
         case UserActionTypes.USER_CHANGE_PROFILE_FAILURE:
@@ -41,10 +41,10 @@ export const userReducer = (state = initialState, action: UserAction): UserState
         case UserActionTypes.USER_CHANGE_AVATAR_FAILURE:
             return {...state, error: action.error};
         case UserActionTypes.LOGOUT:
-            return {loggedIn: false, currentUser: null, error: '', theme: null};
-        case UserActionTypes.USER_CHANGE_THEME_SUCCESS:
+            return {loggedIn: false, currentUser: null, error: '', theme: undefined};
+        case UserActionTypes.USER_SET_THEME_SUCCESS:
             return {...state, theme: action.theme};
-        case UserActionTypes.USER_CHANGE_THEME_FAILURE:
+        case UserActionTypes.USER_SET_THEME_FAILURE:
             return {...state, error: action.error};
         default:
             return state;

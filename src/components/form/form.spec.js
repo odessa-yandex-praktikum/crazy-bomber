@@ -6,7 +6,7 @@ it('renders correctly', () => {
     const tree = renderer
         .create(
             <Form
-                classForm={'signin__form'}
+                classForm={`signin__form form__theme-${theme}`}
                 arrayInputs={[<input />]}
                 arrayButtons={[<button />, <button />]}
             />

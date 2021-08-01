@@ -1,3 +1,5 @@
+import {getFetchToJson} from './common';
+
 export interface UserThemeData {
     user_id: number;
     theme_id: number;
@@ -12,36 +14,30 @@ const apiHost = {
     updateUserTheme: '/update-user-theme',
 };
 
-export function getUserTheme(userID: number): Promise<any> {
-    return fetch(url + apiHost.getUserTheme + '?user_id=' + userID, {
-        method: 'GET',
-        credentials: 'include',
-        headers: {
-            accept: 'application/json',
-        },
-    }).then((r: Response) => r.json());
+/**
+ * Получаем Id темы user из таблицы UserTheme.
+ */
+export function getUserTheme(userID: number): Promise<{}> {
+    return getFetchToJson(url + apiHost.getUserTheme + '?user_id=' + userID);
 }
 
-export function getThemeById(themeID: number): Promise<any> {
-    return fetch(url + apiHost.getTheme + '?id=' + themeID, {
-        method: 'GET',
-        credentials: 'include',
-        headers: {
-            accept: 'application/json',
-        },
-    }).then((r: Response) => r.json());
+/**
+ * Получаем название темы user из таблицы SiteTheme по id темы.
+ */
+export function getThemeById(themeID: number): Promise<{}> {
+    return getFetchToJson(url + apiHost.getTheme + '?id=' + themeID);
 }
 
-export function getIDByTheme(theme: string): Promise<any> {
-    return fetch(url + apiHost.getTheme + '?theme=' + theme, {
-        method: 'GET',
-        credentials: 'include',
-        headers: {
-            accept: 'application/json',
-        },
-    }).then((r: Response) => r.json());
+/**
+ * Получаем id темы user из таблицы SiteTheme по названию темы.
+ */
+export function getIDByTheme(theme: string): Promise<{}> {
+    return getFetchToJson(url + apiHost.getTheme + '?theme=' + theme);
 }
 
+/**
+ * Записываем id темы и id user в таблицу UserTheme.
+ */
 export function writeUserTheme(formData: UserThemeData): Promise<Response> {
     return fetch(url + apiHost.writeUserTheme, {
         method: 'POST',
@@ -57,6 +53,9 @@ export function writeUserTheme(formData: UserThemeData): Promise<Response> {
     });
 }
 
+/**
+ * Обновляем для user id темы в таблице UserTheme.
+ */
 export function updateUserTheme(formData: UserThemeData): Promise<Response> {
     return fetch(url + apiHost.updateUserTheme, {
         method: 'POST',

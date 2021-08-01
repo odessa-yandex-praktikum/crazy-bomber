@@ -23,6 +23,7 @@ export default function Profile() {
     const navLinkForum = consts.navigation.navLinkForum;
     const navLinkLeaderboard = consts.navigation.navLinkLeaderboard;
     const navLinkLogout = consts.navigation.navLinkLogout;
+    let {theme = 'GREY'} = useTypedSelector((state) => state.user);
 
     const dispatch = useDispatch();
     const currentUser = useTypedSelector((state) => state.user.currentUser!);
@@ -203,7 +204,7 @@ export default function Profile() {
                     <h2 className="page-title">{pageTitle}</h2>
                 </div>
                 <main className="container__page-content">
-                    <div className="profile-page__container">
+                    <div className={`profile-page__container container__theme-${theme}`}>
                         <div className="profile-page__user-info">
                             <div className="profile-page__common-info">
                                 <div className="profile-page__avatar-wrapper">
@@ -229,7 +230,7 @@ export default function Profile() {
                             </div>
                         </div>
                         <Form
-                            classForm="profile-page__form"
+                            classForm={`profile-page__form form__theme-${theme}`}
                             arrayInputs={arrayInputs}
                             arrayButtons={arrayButtons}
                         />

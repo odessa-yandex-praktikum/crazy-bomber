@@ -16,7 +16,6 @@
 }
 
 .forum-page__container {
-    background: var(--color-container);
     opacity: 0.45;
     color: #000;
     width: 600px;

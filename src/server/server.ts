@@ -40,7 +40,7 @@ app.use(bodyParser.json());
     await sequelize.sync();
     app.listen(PORT, function () {
         console.log(`Open http://localhost:${PORT}!`);
-    })
+    });
 })();
 
 app.get('/get-theme', getThemeHandler);
@@ -58,7 +58,4 @@ app.use(express.static(path.posix.resolve('dist')));
  */
 app.get('/*', getWebpackMiddlewares(mode));
 
-
-
 app.disable('x-powered-by').enable('trust proxy').use(cookieParser()).use(router);
-

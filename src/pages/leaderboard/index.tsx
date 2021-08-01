@@ -18,6 +18,7 @@ export default function LeaderboardPage() {
     const navLinkProfile = consts.navigation.navLinkProfile;
     const navLinkForum = consts.navigation.navLinkForum;
     const navLinkLogout = consts.navigation.navLinkLogout;
+    let {theme = 'GREY'} = useTypedSelector((state) => state.user);
 
     const navigationItems = [navLinkStart, navLinkProfile, navLinkForum, navLinkLogout];
     const {gameResultsData, error} = useTypedSelector((state) => state.leaderboard);
@@ -39,7 +40,7 @@ export default function LeaderboardPage() {
                     <h2 className="page-title">{pageTitle}</h2>
                 </div>
                 <main className="container__page-content">
-                    <div className="leaderboard-page__table">
+                    <div className={`leaderboard-page__table container__theme-${theme}`}>
                         <div className="leaderboard-page__table-grid">
                             <span className="leaderboard-page__table-col" />
                             <span className="leaderboard-page__table-col" />

@@ -8,6 +8,7 @@ import React from 'react';
 import {consts} from '../../consts';
 import {discussions} from '../../testdata/ForumData';
 import {sortDescending} from '../../utils/Utils';
+import {useTypedSelector} from '../../store/hooks/useTypedSelector';
 
 export default function Forum() {
     const pageTitle = consts.forumPage.pageTitle;
@@ -18,7 +19,7 @@ export default function Forum() {
     const navLinkProfile = consts.navigation.navLinkProfile;
     const navLinkLeaderboard = consts.navigation.navLinkLeaderboard;
     const navLinkLogout = consts.navigation.navLinkLogout;
-
+    let {theme = 'GREY'} = useTypedSelector((state) => state.user);
     //TODO: задачи для реализации функционала форума: добавление новой темы, показ предыдущих, следующих тем и сообщений, поиск по теме
     // const [disabledPreviousBtn, setDisabledPreviousBtn] = useState(true);
     // const [disabledNextBtn, setDisabledNextBtn] = useState(false);
@@ -63,7 +64,7 @@ export default function Forum() {
                     <h2 className="page-title">{pageTitle}</h2>
                 </div>
                 <main className="container__page-content">
-                    <div className="forum-page__container">
+                    <div className={`forum-page__container container__theme-${theme}`}>
                         <div className="forum-page__add-button">{createTopicButton}</div>
                         <ul className="forum-page__discussions-container">
                             {sortDescending(discussions).map((discussion) => (

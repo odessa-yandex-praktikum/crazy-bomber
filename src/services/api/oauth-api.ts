@@ -1,4 +1,4 @@
-import {processingRequest} from './common';
+import {getFetchToJson, processingRequest} from './common';
 
 const url = 'https://ya-praktikum.tech/api/v2/';
 const apiHost = {
@@ -6,14 +6,8 @@ const apiHost = {
     signInWithYandex: 'oauth/yandex',
 };
 
-export function apiGetServiceID(): Promise<Response> {
-    return fetch(url + apiHost.getServiceID, {
-        method: 'GET',
-        credentials: 'include',
-        headers: {
-            accept: 'application/json',
-        },
-    }).then((response) => processingRequest(response));
+export function apiGetServiceID(): Promise<{}> {
+    return getFetchToJson(url + apiHost.getServiceID);
 }
 
 export function apiSignInWithYandex(code: string): Promise<Response> {
@@ -30,5 +24,3 @@ export function apiSignInWithYandex(code: string): Promise<Response> {
         }),
     }).then((response) => processingRequest(response));
 }
-
-

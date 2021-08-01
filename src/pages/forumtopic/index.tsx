@@ -11,6 +11,7 @@ import {RouteComponentProps} from 'react-router-dom';
 import {consts} from '../../consts';
 import {discussions} from '../../testdata/ForumData';
 import {Discussion} from '../../utils/Utils';
+import {useTypedSelector} from '../../store/hooks/useTypedSelector';
 
 type TParams = {id: string};
 
@@ -23,6 +24,7 @@ export default function ForumTopic({match}: RouteComponentProps<TParams>) {
     const navLinkProfile = consts.navigation.navLinkProfile;
     const navLinkLeaderboard = consts.navigation.navLinkLeaderboard;
     const navLinkLogout = consts.navigation.navLinkLogout;
+    let {theme = 'GREY'} = useTypedSelector((state) => state.user);
 
     const previousNextButtons = [
         <Button
@@ -66,7 +68,7 @@ export default function ForumTopic({match}: RouteComponentProps<TParams>) {
                     <h2 className="page-title">{pageTitle}</h2>
                 </div>
                 <main className="container__page-content">
-                    <div className="forum-page__container">
+                    <div className={`forum-page__container container__theme-${theme}`}>
                         <p className="forum-page_topic-title">{topic}</p>
                         <div className="forum-page__topic">
                             <ul className="forum-page__item-list">
@@ -75,7 +77,10 @@ export default function ForumTopic({match}: RouteComponentProps<TParams>) {
                                 ))}
                             </ul>
                             <div className="forum-page_topic-footer">
-                                <Form classForm="forum-page__form" arrayInputs={arrayInputs} />
+                                <Form
+                                    classForm={`forum-page__form form__theme-${theme}`}
+                                    arrayInputs={arrayInputs}
+                                />
                                 <div className="forum-page__buttons-container">
                                     {previousNextButtons}
                                 </div>

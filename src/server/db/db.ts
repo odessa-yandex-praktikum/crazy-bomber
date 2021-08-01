@@ -4,7 +4,7 @@ import {SiteTheme} from './models/site_theme';
 import Topic from './models/topic';
 import User from './models/user';
 import {UserTheme} from './models/user_theme';
-import {createSiteTheme} from '../controllers/theme';
+import {createSiteTheme} from './pre-filling-theme';
 
 const sequelizeOptions: SequelizeOptions = {
     username: 'postgres',

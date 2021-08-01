@@ -20,6 +20,7 @@ export default function Login() {
     const dispatch = useDispatch();
     const errorMessage = useTypedSelector((state) => state.user.error);
     const [loginError, setLoginError] = useState(errorMessage);
+    let {theme = 'GREY'} = useTypedSelector((state) => state.user);
 
     const login = useInput('', [
         {type: EValidationType.REQUIRED, value: true},
@@ -105,7 +106,7 @@ export default function Login() {
             </div>
             <div className="container__form">
                 <Form
-                    classForm="login__form"
+                    classForm={`login__form form__theme-${theme}`}
                     arrayInputs={arrayInputs}
                     arrayButtons={arrayButtons}
                 />
