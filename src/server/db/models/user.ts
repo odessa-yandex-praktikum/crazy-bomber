@@ -6,6 +6,7 @@ import {
     Model,
     PrimaryKey,
     Table,
+    Unique,
 } from 'sequelize-typescript';
 
 @Table({
@@ -15,11 +16,13 @@ import {
 })
 class User extends Model<User> {
     @AutoIncrement
+    @Column(DataType.INTEGER)
+    id: number;
+
+    @AllowNull(false)
     @PrimaryKey
-    @Column({
-        type: DataType.INTEGER,
-        field: 'id',
-    })
+    @Unique
+    @Column(DataType.INTEGER)
     user_id: number;
 
     @AllowNull(false)

@@ -1,16 +1,15 @@
 import {
     AllowNull,
     AutoIncrement,
-    BelongsTo,
     Column,
     DataType,
-    Default,
-    HasMany,
+    ForeignKey,
     Index,
     Model,
     PrimaryKey,
     Table,
 } from 'sequelize-typescript';
+import Topic from './topic';
 import User from './user';
 
 @Table({
@@ -25,19 +24,19 @@ class Message extends Model<Message> {
     id: number;
 
     @Index
+    @ForeignKey(() => Topic)
+    @AllowNull(false)
+    @Column(DataType.INTEGER)
+    topic_id: number;
+
+    @ForeignKey(() => User)
+    @AllowNull(false)
+    @Column(DataType.INTEGER)
+    author_id: number;
+
     @AllowNull(false)
     @Column(DataType.STRING)
     text: string;
-
-    @Default(0)
-    @Column(DataType.INTEGER)
-    likes: number;
-
-    @HasMany(() => Message, 'parent_id')
-    reply: Message;
-
-    @BelongsTo(() => User, 'user_id')
-    author: User;
 }
 
 export default Message;

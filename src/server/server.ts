@@ -4,6 +4,7 @@ import cors from 'cors';
 import * as express from 'express';
 import {Express, Router} from 'express';
 import * as path from 'path';
+import {forumController} from './controllers/forum';
 import {
     getThemeHandler,
     getUserTheme,
@@ -26,6 +27,7 @@ console.log('[server started in mode]: ', mode);
 const app: Express = express();
 const router: Router = Router();
 const PORT = 3000;
+const forumService = forumController();
 
 app.use(
     cors({
@@ -48,6 +50,15 @@ app.post('/write-user-theme', writeThemeHandler);
 app.post('/update-user-theme', updateThemeHandler);
 app.get('/get-user-theme', getUserTheme);
 app.get('/write-new-theme', writeNewTheme);
+
+app.get('/forum', forumService.getAllTopics);
+app.get('/forum/topic/:id', forumService.getTopic);
+app.post('/forum', forumService.addTopic);
+app.post('/forum/topic/:id/like', forumService.addTopicLike);
+app.post('/forum/topic/:id/reply', forumService.replyToTopic);
+app.get('/forum/topic/:id/messages', forumService.getAllMessagesForTopic);
+
+
 /**
  * Отдаём статику приложения.
  */
