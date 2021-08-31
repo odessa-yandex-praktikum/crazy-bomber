@@ -1,4 +1,4 @@
-FROM jelastic/nodejs:14.17.5-npm
+FROM node:14-alpine
 WORKDIR /opt/bomber
 COPY . .
 RUN npm ci
