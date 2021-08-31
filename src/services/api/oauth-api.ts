@@ -2,7 +2,7 @@ import {getFetchToJson, processingRequest} from './common';
 
 const url = 'https://ya-praktikum.tech/api/v2/';
 const apiHost = {
-    getServiceID: 'oauth/yandex/service-id?redirect_uri=http://localhost:3000',
+    getServiceID: 'oauth/yandex/service-id?redirect_uri=https://odessa-crazyboomber-5.ya-praktikum.tech',
     signInWithYandex: 'oauth/yandex',
 };
 
@@ -20,7 +20,7 @@ export function apiSignInWithYandex(code: string): Promise<Response> {
         },
         body: JSON.stringify({
             code: code,
-            redirect_uri:  process.env.NODE_ENV !== 'production' ? 'http://localhost:3000' : 'http://localhost:3000',
+            redirect_uri:  process.env.NODE_ENV !== 'production' ? 'http://localhost:3000' : 'https://odessa-crazyboomber-5.ya-praktikum.tech',
         }),
     }).then((response) => processingRequest(response));
 }
