@@ -348,8 +348,6 @@ function getUserThemeById(UserId: number, dispatch: Dispatch) {
                     theme: Theme.theme,
                 });
             })
-            .catch((err) => {
-                console.log(err);
-            });
-    });
+            .catch(() => {});
+    }).catch(() => {});
 }

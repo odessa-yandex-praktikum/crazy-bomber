@@ -7,9 +7,9 @@ import {UserTheme} from './models/user_theme';
 import {createSiteTheme} from './pre-filling-theme';
 
 const sequelizeOptions: SequelizeOptions = {
-    username: 'postgres',
-    password: 'postgres',
-    host: 'localhost',
+    username: process.env.POSTGRES_USER || 'postgres',
+    password: process.env.POSTGRES_PASSWORD || 'postgres',
+    host: process.env.NODE_ENV === "production" ? 'postgres' : 'localhost',
     port: 5432,
     database: 'crazybomber', //database name - should be created before launch
     dialect: 'postgres',
@@ -18,6 +18,13 @@ const sequelizeOptions: SequelizeOptions = {
 const sequelize = new Sequelize(sequelizeOptions);
 
 sequelize.addModels([SiteTheme, UserTheme, User, Topic, Message]);
+
+SiteTheme.sync({ alter: true });
+UserTheme.sync({ alter: true });
+User.sync({ alter: true });
+Topic.sync({ alter: true });
+Message.sync({ alter: true });
+
 createSiteTheme();
 
 export {sequelize};
