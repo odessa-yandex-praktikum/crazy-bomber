@@ -36,8 +36,7 @@ interface IStoreConfig {
  */
 export const getInitialState = (pathname = '/'): IAppState => {
     return {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-        user: userInitialState, // TODO: скорее всего здесь надо будет сеттить на бэке пользователя.
+        user: userInitialState,
         leaderboard: leaderboardInitialState,
         router: {
             location: {pathname, search: '', hash: '', key: ''},
