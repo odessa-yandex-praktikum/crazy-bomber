@@ -64,9 +64,9 @@ app.get('/forum/topic/:id/messages', forumService.getAllMessagesForTopic);
  */
 app.use(express.static(path.posix.resolve('dist')));
 
+app.disable('x-powered-by').enable('trust proxy').use(cookieParser()).use(router);
+
 /**
  * На все get запросы запускаем сначала middleware dev server, а потом middleware рендеринга приложения.
  */
 app.get('/*', getWebpackMiddlewares(mode));
-
-app.disable('x-powered-by').enable('trust proxy').use(cookieParser()).use(router);

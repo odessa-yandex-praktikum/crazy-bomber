@@ -1,19 +1,11 @@
-import {UserActionTypes, Nullable, User, UserState, UserAction} from '../types/user';
+import {UserActionTypes, UserState, UserAction} from '../types/user';
 
-const currentUser: Nullable<User> = {}; // TODO. Добавить middleware на сервере для проверки пользователя.
-export const initialState: UserState = currentUser
-    ? {
-          loggedIn: true,
-          currentUser: currentUser,
-          error: '',
-          theme: undefined,
-      }
-    : {
-          loggedIn: false,
-          currentUser: null,
-          error: '',
-          theme: undefined,
-      };
+export const initialState: UserState = {
+    loggedIn: false,
+    currentUser: null,
+    error: '',
+    theme: undefined,
+};
 
 export const userReducer = (state = initialState, action: UserAction): UserState => {
     switch (action.type) {
