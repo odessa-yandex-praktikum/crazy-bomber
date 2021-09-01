@@ -1,6 +1,7 @@
-FROM nodejscn/node:lts
-WORKDIR /var/www
-COPY dist dist
-COPY ./src/server/server.js server.js
-CMD npm install express && node ./server.js
-EXPOSE 4000
+FROM jelastic/nodejs:14.17.5-npm
+WORKDIR /opt/bomber
+COPY . .
+RUN npm ci
+RUN npm run build:prod
+CMD node dist/server.js --mode=production
+EXPOSE 3000

@@ -20,7 +20,7 @@ export function apiSignInWithYandex(code: string): Promise<Response> {
         },
         body: JSON.stringify({
             code: code,
-            redirect_uri: 'http://localhost:3000',
+            redirect_uri:  process.env.NODE_ENV !== 'production' ? 'http://localhost:3000' : 'http://localhost:3000',
         }),
     }).then((response) => processingRequest(response));
 }

@@ -1,0 +1,39 @@
+name: Deploy
+
+on: [push]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install SSH Key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.SSH_KEY }}
+          known_hosts: ${{ secrets.KNOWN_HOST }}
+
+      - name: Create env file
+        run: echo POSTGRES_DB=${{ secrets.POSTGRES_DB }} > .env
+
+      - name: Create env file
+        run: echo POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }} >> .env
+
+      - name: Create env file
+        run: echo POSTGRES_USER=${{ secrets.POSTGRES_USER }} >> .env
+
+      - name: Create env file
+        run: echo NODE_ENV=${{ secrets.NODE_ENV }} >> .env
+
+      - name: Copy project
+        run: rsync -av -e ssh --exclude='.git' --exclude='.github' ./ server@${{ secrets.YANDEX_PUBLIC_IP }}:/home/server/crazy_bomber/
+
+      - name: Docker build
+        run: ssh server@${{ secrets.YANDEX_PUBLIC_IP }} sudo docker-compose -f /home/server/crazy_bomber/docker-compose.yaml -p crazy_bomber build --force-rm
+
+      - name: Docker down
+        run: ssh server@${{ secrets.YANDEX_PUBLIC_IP }} sudo docker-compose -f /home/server/crazy_bomber/docker-compose.yaml -p crazy_bomber down
+
+      - name: Docker up
+        run: ssh server@${{ secrets.YANDEX_PUBLIC_IP }} sudo docker-compose -f /home/server/crazy_bomber/docker-compose.yaml -p crazy_bomber up -d && sudo docker image prune -f

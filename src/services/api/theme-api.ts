@@ -1,11 +1,12 @@
 import {getFetchToJson} from './common';
 
+
 export interface UserThemeData {
     user_id: number;
     theme_id: number;
 }
 
-const url = 'http://localhost:3000';
+const url =  process.env.NODE_ENV !== 'production' ? 'http://localhost:3000' : 'http://odessa-crazyboomber-5.ya-praktikum.tech:3000';
 
 const apiHost = {
     getUserTheme: '/get-user-theme',
