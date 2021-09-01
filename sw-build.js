@@ -11,6 +11,9 @@ fs.readdirSync('./dist/fonts/').forEach(file => {
 fs.readdirSync('./dist/images/').forEach(file => {
     filesFromDist.push(`"/images/${file}"`);
 });
+fs.readdirSync('./dist/audio/').forEach(file => {
+    filesFromDist.push(`"/audio/${file}"`);
+});
 
 const template = fs.readFileSync(path.resolve(process.cwd(), 'sw-template.js'), { encoding: 'UTF-8' });
 const data = template.replace('\'{{FILES_FROM_DIST}}\'', `[${String(filesFromDist)}]`)
