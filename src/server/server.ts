@@ -31,7 +31,7 @@ const forumService = forumController();
 
 app.use(
     cors({
-        origin:  process.env.NODE_ENV !== 'production' ? 'http://localhost:3000' : 'http://odessa-crazyboomber-5.ya-praktikum.tech:3000',
+        origin:  process.env.NODE_ENV !== 'production' ? 'http://localhost:3000' : 'https://odessa-crazyboomber-5.ya-praktikum.tech',
         credentials: true,
     })
 );
