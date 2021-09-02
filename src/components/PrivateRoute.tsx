@@ -6,3 +6,8 @@ export const PrivateRoute: React.FC<RouteProps> = (props) => {
     const {isAuthorized} = useAuth();
     return isAuthorized ? <Route {...props} /> : <Redirect to="/login" />;
 };
+
+export const UnAuthorizedRoute: React.FC<RouteProps> = (props) => {
+    const {isAuthorized} = useAuth();
+    return isAuthorized ? <Redirect to="/start" /> : <Route {...props} />;
+};

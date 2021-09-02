@@ -1,7 +1,7 @@
-import {PrivateRoute} from 'components/PrivateRoute';
+import {PrivateRoute, UnAuthorizedRoute} from 'components/PrivateRoute';
 import {ErrorBoundary} from 'components/errorBoundary';
 import * as React from 'react';
-import {Redirect, Route, Switch, useLocation} from 'react-router-dom';
+import {Redirect, Switch, useLocation} from 'react-router-dom';
 import loadable from '@loadable/component';
 import {getUserOauth} from './action';
 
@@ -22,8 +22,8 @@ export function App() {
     return (
         <ErrorBoundary key={location?.pathname}>
             <Switch>
-                <Route path="/login" exact component={Login} />
-                <Route path="/signin" exact component={Signin} />
+                <UnAuthorizedRoute path="/login" exact component={Login} />
+                <UnAuthorizedRoute path="/signin" exact component={Signin} />
                 <PrivateRoute path="/leaderboard" exact component={Leaderboard} />
                 <PrivateRoute path="/game" exact component={Game} />
                 <PrivateRoute path="/gameover" exact component={Gameover} />
