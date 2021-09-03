@@ -15,7 +15,7 @@ const pathHtmlUrls = [
 ];
 
 self.addEventListener('install', async (event) => {
-    const cache = await caches.open(staticCache);
+    const cache = await caches.open('bomber-s-v2');
     await cache.addAll(assetsUrls);
 
     await cache.addAll(pathHtmlUrls.map((el) => el[1]));
@@ -45,7 +45,7 @@ async function cacheFirst(request) {
         return cashed;
     }
 
-    const cache = await caches.open(staticCache);
+    const cache = await caches.open('bomber-s-v2');
     const allKeys = await cache.keys();
     const matchedRequest = allKeys.find((rq) => rq.url.indexOf(request.url) !== -1);
     if (matchedRequest) {
@@ -56,7 +56,7 @@ async function cacheFirst(request) {
 }
 
 async function networkFirst(request, fallbackToStatic) {
-    const cache = await caches.open(dynamicCache);
+    const cache = await caches.open('bomber-d-v1');
     try {
         const response = await fetch(request);
         await cache.put(request, response.clone()).catch(() => {});
@@ -68,7 +68,7 @@ async function networkFirst(request, fallbackToStatic) {
         }
 
         if (fallbackToStatic) {
-            const staticCache = await caches.open(staticCache);
+            const staticCache = await caches.open('bomber-s-v2');
             const allKeys = await staticCache.keys();
             // strip .html extension
             const matchedRequest = allKeys.find((rq) => rq.url.indexOf(request.url) !== -1);
