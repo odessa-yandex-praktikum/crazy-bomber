@@ -35,7 +35,7 @@ self.addEventListener('fetch', (event) => {
     const {request} = event;
     const url = new URL(request.url);
 
-    const isMatchedSsrPage = pathHtmlUrls.some((pathPair) => request.url === pathPair[0]);
+    const isMatchedSsrPage = pathHtmlUrls.some((pathPair) => request.url.indexOf(pathPair[0]) !== -1 );
     if (isMatchedSsrPage) {
         event.respondWith(networkFirst(request, true));
     } else {
@@ -46,6 +46,8 @@ self.addEventListener('fetch', (event) => {
 });
 
 async function cacheFirst(request) {
+    const staticCache = 'bomber-s-v2';
+    const dynamicCache = 'bomber-d-v1';
     const cashed = await caches.match(request);
     if (cashed) {
         return cashed;
@@ -62,6 +64,8 @@ async function cacheFirst(request) {
 }
 
 async function networkFirst(request, fallbackToStatic) {
+    const staticCache = 'bomber-s-v2';
+    const dynamicCache = 'bomber-d-v1';
     const cache = await caches.open(dynamicCache);
     try {
         const response = await fetch(request);
