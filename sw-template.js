@@ -23,12 +23,6 @@ self.addEventListener('install', async (event) => {
 
 self.addEventListener('activate', async (event) => {
     const cacheNames = await caches.keys();
-    await Promise.all(
-        cacheNames
-            .filter((name) => name !== staticCache)
-            .filter((name) => name !== dynamicCache)
-            .map((name) => caches.delete(name))
-    );
 });
 
 self.addEventListener('fetch', (event) => {
