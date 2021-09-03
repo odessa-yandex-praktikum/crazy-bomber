@@ -1,50 +1,5 @@
 @import '../../common.css';
 
-.start-page {
-    background-color: var(--color-background);
-    background-image: url('../../assets/images/bomber.png'), url('../../assets/images/planet.png');
-    background-size: cover;
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    font-family: 'JollyLodger-Regular', serif;
-    color: var(--font-family);
-}
-
-.start-page__background {
-    position: absolute;
-    height: 100%;
-}
-
-.start-page__background-front {
-    position: absolute;
-    width: 1500px;
-    margin-top: 130px;
-    margin-left: 200px;
-}
-
-.start-page__container {
-    z-index: 999;
-    margin-top: 220px;
-    margin-left: 510px;
-}
-
-.start-page__games-title {
-    color: var(--color-games-title);
-    font-size: 96px;
-    text-shadow: var(--color-shadow) 2px 2px 0, var(--color-shadow) -2px -2px 0,
-        var(--color-shadow) -2px 2px 0, var(--color-shadow) 2px -2px 0;
-}
-
-.start-page__button-container {
-    z-index: 999;
-    padding-left: 35px;
-    padding-top: 175px;
-}
-
 .start-page__play-button {
     text-decoration: none;
     color: var(--color-games-title);
@@ -54,34 +9,4 @@
 .start-page__play-button:hover,
 .start-page__play-button:focus {
     color: var(--color-shadow);
-}
-
-.backgroundBack {
-    position: absolute;
-    height: 100%;
-}
-
-.backgroundFront {
-    position: absolute;
-    width: 1400px;
-}
-
-.backgroundBack {
-    position: absolute;
-    height: 100%;
-}
-
-.backgroundFront {
-    position: absolute;
-    width: 1400px;
-}
-
-.backgroundBack {
-    position: absolute;
-    height: 100%;
-}
-
-.backgroundFront {
-    position: absolute;
-    width: 1400px;
 }

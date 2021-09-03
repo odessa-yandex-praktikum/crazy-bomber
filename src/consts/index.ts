@@ -44,15 +44,15 @@ export const consts = {
     forumPage: {
         pageTitle: 'Forum',
         buttonCreateTopic: 'Create new topic',
-        buttonPrevious: 'previous',
-        buttonNext: 'next',
+        title: 'title',
+        text: 'text',
         messageInput: 'Your message: ',
     },
     navigation: {
         navLinkStart: 'start',
         navLinkProfile: 'profile',
         navLinkLeaderboard: 'leaderboard',
-        navLinkForum: 'forum',
+        navLinkForum: 'crazy-forum',
         navLinkPlayAgain: 'play again',
         navLinkLogout: 'logout',
     },

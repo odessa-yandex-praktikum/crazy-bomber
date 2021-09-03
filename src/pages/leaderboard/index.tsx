@@ -29,7 +29,7 @@ export default function LeaderboardPage() {
     }, [dispatch]);
 
     return (
-        <div className="leaderboard-page leaderboard-page__background">
+        <div className="base-page base-page__background">
             <div className="form-error">{error}</div>
             <div className="container__left-part">
                 <Navigation navigationItems={navigationItems} />

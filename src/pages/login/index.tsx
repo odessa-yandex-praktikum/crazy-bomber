@@ -99,12 +99,10 @@ export default function Login() {
         />,
     ];
     return (
-        <div className="login-signin-page">
+        <div className="page-with-bomber">
             <div className="form-error">{loginError}</div>
-            <div className="container__games-title">
-                <span className="games-title">{consts.gamesTitle}</span>
-            </div>
-            <div className="container__form">
+            <span className="games-title">{consts.gamesTitle}</span>
+            <div>
                 <Form
                     classForm={`login__form form__theme-${theme}`}
                     arrayInputs={arrayInputs}

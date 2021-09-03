@@ -36,21 +36,6 @@ it('renders correctly Error', () => {
     expect(tree).toMatchSnapshot();
 });
 
-it('renders correctly forum', () => {
-    const tree = renderer
-        .create(
-            <Button
-                key={3}
-                text="forum"
-                buttonColor={EButtonColor.SECONDARY}
-                buttonType={EButtonType.FORUM_PAGE}
-                onClick={console.log('click forum')}
-            />
-        )
-        .toJSON();
-    expect(tree).toMatchSnapshot();
-});
-
 it('renders correctly full screen', () => {
     const tree = renderer
         .create(

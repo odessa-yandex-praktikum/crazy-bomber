@@ -4,7 +4,7 @@ import {EFullScreenPosition, FullScreen} from 'components/full-screen';
 import {Input} from 'components/input';
 import * as React from 'react';
 import {useCallback, useEffect, useState} from 'react';
-import './signin.css';
+import '../login/login.css';
 import {useDispatch} from 'react-redux';
 import {useHistory} from 'react-router-dom';
 import {consts} from '../../consts';
@@ -15,11 +15,12 @@ import {userActions} from '../../store/actions/userActions';
 import {useTypedSelector} from '../../store/hooks/useTypedSelector';
 
 export default function Signin() {
+    const errorMessage = useTypedSelector((state) => state.user.error);
+    const {theme = 'GREY'} = useTypedSelector((state) => state.user);
+
     const history = useHistory();
     const dispatch = useDispatch();
-    const errorMessage = useTypedSelector((state) => state.user.error);
     const [signupError, setSignupError] = useState(errorMessage);
-    let {theme = 'GREY'} = useTypedSelector((state) => state.user);
 
     const email = useInput('', [
         {type: EValidationType.REQUIRED, value: true},
@@ -138,14 +139,12 @@ export default function Signin() {
     ];
 
     return (
-        <div className="login-signin-page">
+        <div className="page-with-bomber">
             <div className="form-error">{signupError}</div>
-            <div className="container__games-title">
-                <span className="games-title">{consts.gamesTitle}</span>
-            </div>
-            <div className="container__form">
+            <span className="games-title">{consts.gamesTitle}</span>
+            <div>
                 <Form
-                    classForm={`signin__form form__theme-${theme}`}
+                    classForm={`login__form form__theme-${theme}`}
                     arrayInputs={arrayInputs}
                     arrayButtons={arrayButtons}
                 />

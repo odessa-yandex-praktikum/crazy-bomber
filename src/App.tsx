@@ -4,6 +4,10 @@ import * as React from 'react';
 import {Redirect, Switch, useLocation} from 'react-router-dom';
 import loadable from '@loadable/component';
 import {getUserOauth} from './action';
+import {getUserThemeById} from './store/actions/userActions';
+import {useDispatch} from 'react-redux';
+import {useTypedSelector} from './store/hooks/useTypedSelector';
+import './common.css';
 
 const Leaderboard = loadable(() => import('./pages/leaderboard/index'));
 /** Так как отрисовка игры зависит от DOM'а, то нет смысла рендерить этот роут на бекенде. */
@@ -13,10 +17,14 @@ const Main = loadable(() => import('./pages/start/index'));
 const Profile = loadable(() => import('./pages/profile/index'));
 const Login = loadable(() => import('./pages/login/index'));
 const Signin = loadable(() => import('./pages/signin/index'));
-const Forum = loadable(() => import('./pages/forum/index'));
-const ForumTopic = loadable(() => import('./pages/forumtopic/index'));
+const Forum = loadable(() => import('./pages/forum/Pages/Forum'));
+const Topic = loadable(() => import('./pages/forum/Pages/Topic'));
 
 export function App() {
+    const dispatch = useDispatch();
+    const currentUser = useTypedSelector((state) => state.user.currentUser!);
+    getUserThemeById(currentUser?.id, dispatch);
+
     const location = useLocation();
 
     return (
@@ -29,8 +37,8 @@ export function App() {
                 <PrivateRoute path="/gameover" exact component={Gameover} />
                 <PrivateRoute path="/start" exact component={Main} />
                 <PrivateRoute path="/profile" exact component={Profile} />
-                <PrivateRoute path="/forum" exact component={Forum} />
-                <PrivateRoute path="/forum/:id" exact component={ForumTopic} />
+                <PrivateRoute path="/crazy-forum" exact component={Forum} />
+                <PrivateRoute path="/crazy-forum/:id" exact component={Topic} />
                 <Redirect from="/" to={getUserOauth()} />
                 <Redirect from="*" to="/start" />
             </Switch>

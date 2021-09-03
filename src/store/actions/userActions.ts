@@ -339,7 +339,7 @@ function changeTheme(clickTheme: string, id: number) {
     }
 }
 
-function getUserThemeById(UserId: number, dispatch: Dispatch) {
+export function getUserThemeById(UserId: number, dispatch: Dispatch) {
     return getUserTheme(UserId).then((ThemeId: {theme_id: number; id: number; user_id: number}) => {
         getThemeById(ThemeId.theme_id)
             .then((Theme: {id: number; theme: string}) => {

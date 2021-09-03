@@ -20,6 +20,7 @@ const apiHost = {
     signIn: 'auth/signin',
     getUserInfo: 'auth/user',
     logout: 'auth/logout',
+    anotherUserInfo: 'user',
     changeUserProfile: 'user/profile',
     changeUserAvatar: 'user/profile/avatar',
     changePassword: 'user/password',
@@ -66,6 +67,19 @@ export function apiLogout(): Promise<Response> {
 
 export function getUserInfo(): Promise<{}> {
     return getFetchToJson(url + apiHost.getUserInfo);
+}
+
+export function getAnotherUserInfo(userId: number): Promise<any> {
+    return fetch(`${url}${apiHost.anotherUserInfo}/${userId}`, {
+        method: 'GET',
+        credentials: 'include',
+        headers: {
+            'Content-Type': 'application/json',
+            accept: 'application/json',
+        },
+    })
+        .then((response) => processingRequest(response))
+        .then((r: Response) => r.json());
 }
 
 export function apiChangeProfile(formData: Data): Promise<Response> {

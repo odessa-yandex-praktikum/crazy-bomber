@@ -1,6 +1,5 @@
 import React, {useCallback} from 'react';
 import './theme-switcher.css';
-import '../../common.css';
 import {useDispatch} from 'react-redux';
 import {userActions} from '../../store/actions/userActions';
 import {useTypedSelector} from '../../store/hooks/useTypedSelector';

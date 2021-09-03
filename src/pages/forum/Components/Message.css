@@ -1,10 +1,4 @@
-@import '../../common.css';
-
-.forum-page__item {
-    width: 510px;
-    margin-bottom: 1em;
-    border: 2px solid var(--color-shadow);
-}
+@import 'src/common.css';
 
 .forum-page__topic-message {
     width: 100%;

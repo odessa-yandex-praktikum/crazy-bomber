@@ -2,20 +2,21 @@ const staticCache = 'bomber-s-v2'
 const dynamicCache = 'bomber-d-v1'
 const assetsUrls = '{{FILES_FROM_DIST}}';
 
+const pathHtmlUrls =[
+    ['/login', "/login.html"],
+    ["/signin", "/signin.html"],
+    ["/leaderboard", "/leaderboard.html"],
+    ["/game", "/game.html"],
+    ["/gameover", "/gameover.html"],
+    ["/start", "/start.html"],
+    ["/profile", "/profile.html"],
+    ["/crazy-forum", "/crazy-forum.html"],
+    ["/", "/index.html"],
+];
+
 self.addEventListener('install', async event => {
     const cache = await caches.open(staticCache);
     await cache.addAll(assetsUrls);
-
-    const pathHtmlUrls =[
-        ['/login', "/login.html"],
-        ["/signin", "/signin.html"],
-        ["/leaderboard", "/leaderboard.html"],
-        ["/game", "/game.html"],
-        ["/start", "/start.html"],
-        ["/profile", "/profile.html"],
-        ["/forum", "/forum.html"],
-        ["/", "/index.html"],
-    ];
 
     await cache.addAll(pathHtmlUrls.map(el => el[1]));
 });
@@ -31,9 +32,15 @@ self.addEventListener('activate', async event => {
 self.addEventListener('fetch', event => {
     const {request} = event;
     const url = new URL(request.url)
-    url.origin === location.origin ?
-        event.respondWith(cacheFirst(request))
-        : event.respondWith(networkFirst(request))
+
+    const isMatchedSsrPage = pathHtmlUrls.some(pathPair => request.url === pathPair[0]);
+    if (isMatchedSsrPage) {
+        event.respondWith(networkFirst(request, true));
+    } else {
+        url.origin === location.origin ?
+            event.respondWith(cacheFirst(request))
+            : event.respondWith(networkFirst(request))
+    }
 })
 
 async function cacheFirst(request) {
@@ -52,7 +59,7 @@ async function cacheFirst(request) {
     return fetch(request)
 }
 
-async function networkFirst(request) {
+async function networkFirst(request, fallbackToStatic) {
     const cache = await caches.open(dynamicCache);
     try {
         const response = await fetch(request);
@@ -63,6 +70,17 @@ async function networkFirst(request) {
         if (cached) {
             return cached
         }
+
+        if (fallbackToStatic) {
+            const staticCache = await caches.open(staticCache);
+            const allKeys = await staticCache.keys();
+            // strip .html extension
+            const matchedRequest = allKeys.find((rq) => rq.url.indexOf(request.url) !== -1);
+            if (matchedRequest) {
+                return caches.match(matchedRequest);
+            }
+        }
+
         throw e;
     }
 }
