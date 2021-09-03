@@ -52,7 +52,7 @@ export const consts = {
         navLinkStart: 'start',
         navLinkProfile: 'profile',
         navLinkLeaderboard: 'leaderboard',
-        navLinkForum: 'forum',
+        navLinkForum: 'crazy-forum',
         navLinkPlayAgain: 'play again',
         navLinkLogout: 'logout',
     },

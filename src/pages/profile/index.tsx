@@ -221,7 +221,10 @@ export default function Profile() {
                                         className="profile-page__avatar-edit-icon"
                                     />
                                     <img
-                                        src={currentUser.avatar}
+                                        src={
+                                            currentUser.avatar ??
+                                            'https://freesvg.org/img/1514826571.png'
+                                        }
                                         alt="Your avatar"
                                         className="profile-page__avatar"
                                     />

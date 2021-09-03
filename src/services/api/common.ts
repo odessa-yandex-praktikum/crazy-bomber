@@ -1,3 +1,5 @@
+import {isServer} from '../../utils/Utils';
+
 export const processingRequest = (response: Response) => {
     if (response.status === 200) {
         return response;
@@ -11,7 +13,11 @@ export const processingRequest = (response: Response) => {
     }
 };
 
-export function getFetchToJson<T = any>(url: string, method = 'GET', body?: any): Promise<T> {
+export function getFetchToJson<T = any>(
+    url: string,
+    method = 'GET',
+    body?: any
+): Promise<T> | Promise<void> {
     const options: RequestInit = {
         method: method,
         credentials: 'include',
@@ -25,7 +31,11 @@ export function getFetchToJson<T = any>(url: string, method = 'GET', body?: any)
         options.body = JSON.stringify(body);
     }
 
-    return fetch(url, options)
-        .then((response) => processingRequest(response))
-        .then((r: Response) => r.json());
+    if (!isServer()) {
+        return fetch(url, options)
+            .then((response) => processingRequest(response))
+            .then((r: Response) => r.json());
+    } else {
+        return Promise.resolve();
+    }
 }

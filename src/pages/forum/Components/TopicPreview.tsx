@@ -29,7 +29,7 @@ export const TopicPreview: FC<TDiscussionProps> = ({topic}) => {
     }, []);
 
     return (
-        <Link to={`/forum/${topic.id}`} className="topic-preview">
+        <Link to={`/crazy-forum/${topic.id}`} className="topic-preview">
             <div className="topic-preview__container">
                 <img
                     className="topic-preview__author-avatar"
