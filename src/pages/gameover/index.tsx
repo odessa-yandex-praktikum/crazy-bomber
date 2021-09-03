@@ -4,10 +4,10 @@ import soundWin from 'assets/audio/level-completed.wav';
 import {EFullScreenPosition, FullScreen} from 'components/full-screen';
 import {Navigation} from 'components/navigation';
 import * as React from 'react';
+import {useEffect, useRef} from 'react';
 import {useLocation} from 'react-router-dom';
 import {Link} from 'react-router-dom';
 import {consts} from '../../consts';
-import {useAudio} from '../../hooks/use-audio';
 import {convertScoreToString} from '../../utils/Utils';
 
 type LocationState = {
@@ -21,7 +21,23 @@ export default function GameoverPage() {
 
     const {state} = useLocation<LocationState>();
     const {currentScore, isWinner} = state;
-    const [pauseAudio] = useAudio(isWinner ? soundWin : soundGameover);
+    const audio = useRef<HTMLAudioElement | undefined>();
+
+    /**
+     * Устанавливаем аудиодорожку именно таким образом (при маунте), а не при инициализации,
+     * чтобы музыка не грузилась при каждом ререндере компонента GameoverPage.
+     */
+    useEffect(() => {
+        audio.current = new Audio(isWinner ? soundWin : soundGameover);
+        if (audio.current) {
+            audio.current.play();
+            audio.current.addEventListener('ended', () => audio.current?.pause());
+            return () => {
+                audio.current?.removeEventListener('ended', () => audio.current?.pause());
+            };
+        }
+    }, []);
+
     const navigationItems = [navLinkForum, navLinkProfile, navLinkLeaderboard];
 
     return (
@@ -37,7 +53,13 @@ export default function GameoverPage() {
             <div className="container__right-part">
                 <div className="gameover-page__container">
                     <h2 className="games-title">{isWinner ? titleWin : titleLose}</h2>
-                    <Link to="/game" className="play-button" onClick={pauseAudio}>
+                    <Link
+                        to="/game"
+                        className="play-button"
+                        onClick={() => {
+                            audio.current?.pause();
+                        }}
+                    >
                         {buttonPlayAgain}
                     </Link>
                 </div>
