@@ -40,8 +40,8 @@ self.addEventListener('fetch', (event) => {
         event.respondWith(networkFirst(request, true));
     } else {
         url.origin === location.origin
-            ? event.respondWith(cacheFirst(request))
-            : event.respondWith(networkFirst(request));
+            ? event.respondWith(networkFirst(request))
+            : event.respondWith(cacheFirst(request));
     }
 });
 
