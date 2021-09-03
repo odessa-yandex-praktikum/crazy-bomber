@@ -46,8 +46,6 @@ self.addEventListener('fetch', (event) => {
 });
 
 async function cacheFirst(request) {
-    const staticCache = 'bomber-s-v2';
-    const dynamicCache = 'bomber-d-v1';
     const cashed = await caches.match(request);
     if (cashed) {
         return cashed;
@@ -64,8 +62,6 @@ async function cacheFirst(request) {
 }
 
 async function networkFirst(request, fallbackToStatic) {
-    const staticCache = 'bomber-s-v2';
-    const dynamicCache = 'bomber-d-v1';
     const cache = await caches.open(dynamicCache);
     try {
         const response = await fetch(request);
