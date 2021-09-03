@@ -6,7 +6,6 @@ import './Game.css';
 import {useDispatch} from 'react-redux';
 import {useHistory} from 'react-router-dom';
 import {useAnimationFrame} from '../../../hooks/use-animation-frame';
-import {useAudio} from '../../../hooks/use-audio';
 import {leaderboardActions} from '../../../store/actions/leaderboardActions';
 import {useTypedSelector} from '../../../store/hooks/useTypedSelector';
 import {convertScoreToString, intersect, randomInteger} from '../../../utils/Utils';
@@ -18,16 +17,35 @@ import {EDirection} from '../enums';
 
 export default function Game() {
     let currentScore: number;
+
     const [score, setScore] = useState<number>(0);
+
+    const audio = useRef<HTMLAudioElement | undefined>();
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const contextRef = useRef<CanvasRenderingContext2D | null>(null);
     const bomberRef = useRef<Bomber>();
     const bulletsRef = useRef<Bullet[]>([]);
     const buildingsRef = useRef<Building[]>([]);
+
     const history = useHistory();
     const dispatch = useDispatch();
+
     const {avatar, login} = useTypedSelector((state) => state.user.currentUser!);
-    const [pauseAudio] = useAudio(soundBackground);
+
+    /**
+     * Устанавливаем аудиодорожку именно таким образом (при маунте), а не при инициализации,
+     * чтобы музыка не грузилась при каждом ререндере компонента Game.
+     */
+    useEffect(() => {
+        audio.current = new Audio(soundBackground);
+        if (audio.current) {
+            audio.current.play();
+            audio.current.addEventListener('ended', () => audio.current?.pause());
+            return () => {
+                audio.current?.removeEventListener('ended', () => audio.current?.pause());
+            };
+        }
+    }, []);
 
     /** Монтирование */
     useEffect(() => {
@@ -129,7 +147,7 @@ export default function Game() {
                     dispatch(
                         leaderboardActions.saveScore(avatar, login.substr(0, 11), currentScore)
                     );
-                    pauseAudio();
+                    audio.current?.pause();
                     history.push('/gameover', {currentScore, isWinner: false});
                 }
 
@@ -179,7 +197,7 @@ export default function Game() {
             if (buildingsRef.current.length === 0) {
                 /** Сохраняем в лидерборд короткие имена пользователя - до 12 символов*/
                 dispatch(leaderboardActions.saveScore(avatar, login.substr(0, 11), currentScore));
-                pauseAudio();
+                audio.current?.pause();
                 history.push('/gameover', {currentScore, isWinner: true});
             }
         }
