@@ -36,10 +36,10 @@ export const FullScreen: Props = ({position}: TFullScreenProps) => {
         }
     }, []);
     return (
-        <div className={`${getFullScreenClass(position)}`}>
+        <div className={`full-screen ${getFullScreenClass(position)}`}>
             <Button
                 key={consts.profilePage.buttonSaveChanges}
-                buttonType={type}
+                buttonType={type || EButtonType.FULL_SCREEN}
                 onClick={onFullScreenClick}
             />
         </div>
@@ -47,16 +47,13 @@ export const FullScreen: Props = ({position}: TFullScreenProps) => {
 };
 
 function getFullScreenClass(position: EFullScreenPosition): string {
-    let cssString = 'full-screen';
     switch (position) {
         case EFullScreenPosition.RIGHT_BOTTOM: {
-            cssString += ' full-screen__right-bottom';
-            break;
+            return 'full-screen__right-bottom';
         }
-        case EFullScreenPosition.RIGHT_TOP: {
-            cssString += ' full-screen__right-top';
-            break;
+        case EFullScreenPosition.RIGHT_TOP:
+        default: {
+            return 'full-screen__right-top';
         }
     }
-    return cssString;
 }

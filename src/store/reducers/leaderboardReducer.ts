@@ -1,5 +1,4 @@
-import {LeaderboardAction} from '../actions/leaderboardActions';
-import {GameResultsData, LeaderboardActionTypes} from '../types/leaderboard';
+import {GameResultsData, LeaderboardAction, LeaderboardActionTypes} from '../types/leaderboard';
 
 export type LeaderboardState = {
     gameResultsData: GameResultsData | null;

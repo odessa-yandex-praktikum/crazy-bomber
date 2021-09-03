@@ -27,7 +27,7 @@ export default function GameoverPage() {
     return (
         <div
             className={
-                'gameover-page ' +
+                'base-page ' +
                 (isWinner ? 'gameover-page__win-background' : 'gameover-page__lose-background')
             }
         >
@@ -36,8 +36,8 @@ export default function GameoverPage() {
             </div>
             <div className="container__right-part">
                 <div className="gameover-page__container">
-                    <h2 className="gameover-page__title">{isWinner ? titleWin : titleLose}</h2>
-                    <Link to="/game" className="gameover-page__play-button" onClick={pauseAudio}>
+                    <h2 className="games-title">{isWinner ? titleWin : titleLose}</h2>
+                    <Link to="/game" className="play-button" onClick={pauseAudio}>
                         {buttonPlayAgain}
                     </Link>
                 </div>

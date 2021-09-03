@@ -1,53 +1,14 @@
 import {Dispatch} from 'redux';
 import {leaderboardApi} from '../../services/api/leaderboard-api';
-import {GameResultsData, LeaderboardActionTypes} from '../types/leaderboard';
-
-export const leaderboardActions = {
-    saveScore,
-    loadLeaderboard,
-};
-
-type LeaderboardLoading = {
-    type: typeof LeaderboardActionTypes.LEADERBOARD_LOADING;
-};
-
-type LeaderboardSuccess = {
-    type: typeof LeaderboardActionTypes.LEADERBOARD_SUCCESS;
-    payload: {gameResultsData: GameResultsData | null};
-};
-
-type LeaderboardFailure = {
-    type: typeof LeaderboardActionTypes.LEADERBOARD_FAILURE;
-    payload: {error: string};
-};
-
-export const leaderboardLoading = (): LeaderboardLoading => {
-    return {
-        type: LeaderboardActionTypes.LEADERBOARD_LOADING,
-    };
-};
-
-export const leaderboardLoadingSuccess = (gameResultsData: GameResultsData): LeaderboardSuccess => {
-    return {
-        type: LeaderboardActionTypes.LEADERBOARD_SUCCESS,
-        payload: {gameResultsData},
-    };
-};
-
-export const leaderboardLoadingFailure = (error: string): LeaderboardFailure => {
-    return {
-        type: LeaderboardActionTypes.LEADERBOARD_FAILURE,
-        payload: {error},
-    };
-};
+import {leaderboardActionCreator} from '../types/leaderboard';
 
 function saveScore(avatar: string, login: string, score: number) {
     return async (dispatch: Dispatch) => {
-        dispatch(leaderboardLoading());
+        dispatch(leaderboardActionCreator.loading());
         const {apiSaveLeader} = leaderboardApi();
 
         await apiSaveLeader(avatar, login, score).catch((error: Error) => {
-            dispatch(leaderboardLoadingFailure(error.message));
+            dispatch(leaderboardActionCreator.failure(error.message));
             console.log(error);
         });
     };
@@ -55,16 +16,19 @@ function saveScore(avatar: string, login: string, score: number) {
 
 function loadLeaderboard(page = 0) {
     return async (dispatch: Dispatch) => {
-        dispatch(leaderboardLoading());
+        dispatch(leaderboardActionCreator.loading());
         const {apiGetAll} = leaderboardApi();
         try {
             const gameResults = await apiGetAll(page);
-            dispatch(leaderboardLoadingSuccess(gameResults));
+            dispatch(leaderboardActionCreator.success(gameResults));
         } catch (error) {
-            dispatch(leaderboardLoadingFailure(error));
+            dispatch(leaderboardActionCreator.failure(error));
             console.log(error);
         }
     };
 }
 
-export type LeaderboardAction = LeaderboardLoading | LeaderboardSuccess | LeaderboardFailure;
+export const leaderboardActions = {
+    saveScore,
+    loadLeaderboard,
+};

@@ -6,6 +6,7 @@ import {ChunkExtractor} from '@loadable/server';
 import {getClientHtml} from '../../index.server';
 import {configureStore, getInitialState, IAppState} from '../../store';
 import {UserActionTypes, UserData} from '../../store/types/user';
+import {ServerUser} from '../db/types';
 
 const makeHTMLPage = (
     content: string,
@@ -113,6 +114,15 @@ export default (req: express.Request, res: express.Response) => {
             response.on('data', function (user) {
                 const userData =
                     response.statusCode === 200 ? (JSON.parse(user) as UserData) : null;
+
+                /**
+                 * Устанавливаем пользователя в инстанс приложения.
+                 */
+                req.app.locals.userInfo = {
+                    user_id: userData?.id,
+                    login: userData?.login,
+                    avatar: userData?.avatar,
+                } as ServerUser;
 
                 responseFn(req, res, userData);
             });

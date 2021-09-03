@@ -1,4 +1,6 @@
 import {Request, Response} from 'express';
+import Message from '../db/models/message';
+import Topic from '../db/models/topic';
 import {messageRepository} from '../db/repos/message';
 import {topicRepository} from '../db/repos/topic';
 import {userRepository} from '../db/repos/user';
@@ -13,15 +15,40 @@ const topicRepo = topicRepository();
 const messageRepo = messageRepository();
 const userRepo = userRepository();
 
+export type TTopic = Pick<
+    Topic,
+    'id' | 'author_id' | 'title' | 'text' | 'likes' | 'createdAt' | 'deletedAt' | 'updatedAt'
+>;
+
+export type TMessage = Pick<
+    Message,
+    'id' | 'author_id' | 'text' | 'createdAt' | 'deletedAt' | 'updatedAt'
+>;
+
+export type ReqCreateTopic = {
+    title: string;
+    text: string;
+};
+
+type TError = {error: any};
+
+type Res<T> = T | TError;
+
 export const forumController = () => {
-    const getAllTopics = (_req: Request, res: Response) => {
+    /**
+     * Обработчик получения всех тем на форуме.
+     */
+    const getAllTopics = (_req: Request<void>, res: Response<Res<TTopic[]>>) => {
         topicRepo
             .getAll()
             .then((topics) => res.status(200).send(topics))
             .catch((err) => res.status(500).json({error: [postgreSQLError, err]}));
     };
 
-    const getTopic = (req: Request, res: Response) => {
+    /**
+     * Обработчик получения темы по идентификатору.
+     */
+    const getTopicById = (req: Request, res: Response<Res<TTopic | null>>) => {
         const {id} = req.params;
 
         if (!id || Number.isNaN(Number(id))) {
@@ -35,11 +62,14 @@ export const forumController = () => {
 
         topicRepo
             .get(Number(id))
-            .then((topics) => res.status(200).send(topics))
+            .then((topic) => res.status(200).send(topic))
             .catch((err) => res.status(500).json({error: [postgreSQLError, err]}));
     };
 
-    const addTopic = (req: Request, res: Response) => {
+    /**
+     * Обработчик добавления новой темы на форум.
+     */
+    const addTopic = (req: Request<any, any, ReqCreateTopic>, res: Response<Res<TTopic>>) => {
         const {title, text} = req.body;
 
         const isTopicValid = title.length > 2;
@@ -54,7 +84,7 @@ export const forumController = () => {
             });
         }
 
-        userRepo.findOrCreateAndGet(res.locals.userInfo as ServerUser).then((user) => {
+        userRepo.findOrCreateAndGet(req.app.locals.userInfo as ServerUser).then((user) => {
             if (!user) {
                 throw new Error(userError);
             }
@@ -65,7 +95,10 @@ export const forumController = () => {
         });
     };
 
-    const addTopicLike = (req: Request, res: Response) => {
+    /**
+     * Обработчик проставления лайка.
+     */
+    const addTopicLike = (req: Request, res: Response<Res<TTopic>>) => {
         const {id} = req.params;
 
         if (!id || Number.isNaN(Number(id))) {
@@ -83,7 +116,10 @@ export const forumController = () => {
             .catch((err) => res.status(500).json({error: [postgreSQLError, err]}));
     };
 
-    const replyToTopic = (req: Request, res: Response) => {
+    /**
+     * Обработчик ответа в теме.
+     */
+    const replyToTopic = (req: Request<any, any, {text: string}>, res: Response<Res<TMessage>>) => {
         const {id} = req.params;
         const {text} = req.body;
 
@@ -96,7 +132,7 @@ export const forumController = () => {
             });
         }
 
-        userRepo.findOrCreateAndGet(res.locals.userInfo as ServerUser).then((user) => {
+        userRepo.findOrCreateAndGet(req.app.locals.userInfo as ServerUser).then((user) => {
             if (!user) {
                 throw new Error(userError);
             }
@@ -108,6 +144,9 @@ export const forumController = () => {
         });
     };
 
+    /**
+     * Обработчик получения всех сообщений темы форума.
+     */
     const getAllMessagesForTopic = (req: Request, res: Response) => {
         const {id} = req.params;
 
@@ -126,5 +165,12 @@ export const forumController = () => {
             .catch((err) => res.status(500).json({error: [postgreSQLError, err]}));
     };
 
-    return {getAllTopics, getTopic, addTopic, addTopicLike, replyToTopic, getAllMessagesForTopic};
+    return {
+        getAllTopics,
+        getTopicById,
+        addTopic,
+        addTopicLike,
+        replyToTopic,
+        getAllMessagesForTopic,
+    };
 };

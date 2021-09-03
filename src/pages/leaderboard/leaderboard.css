@@ -1,20 +1,5 @@
 @import '../../common.css';
 
-.leaderboard-page {
-    background: var(--color-background);
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    flex-direction: row;
-    font-family: 'JollyLodger-Regular', serif;
-    color: var(--color-games-title);
-}
-
-.leaderboard-page__background {
-    background-image: url('../../assets/images/planet.png');
-    background-size: cover;
-}
-
 .leaderboard-page__table {
     z-index: 999;
     width: 710px;

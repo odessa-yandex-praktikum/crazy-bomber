@@ -19,7 +19,7 @@ export const Input: Props = ({nameField, textError, ...otherProps}: TInputProps)
         <div className="container__input-with-error">
             <div className="container__input">
                 <span>{nameField}</span>
-                <input className={'input'} {...otherProps} />
+                <input className="input" {...otherProps} />
             </div>
             <span className="input__error-text">{textError}</span>
         </div>
