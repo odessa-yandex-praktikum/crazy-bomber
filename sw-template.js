@@ -35,7 +35,7 @@ self.addEventListener('fetch', (event) => {
     const {request} = event;
     const url = new URL(request.url);
 
-    const isMatchedSsrPage = pathHtmlUrls.some((pathPair) => request.url === pathPair[0]);
+    const isMatchedSsrPage = pathHtmlUrls.some((pathPair) => request.url.indexOf(pathPair[0]) !== -1 );
     if (isMatchedSsrPage) {
         event.respondWith(networkFirst(request, true));
     } else {
