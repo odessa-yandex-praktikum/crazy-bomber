@@ -44,8 +44,8 @@ export const consts = {
     forumPage: {
         pageTitle: 'Forum',
         buttonCreateTopic: 'Create new topic',
-        buttonPrevious: 'previous',
-        buttonNext: 'next',
+        title: 'title',
+        text: 'text',
         messageInput: 'Your message: ',
     },
     navigation: {

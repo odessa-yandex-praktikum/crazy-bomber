@@ -1,0 +1,62 @@
+@import 'src/common.css';
+
+.topic-preview {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    flex-wrap: wrap;
+    color: #000;
+}
+
+.topic-preview__container {
+    width: 100%;
+    display: flex;
+}
+
+.topic-preview__author-avatar {
+    width: 40px;
+    height: 40px;
+    margin: 20px;
+    border: 2px solid var(--color-shadow);
+}
+
+.topic-preview__body {
+    width: 100%;
+    margin: 20px 20px 20px 0;
+}
+
+.topic-preview__title {
+    font-size: 36px;
+    margin: 0 0 10px;
+}
+
+.topic-preview__text {
+    font-size: 22px;
+    margin: 0 0 20px;
+}
+
+.topic-preview__body-bottom {
+    display: flex;
+    justify-content: space-between;
+}
+
+.topic-preview__likes-container {
+    display: flex;
+    align-items: center;
+}
+
+.topic-preview__likes-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.topic-preview__likes-count {
+    font-size: 18px;
+    margin: 0;
+}
+
+.topic-preview__created-date {
+    font-size: 22px;
+    margin: 0;
+}

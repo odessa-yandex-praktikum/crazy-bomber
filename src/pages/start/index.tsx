@@ -1,7 +1,7 @@
 import {EFullScreenPosition, FullScreen} from 'components/full-screen';
 import {Navigation} from 'components/navigation';
 import * as React from 'react';
-import './start.css';
+import '../../common.css';
 import {Link} from 'react-router-dom';
 import {consts} from '../../consts';
 
@@ -14,18 +14,13 @@ export default function StartPage() {
     const buttonPlay = consts.startPage.buttonPlay;
 
     const navigationItems = [navLinkProfile, navLinkForum, navLinkLeaderboard, navLinkLogout];
-
     return (
-        <div className="start-page">
+        <div className="page-with-bomber">
             <Navigation navigationItems={navigationItems} />
-            <div className="container__games-title">
-                <span className="games-title">{gameTitle}</span>
-            </div>
-            <div className="start-page__button-container">
-                <Link to="/game" className="start-page__play-button">
-                    {buttonPlay}
-                </Link>
-            </div>
+            <span className="games-title">{gameTitle}</span>
+            <Link to="/game" className="play-button">
+                {buttonPlay}
+            </Link>
             <FullScreen position={EFullScreenPosition.RIGHT_TOP} />
         </div>
     );

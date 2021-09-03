@@ -31,7 +31,10 @@ const forumService = forumController();
 
 app.use(
     cors({
-        origin:  process.env.NODE_ENV !== 'production' ? 'http://localhost:3000' : 'https://odessa-crazyboomber-5.ya-praktikum.tech',
+        origin:
+            process.env.NODE_ENV !== 'production'
+                ? 'http://localhost:3000'
+                : 'https://odessa-crazyboomber-5.ya-praktikum.tech',
         credentials: true,
     })
 );
@@ -45,6 +48,8 @@ app.use(bodyParser.json());
     });
 })();
 
+app.disable('x-powered-by').enable('trust proxy').use(cookieParser()).use(router);
+
 app.get('/get-theme', getThemeHandler);
 app.post('/write-user-theme', writeThemeHandler);
 app.post('/update-user-theme', updateThemeHandler);
@@ -52,19 +57,16 @@ app.get('/get-user-theme', getUserTheme);
 app.get('/write-new-theme', writeNewTheme);
 
 app.get('/forum', forumService.getAllTopics);
-app.get('/forum/topic/:id', forumService.getTopic);
+app.get('/forum/topic/:id', forumService.getTopicById);
 app.post('/forum', forumService.addTopic);
 app.post('/forum/topic/:id/like', forumService.addTopicLike);
 app.post('/forum/topic/:id/reply', forumService.replyToTopic);
 app.get('/forum/topic/:id/messages', forumService.getAllMessagesForTopic);
 
-
 /**
  * Отдаём статику приложения.
  */
 app.use(express.static(path.posix.resolve('dist')));
-
-app.disable('x-powered-by').enable('trust proxy').use(cookieParser()).use(router);
 
 /**
  * На все get запросы запускаем сначала middleware dev server, а потом middleware рендеринга приложения.

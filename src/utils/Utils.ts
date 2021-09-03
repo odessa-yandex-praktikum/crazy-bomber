@@ -19,23 +19,6 @@ export class Message {
     constructor(public message: string, public author: Player, public created: number) {}
 }
 
-export class Discussion {
-    constructor(
-        public id: number,
-        public topic: string,
-        public author: Player,
-        public created: number,
-        public votes: number,
-        public messages: Message[]
-    ) {}
-}
-
-export function sortDescending(discussionsArray: Discussion[]) {
-    return discussionsArray.sort(
-        (discussion1: Discussion, discussion2: Discussion) => discussion2.votes - discussion1.votes
-    );
-}
-
 export function determineCreationDate(date: number) {
     const now = new Date();
     const creationDate = new Date(date);

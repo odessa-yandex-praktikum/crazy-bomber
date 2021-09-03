@@ -5,6 +5,7 @@ import {Form} from 'components/form';
 import {EFullScreenPosition, FullScreen} from 'components/full-screen';
 import {Input} from 'components/input';
 import {Navigation} from 'components/navigation';
+import {ThemeSwitcher} from 'components/theme-switcher';
 import * as React from 'react';
 import './profile.css';
 import {ChangeEvent, useCallback, useEffect, useState} from 'react';
@@ -15,7 +16,6 @@ import {EValidationType} from '../../hooks/use-validation';
 import {Data} from '../../services/api/user-api';
 import {userActions} from '../../store/actions/userActions';
 import {useTypedSelector} from '../../store/hooks/useTypedSelector';
-import {ThemeSwitcher} from '../../components/theme-switcher';
 
 export default function Profile() {
     const pageTitle = consts.profilePage.pageTitle;
@@ -23,7 +23,7 @@ export default function Profile() {
     const navLinkForum = consts.navigation.navLinkForum;
     const navLinkLeaderboard = consts.navigation.navLinkLeaderboard;
     const navLinkLogout = consts.navigation.navLinkLogout;
-    let {theme = 'GREY'} = useTypedSelector((state) => state.user);
+    const {theme = 'GREY'} = useTypedSelector((state) => state.user);
 
     const dispatch = useDispatch();
     const currentUser = useTypedSelector((state) => state.user.currentUser!);
@@ -193,7 +193,7 @@ export default function Profile() {
     const navigationItems = [navLinkStart, navLinkForum, navLinkLeaderboard, navLinkLogout];
 
     return (
-        <div className="profile-page profile-page__background">
+        <div className="base-page base-page__background">
             <div className="form-error">{changeError}</div>;
             <div className="container__left-part">
                 <Navigation navigationItems={navigationItems} />
@@ -230,7 +230,7 @@ export default function Profile() {
                             </div>
                         </div>
                         <Form
-                            classForm={`profile-page__form form__theme-${theme}`}
+                            classForm={`form__theme-${theme}`}
                             arrayInputs={arrayInputs}
                             arrayButtons={arrayButtons}
                         />

@@ -7,11 +7,9 @@
 }
 
 .form__buttons-container {
-    position: absolute;
-    bottom: 0;
     display: flex;
     justify-content: space-between;
-    width: inherit;
+    width: 100%;
     align-self: flex-end;
     flex-wrap: wrap;
 }
